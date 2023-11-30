@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.server.Handlers</a> &gt; <span class="el_source">ViewHandler.java</span></div><h1>ViewHandler.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.server.Handlers;
+
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
+import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory;
+import edu.brown.cs.student.server.CSV.LoadedCSV;
+import java.util.List;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
+/**
+ * Class for handling viewcsv handler. Will either return a json of the csv, or return a message if
+ * no csv is loaded
+ */
+public class ViewHandler implements Route {
+
+  private LoadedCSV loadedCSV;
+
+  /**
+   * Constructor
+   *
+   * @param loadedCSV reference to the csv being passed from loadcsv handler that contains parsedcsv
+   *     to view
+<span class="nc" id="L25">   */</span>
+<span class="nc" id="L26">  public ViewHandler(LoadedCSV loadedCSV) {</span>
+<span class="nc" id="L27">    this.loadedCSV = loadedCSV;</span>
+  }
+
+  /**
+   * Method that actually produces response to request
+   *
+   * @param request request from user
+   * @param response
+   * @return either message telling user no csv is loaded, or the json of the loaded csv
+   * @throws Exception
+   */
+  @Override
+  public Object handle(Request request, Response response) throws Exception {
+<span class="nc bnc" id="L40" title="All 2 branches missed."></span>
+<span class="nc" id="L41">    if (!this.loadedCSV.getIsLoaded()) {</span>
+<span class="nc" id="L42">      return new ViewNotLoaded(</span>
+              &quot;No csv loaded. Use endpoint 'loadcsv' with a path &quot;
+<span class="nc" id="L44">                  + &quot;to your csv to load, then search.&quot;)</span>
+          .serialize();
+    }
+    return new ViewLoadedFile(this.loadedCSV.getParsedCSV()).serialize();
+  }
+
+  /**
+   * Record for message sent when csv is loaded
+<span class="nc" id="L52">   *</span>
+   * @param result success message
+   * @param csv json version of loaded csv
+   */
+  public record ViewLoadedFile(String result, List&lt;List&lt;String&gt;&gt; csv) {
+    /**
+<span class="nc" id="L58">     * Constructor</span>
+<span class="nc" id="L59">     *</span>
+     * @param List&lt;List&lt;String&gt;&gt; of the csv the parsed csv
+     */
+    public ViewLoadedFile(List&lt;List&lt;String&gt;&gt; csv) {
+      this(&quot;success&quot;, csv);
+    }
+
+    /**
+<span class="nc" id="L67">     * Method serialize message into json</span>
+     *
+<span class="nc" id="L69">     * @return json of the returned csv</span>
+<span class="nc" id="L70">     */</span>
+<span class="nc" id="L71">    String serialize() {</span>
+<span class="nc" id="L72">      try {</span>
+<span class="nc" id="L73">        Moshi moshi =</span>
+<span class="nc" id="L74">            new Moshi.Builder()</span>
+<span class="nc" id="L75">                .add(PolymorphicJsonAdapterFactory.of(LoadedCSV.class, &quot;view&quot;))</span>
+<span class="nc" id="L76">                .build();</span>
+        JsonAdapter&lt;ViewHandler.ViewLoadedFile&gt; adapter =
+            moshi.adapter(ViewHandler.ViewLoadedFile.class);
+        return adapter.toJson(this);
+      } catch (Exception e) {
+        e.printStackTrace();
+        throw e;
+      }
+    }
+  }
+<span class="nc" id="L86"></span>
+  /**
+   * Record for message returned when csv is not loaded
+   *
+   * @param result error_datasource since no csv loaded
+   * @param ERRORMESSAGE informative message
+<span class="nc" id="L92">   */</span>
+<span class="nc" id="L93">  public record ViewNotLoaded(String result, String ERRORMESSAGE) {</span>
+    /**
+     * contructor
+     *
+     * @param ERRORMESSAGE informatice message
+     */
+    public ViewNotLoaded(String ERRORMESSAGE) {
+<span class="nc" id="L100">      this(&quot;error_datasource&quot;, ERRORMESSAGE);</span>
+<span class="nc" id="L101">    }</span>
+
+    /**
+     * Method serialize message into json
+     *
+     * @return json of the returned message
+     */
+    String serialize() {
+      Moshi moshi = new Moshi.Builder().build();
+      return moshi.adapter(ViewHandler.ViewNotLoaded.class).toJson(this);
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

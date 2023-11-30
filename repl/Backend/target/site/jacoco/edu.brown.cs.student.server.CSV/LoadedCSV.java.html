@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoadedCSV.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.server.CSV</a> &gt; <span class="el_source">LoadedCSV.java</span></div><h1>LoadedCSV.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.server.CSV;
+
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * LoadedCSV is a class used to pass data between the three csv operation handlers. It allows the
+ * csv parsed with loadcsv to be saved and passed into search and view handlers with a reference to
+ * this class so they can use the csv.
+ */
+public class LoadedCSV {
+  String path;
+  /** Allows easy check is a csv has been loaded for search and view csv */
+  boolean isLoaded;
+
+  /** Allows search and view to access parsed csv */
+  List&lt;List&lt;String&gt;&gt; parsedCSV;
+
+  /**
+   * Constructor for Loaded csv Will always initialize with these values, and will be filled when
+   * loadcsv is requested
+   */
+  public LoadedCSV() {
+    this.path = &quot;&quot;;
+    this.isLoaded = false;
+    this.parsedCSV = Collections.emptyList();
+  }
+
+<span class="nc" id="L29">  /**</span>
+<span class="nc" id="L30">   * Setter for path</span>
+<span class="nc" id="L31">   *</span>
+<span class="nc" id="L32">   * @param path csv file path String</span>
+<span class="nc" id="L33">   */</span>
+  public void setPath(String path) {
+    this.path = path;
+  }
+
+  /**
+   * Getter for path
+<span class="nc" id="L40">   *</span>
+<span class="nc" id="L41">   * @return csv file path String</span>
+   */
+  public String getPath() {
+    return path;
+  }
+
+  /**
+<span class="nc" id="L48">   * Setter for isLoaded</span>
+   *
+   * @param isLoaded boolean if a csv has been loaded
+   */
+  public void setIsLoaded(boolean isLoaded) {
+    this.isLoaded = isLoaded;
+  }
+
+<span class="nc" id="L56">  /**</span>
+<span class="nc" id="L57">   * Getter for isLoaded</span>
+   *
+   * @return boolean if csv has been loaded
+   */
+  public boolean getIsLoaded() {
+    return this.isLoaded;
+  }
+<span class="nc" id="L64"></span>
+  /**
+   * Setter for parsedCSV
+   *
+   * @param parsedCSV List&lt;List&lt;String&gt;&gt; of the parsed csv
+   */
+  public void setParsedCSV(List&lt;List&lt;String&gt;&gt; parsedCSV) {
+    this.parsedCSV = parsedCSV;
+<span class="nc" id="L72">  }</span>
+<span class="nc" id="L73"></span>
+  /**
+   * Getter for parsed csv
+   *
+   * @return List&lt;List&lt;String&gt;&gt; of the parsed csv
+   */
+  public List&lt;List&lt;String&gt;&gt; getParsedCSV() {
+<span class="nc" id="L80">    return parsedCSV;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

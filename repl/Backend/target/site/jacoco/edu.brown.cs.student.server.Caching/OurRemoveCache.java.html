@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OurRemoveCache.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.server.Caching</a> &gt; <span class="el_source">OurRemoveCache.java</span></div><h1>OurRemoveCache.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.server.Caching;
+
+import java.util.*;
+
+/**
+ * Class for the removal logic. It implements the RemoveCacheItem interface to allow developers
+ * flexibility in how they want to edit the cache and remove items from it. It contains a hashmap
+ * keeping track of frequency of requests.
+ */
+public class OurRemoveCache implements RemoveCacheItem {
+  HashMap&lt;String, Integer&gt; countyFrequency;
+
+  /**
+   * Constructor for the removal class. Takes in a hashmap keeping track of request frequency.
+   *
+   * @param countyFrequency Hashmap of request frequency passed in
+   */
+  public OurRemoveCache(HashMap&lt;String, Integer&gt; countyFrequency) {
+<span class="fc" id="L19">    this.countyFrequency = countyFrequency;</span>
+<span class="fc" id="L20">  }</span>
+<span class="fc" id="L21"></span>
+  /**
+   * Interface method that allows for the developer to tailor the cache removal and updating to
+   * their needs. It allows for flexibility in methods of removal and management of memory.
+   *
+   * @param map Map containing the cached information
+   * @param countyName County name to be updated
+   * @param info Value to be cached
+   * @return Returns the updated cache
+   */
+  @Override
+  public HashMap updateCache(
+      HashMap&lt;String, List&lt;List&lt;String&gt;&gt;&gt; map, String countyName, List&lt;List&lt;String&gt;&gt; info) {
+    if (map.size() &lt; 2) {
+      map.put(countyName, info);
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">    } else if (map.size() &gt;= 2) {</span>
+<span class="fc" id="L37">      String minCounty = this.findMin(map);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">      this.countyFrequency.remove(minCounty);</span>
+<span class="nc" id="L39">      map.remove(minCounty);</span>
+<span class="nc" id="L40">      map.put(countyName, info);</span>
+<span class="nc" id="L41">      // remove from both Maps</span>
+<span class="nc" id="L42">      // add only to main map, will be added to frequency elsewhere</span>
+    }
+    return map;
+  }
+<span class="fc" id="L46"></span>
+  /**
+   * Method to find the county in the cache that has been queried the least
+   *
+   * @param map the cache
+   * @return the county (key) with the least amount of searches to be removed from cache
+   */
+  private String findMin(HashMap&lt;String, List&lt;List&lt;String&gt;&gt;&gt; map) {
+    String minCounty = null;
+<span class="nc" id="L55">    int minCountyFreq = -1;</span>
+<span class="nc" id="L56">    Iterator&lt;Map.Entry&lt;String, List&lt;List&lt;String&gt;&gt;&gt;&gt; mapIterator = map.entrySet().iterator();</span>
+<span class="nc" id="L57"></span>
+    while (mapIterator.hasNext()) {
+<span class="nc bnc" id="L59" title="All 2 branches missed.">      Map.Entry&lt;String, List&lt;List&lt;String&gt;&gt;&gt; entry = mapIterator.next();</span>
+<span class="nc" id="L60">      String key = entry.getKey();</span>
+<span class="nc" id="L61"></span>
+      int comparisonFreq = this.countyFrequency.get(key);
+<span class="nc" id="L63">      if (minCountyFreq == -1) {</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        minCountyFreq = comparisonFreq;</span>
+<span class="nc" id="L65">        minCounty = key;</span>
+<span class="nc" id="L66">      } else if (comparisonFreq &lt; minCountyFreq) {</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        minCountyFreq = comparisonFreq;</span>
+<span class="nc" id="L68">        minCounty = key;</span>
+<span class="nc" id="L69">      }</span>
+    }
+<span class="nc" id="L71">    return minCounty;</span>
+<span class="nc" id="L72">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

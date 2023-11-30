@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Parse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">Parsing</a> &gt; <span class="el_source">Parse.java</span></div><h1>Parse.java</h1><pre class="source lang-java linenums">package Parsing;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
+public class Parse&lt;T&gt; {
+
+  // read line
+  // pass to create
+  // add created to list
+  Reader reader;
+  CreatorFromRow&lt;T&gt; rowType;
+
+<span class="nc" id="L16">  public Parse(Reader reader, CreatorFromRow&lt;T&gt; rowType) {</span>
+<span class="nc" id="L17">    this.reader = reader;</span>
+<span class="nc" id="L18">    this.rowType = rowType;</span>
+<span class="nc" id="L19">  }</span>
+
+<span class="nc" id="L21">  public List&lt;T&gt; parse() {</span>
+<span class="nc" id="L22">    BufferedReader bf = new BufferedReader(reader);</span>
+    List&lt;T&gt; rowList = new ArrayList&lt;&gt;();
+<span class="nc" id="L24">    try {</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">      String fl = bf.readLine();</span>
+<span class="nc" id="L26">      while (fl != null) {</span>
+<span class="nc" id="L27">        rowList.add(this.rowType.create(parseRow(fl)));</span>
+        fl = bf.readLine();
+<span class="nc" id="L29">      }</span>
+<span class="nc" id="L30">    } catch (IOException i) {</span>
+<span class="nc" id="L31">      System.out.println(&quot;While parsing, the file path was not found.&quot;);</span>
+<span class="nc" id="L32">    } catch (FactoryFailureException e) {</span>
+      System.out.println(
+<span class="nc" id="L34">          &quot;Error parsing the row from a list of string to &quot;</span>
+<span class="nc" id="L35">              + &quot;the desired object with the inputted creator from row.&quot;);</span>
+    }
+    return rowList;
+  }
+<span class="nc" id="L39"></span>
+  public List&lt;String&gt; parseRow(String row) {
+<span class="nc" id="L41">    final Pattern regexSplitCSVRow =</span>
+<span class="nc" id="L42">        Pattern.compile(&quot;,(?=([^\\\&quot;]*\\\&quot;[^\\\&quot;]*\\\&quot;)*(?![^\\\&quot;]*\\\&quot;))&quot;);</span>
+
+    List&lt;String&gt; list = List.of(regexSplitCSVRow.split(row));
+    return list;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
