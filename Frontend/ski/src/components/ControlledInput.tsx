@@ -23,10 +23,11 @@ export function ControlledInput({
 }: ControlledInputProps) {
   return (
     <input
+      id="searchBar"
       type="input"
       className="repl-command-box"
       value={value}
-      placeholder="Enter command here!"
+      placeholder="Enter ski resort"
       onChange={(ev) => setValue(ev.target.value)}
       aria-label={ariaLabel}
       onKeyDown={onKeyDown}

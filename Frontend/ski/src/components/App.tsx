@@ -1,5 +1,5 @@
 import "../styles/App.css";
-import REPL from "./REPL";
+import { REPLInput } from "./REPLInput";
 
 /**
  * This is the top level app class that creates the repl
@@ -14,10 +14,10 @@ function App() {
           // aria-label="Mock Heading"
           // aria-description="Mock, the heading of the webpage"
         >
-          Repl
+          Ski Resorts
         </h1>
       </p>
-      <REPL />
+      <REPLInput />
     </div>
   );
 }
