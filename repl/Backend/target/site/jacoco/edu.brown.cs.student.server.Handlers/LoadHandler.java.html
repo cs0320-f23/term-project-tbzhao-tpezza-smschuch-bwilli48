@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoadHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.server.Handlers</a> &gt; <span class="el_source">LoadHandler.java</span></div><h1>LoadHandler.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.server.Handlers;
+
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
+import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory;
+import edu.brown.cs.student.CSVCode.Parsing.CreatorFromRow;
+import edu.brown.cs.student.CSVCode.Parsing.FactoryFailureException;
+import edu.brown.cs.student.CSVCode.Parsing.Parse;
+import edu.brown.cs.student.server.CSV.LoadedCSV;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.List;
+import java.util.Set;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
+/** Class for handling load csv query Returns success if csv was loaded */
+public class LoadHandler implements Route {
+
+  /** LoadedCSV class to pass loaded csv to other handlers */
+  private LoadedCSV loadedCSV;
+
+  /**
+   * Constructor
+   *
+   * @param loadedCSV passed in from server with path to new csv to load
+   */
+  public LoadHandler(LoadedCSV loadedCSV) {
+    this.loadedCSV = loadedCSV;
+  }
+
+<span class="nc" id="L34">  /**</span>
+<span class="nc" id="L35">   * Method to handle query</span>
+<span class="nc" id="L36">   *</span>
+   * @param request loadcsv query from user
+   * @param response
+   * @return message telling user if csv was loaded or what went wrong in process
+   * @throws Exception
+   */
+  @Override
+  public Object handle(Request request, Response response) throws Exception {
+
+    Set&lt;String&gt; params = request.queryParams();
+    if (params.size() != 1) {
+      return new FileFailureLoaded(
+<span class="nc" id="L48">              &quot;error_bad_json&quot;,</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">              &quot;&quot;,</span>
+<span class="nc" id="L50">              &quot;Must only request one parameter 'path. Requested &quot; + params.toString())</span>
+<span class="nc" id="L51">          .serialize();</span>
+    }
+<span class="nc" id="L53">    String path = request.queryParams(&quot;path&quot;);</span>
+
+<span class="nc" id="L55">    Reader pathReader = null;</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">    if (path == null) {</span>
+<span class="nc" id="L57">      return new FileFailureLoaded(</span>
+<span class="nc" id="L58">              &quot;error_bad_request&quot;,</span>
+              &quot;&quot;,
+              &quot;Requested parameter '&quot; + params.toArray()[0] + &quot;', must be 'path'&quot;)
+<span class="nc" id="L61">          .serialize();</span>
+<span class="nc" id="L62">    }</span>
+<span class="nc" id="L63">    try {</span>
+<span class="nc" id="L64">      pathReader = new FileReader(path);</span>
+<span class="nc" id="L65">    } catch (IOException i) {</span>
+      return new FileFailureLoaded(
+<span class="nc" id="L67">              &quot;error_datasource&quot;,</span>
+<span class="nc" id="L68">              path,</span>
+              &quot;Requested path &quot; + path + &quot;was not found. Request to load a valid path.&quot;)
+          .serialize();
+<span class="nc" id="L71">    }</span>
+
+    CreatorFromRow&lt;List&lt;String&gt;&gt; creator =
+        new CreatorFromRow&lt;List&lt;String&gt;&gt;() {
+<span class="nc" id="L75">          @Override</span>
+          public List&lt;String&gt; create(List&lt;String&gt; row) throws FactoryFailureException {
+<span class="nc" id="L77">            return row;</span>
+<span class="nc" id="L78">          }</span>
+<span class="nc" id="L79">        };</span>
+
+<span class="nc" id="L81">    Parse&lt;List&lt;String&gt;&gt; parse = new Parse&lt;List&lt;String&gt;&gt;(pathReader, creator);</span>
+
+    this.loadedCSV.setPath(path);
+    this.loadedCSV.setIsLoaded(true);
+    this.loadedCSV.setParsedCSV(parse.parse());
+    //        return &quot;CSV Loaded&quot;;
+    return new FileSuccessfullyLoaded(this.loadedCSV.getPath()).serialize();
+  }
+<span class="nc" id="L89"></span>
+  /**
+   * Record for successfully loaded csv message to user
+   *
+   * @param result success message
+   * @param filePath path of loaded csv
+<span class="nc" id="L95">   */</span>
+<span class="nc" id="L96">  public record FileSuccessfullyLoaded(String result, String filePath) {</span>
+    /**
+     * Constructor
+     *
+     * @param filePath path to loaded csv
+     */
+    public FileSuccessfullyLoaded(String filePath) {
+      this(&quot;success&quot;, filePath);
+<span class="nc" id="L104">    }</span>
+
+<span class="nc" id="L106">    /**</span>
+<span class="nc" id="L107">     * Method serialize message into json</span>
+<span class="nc" id="L108">     *</span>
+<span class="nc" id="L109">     * @return json of success message and file path</span>
+<span class="nc" id="L110">     */</span>
+<span class="nc" id="L111">    String serialize() {</span>
+<span class="nc" id="L112">      try {</span>
+        Moshi moshi =
+            new Moshi.Builder()
+                .add(PolymorphicJsonAdapterFactory.of(LoadedCSV.class, &quot;path&quot;))
+                .build();
+        JsonAdapter&lt;FileSuccessfullyLoaded&gt; adapter = moshi.adapter(FileSuccessfullyLoaded.class);
+        return adapter.toJson(this);
+      } catch (Exception e) {
+        e.printStackTrace();
+        throw e;
+      }
+<span class="nc" id="L123">    }</span>
+  }
+
+  /**
+   * Record for message when load csv fails
+   *
+   * @param result correct error message depending on reson for failure
+<span class="nc" id="L130">   * @param filePath path of csv to load</span>
+<span class="nc" id="L131">   * @param ERRORMESSAGE informative message for why load failed</span>
+   */
+  public record FileFailureLoaded(String result, String filePath, String ERRORMESSAGE) {
+    /**
+     * Constructor
+     *
+     * @param filePath path to csv
+<span class="nc" id="L138">     * @param ERRORMESSAGE informative message on failure</span>
+<span class="nc" id="L139">     */</span>
+    public FileFailureLoaded(String filePath, String ERRORMESSAGE) {
+      this(&quot;failure&quot;, filePath, ERRORMESSAGE);
+    }
+
+    /**
+     * Method serialize message into json
+     *
+     * @return json of the failure message
+     */
+    String serialize() {
+      Moshi moshi = new Moshi.Builder().build();
+      return moshi.adapter(FileFailureLoaded.class).toJson(this);
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

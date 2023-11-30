@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BroadbandHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.server.Handlers</a> &gt; <span class="el_source">BroadbandHandler.java</span></div><h1>BroadbandHandler.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.server.Handlers;
+
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
+import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory;
+import edu.brown.cs.student.server.ACS.*;
+import edu.brown.cs.student.server.CSV.LoadedCSV;
+import edu.brown.cs.student.server.Caching.CachedItems;
+import java.util.Set;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
+/** Class for handling broadband query Returns success if broadband data was found for location */
+public class BroadbandHandler implements Route {
+
+  /** List of state ids so api only has to get called once for state ids */
+  StateIds states;
+  /** Cache to store queries to reduce api calls */
+  CachedItems cache;
+
+  /**
+   * Constructor
+   *
+   * @param cache cache of stored queries
+   * @param states states to ids json that gets filled after one query
+   */
+  public BroadbandHandler(CachedItems cache, StateIds states) {
+    this.cache = cache;
+    this.states = states;
+  }
+
+  /**
+   * Method to handle broadband query
+<span class="fc" id="L35">   *</span>
+<span class="fc" id="L36">   * @param request query from user</span>
+<span class="fc" id="L37">   * @param response</span>
+<span class="fc" id="L38">   * @return percentage of houses with broadband access in county</span>
+   * @throws Exception
+   */
+  @Override
+  public Object handle(Request request, Response response) throws Exception {
+
+    Set&lt;String&gt; params = request.queryParams();
+    if (params.size() != 2) {
+      return new BroadbandFailure(
+              &quot;error_bad_json&quot;,
+              params.toString(),
+              &quot;Must have two parameters, 'state' and 'county'.&quot;)
+<span class="fc" id="L50">          .serialize();</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">    }</span>
+<span class="fc" id="L52"></span>
+<span class="fc" id="L53">    if (!(params.contains(&quot;state&quot;) &amp;&amp; params.contains(&quot;county&quot;))) {</span>
+      return new BroadbandFailure(
+              &quot;error_bad_json&quot;,
+<span class="pc bpc" id="L56" title="1 of 4 branches missed.">              params.toString(),</span>
+<span class="fc" id="L57">              &quot;Must have two parameters, 'state' and 'county'.&quot;)</span>
+<span class="fc" id="L58">          .serialize();</span>
+    }
+
+    String state = request.queryParams(&quot;state&quot;);
+<span class="fc" id="L62"></span>
+    String county = request.queryParams(&quot;county&quot;);
+<span class="fc" id="L64"></span>
+    ACSAPISource acs = new ACSAPISource(this.cache, this.states);
+    BroadbandData percent = new BroadbandData(&quot;&quot;);
+<span class="fc" id="L67">    try {</span>
+<span class="fc" id="L68">      percent = acs.getBroadbandData(new Location(state, county));</span>
+    } catch (DatasourceException d) {
+<span class="fc" id="L70">      if (d.getMessage().equals(&quot;State not found&quot;)) {</span>
+<span class="fc" id="L71">        return new BroadbandFailure(</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">                &quot;error_datasource&quot;,</span>
+<span class="fc" id="L73">                params.toString(),</span>
+                &quot;State '&quot;
+<span class="fc" id="L75">                    + state</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">                    + &quot;' was not found. Make sure &quot;</span>
+<span class="fc" id="L77">                    + &quot;it is spaced correctly. Examples: Maine, Rhode Island&quot;)</span>
+            .serialize();
+<span class="fc" id="L79">      } else if (d.getMessage().equals(&quot;County not found&quot;)) {</span>
+        return new BroadbandFailure(
+<span class="fc" id="L81">                &quot;error_datasource&quot;,</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">                params.toString(),</span>
+<span class="fc" id="L83">                &quot;County '&quot;</span>
+                    + county
+                    + &quot;' was not found. Make sure &quot;
+<span class="fc" id="L86">                    + &quot;it is spaced correctly. Example: Orange County&quot;)</span>
+            .serialize();
+<span class="fc" id="L88">      }</span>
+    }
+<span class="fc" id="L90">    if (percent.percOfHouses().equals(&quot;&quot;)) {</span>
+      return new BroadbandFailure(
+              &quot;error_datasource&quot;,
+              params.toString(),
+              &quot;County '&quot;
+                  + county
+                  + &quot;' does not meet the ACS's population&quot;
+                  + &quot; threshold of over 50,000, so its data was not surveyed. We apologize &quot;
+                  + &quot;for not being able to give you the desired information.&quot;)
+          .serialize();
+<span class="fc" id="L100">    }</span>
+    return new BroadbandSuccess(
+<span class="fc" id="L102">            percent.percOfHouses(),</span>
+<span class="fc" id="L103">            &quot;The percent of households with broadband access in &quot;</span>
+                + county
+                + &quot;, &quot;
+                + state
+                + &quot; is &quot;
+                + percent.percOfHouses()
+                + &quot;%. Data surveyed in 2021.&quot;)
+<span class="fc" id="L110">        .serialize();</span>
+  }
+<span class="fc" id="L112"></span>
+<span class="fc" id="L113">  /**</span>
+<span class="fc" id="L114">   * Record for successful call for broadband dats</span>
+<span class="fc" id="L115">   *</span>
+<span class="fc" id="L116">   * @param result success</span>
+<span class="nc" id="L117">   * @param percent String of percent of houses with broadband access in county</span>
+<span class="nc" id="L118">   * @param SUCCESSMESSAGE success message with percent and state/county and date of survey</span>
+<span class="nc" id="L119">   */</span>
+  public record BroadbandSuccess(String result, String percent, String SUCCESSMESSAGE) {
+    public BroadbandSuccess(String percent, String SUCCESSMESSAGE) {
+      this(&quot;success&quot;, percent, SUCCESSMESSAGE);
+    }
+    /**
+     * Method serialize message into json
+     *
+     * @return json of the success message
+     */
+    String serialize() {
+<span class="fc" id="L130">      try {</span>
+        Moshi moshi =
+            new Moshi.Builder()
+                .add(PolymorphicJsonAdapterFactory.of(LoadedCSV.class, &quot;path&quot;))
+                .build();
+        JsonAdapter&lt;BroadbandHandler.BroadbandSuccess&gt; adapter =
+            moshi.adapter(BroadbandHandler.BroadbandSuccess.class);
+<span class="nc" id="L137">        return adapter.toJson(this);</span>
+<span class="nc" id="L138">      } catch (Exception e) {</span>
+        e.printStackTrace();
+        throw e;
+      }
+    }
+  }
+<span class="fc" id="L144"></span>
+<span class="fc" id="L145">  /**</span>
+   * Record for when broadband query fails
+   *
+   * @param result correct error message
+   * @param params params passed into query
+   * @param ERRORMESSAGE informative message for why broadband call failed
+   */
+  public record BroadbandFailure(String result, String params, String ERRORMESSAGE) {
+    /**
+     * Constructor
+     *
+     * @param params params passed into query
+     * @param ERRORMESSAGE informative message for why broadband call failed
+     */
+    public BroadbandFailure(String params, String ERRORMESSAGE) {
+      this(&quot;failure&quot;, params, ERRORMESSAGE);
+    }
+    /**
+     * Method serialize message into json
+     *
+     * @return json of the failure message
+     */
+    String serialize() {
+      Moshi moshi = new Moshi.Builder().build();
+      return moshi.adapter(BroadbandFailure.class).toJson(this);
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

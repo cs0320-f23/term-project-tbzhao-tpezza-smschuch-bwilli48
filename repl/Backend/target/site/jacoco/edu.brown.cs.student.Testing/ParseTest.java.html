@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParseTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.Testing</a> &gt; <span class="el_source">ParseTest.java</span></div><h1>ParseTest.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.Testing;
+
+import static org.testng.AssertJUnit.assertEquals;
+
+import edu.brown.cs.student.Parsing.CreatorFromRow;
+import edu.brown.cs.student.Parsing.FactoryFailureException;
+import edu.brown.cs.student.Parsing.Parse;
+import edu.brown.cs.student.Testing.Dimensions.DimensionsCreatorFromRow;
+import edu.brown.cs.student.Testing.Dimensions.DimensionsTestClass;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.Collections;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
+
+/** Class to test the parse method */
+<span class="nc" id="L20">public class ParseTest {</span>
+<span class="nc" id="L21">  Parse&lt;List&lt;String&gt;&gt; evenNormalParser = null;</span>
+<span class="nc" id="L22">  Parse&lt;List&lt;String&gt;&gt; stringParser = null;</span>
+<span class="nc" id="L23">  Parse&lt;List&lt;String&gt;&gt; unevenNormalParser = null;</span>
+<span class="nc" id="L24">  Parse&lt;DimensionsTestClass&gt; evenDimParser = null;</span>
+<span class="nc" id="L25">  Parse&lt;DimensionsTestClass&gt; unevenDimParser = null;</span>
+<span class="nc" id="L26">  Parse&lt;DimensionsTestClass&gt; nonIntDimParser = null;</span>
+
+  @Before
+  public void setup() {
+    // reader with even csv
+<span class="nc" id="L31">    Reader evenReader = null;</span>
+    try {
+<span class="nc" id="L33">      evenReader =</span>
+          new FileReader(
+              &quot;/Users/tyype1/Desktop/Brown/sem3/CS32&quot;
+                  + &quot;/Projects/csv-tyypezza/data/census/even.csv&quot;);
+<span class="nc" id="L37">    } catch (IOException i) {</span>
+<span class="nc" id="L38">      System.out.println(&quot;Was not a proper file path&quot;);</span>
+<span class="nc" id="L39">    }</span>
+
+    // reader with even csv but string
+<span class="nc" id="L42">    Reader stringReader = null;</span>
+<span class="nc" id="L43">    String string =</span>
+        &quot;Height,Weight,Length,Width\n&quot; + &quot;51,54,32,31\n&quot; + &quot;12,13,14,89\n&quot; + &quot;100,165,122,12&quot;;
+    stringReader = new StringReader(string);
+<span class="nc" id="L46"></span>
+    // reader with uneven csv
+    Reader unevenReader = null;
+<span class="nc" id="L49">    try {</span>
+      unevenReader =
+<span class="nc" id="L51">          new FileReader(</span>
+              &quot;/Users/tyype1/Desktop/Brown/sem3/CS32&quot;
+                  + &quot;/Projects/csv-tyypezza/data/census/uneven.csv&quot;);
+    } catch (IOException i) {
+<span class="nc" id="L55">      System.out.println(&quot;Was not a proper file path&quot;);</span>
+<span class="nc" id="L56">    }</span>
+<span class="nc" id="L57"></span>
+    // reader with notint csv
+    Reader nonIntReader = null;
+<span class="nc" id="L60">    try {</span>
+      nonIntReader =
+<span class="nc" id="L62">          new FileReader(</span>
+              &quot;/Users/tyype1/Desktop/Brown/sem3/CS32&quot;
+                  + &quot;/Projects/csv-tyypezza/data/census/not_int_dim.csv&quot;);
+    } catch (IOException i) {
+<span class="nc" id="L66">      System.out.println(&quot;Was not a proper file path&quot;);</span>
+<span class="nc" id="L67">    }</span>
+<span class="nc" id="L68"></span>
+    // basic creator that just returns the row
+    CreatorFromRow&lt;List&lt;String&gt;&gt; creator =
+<span class="nc" id="L71">        new CreatorFromRow&lt;List&lt;String&gt;&gt;() {</span>
+<span class="nc" id="L72">          @Override</span>
+          public List&lt;String&gt; create(List&lt;String&gt; row) throws FactoryFailureException {
+            return row;
+          }
+<span class="nc" id="L76">        };</span>
+
+    // dimensions creator
+    DimensionsCreatorFromRow dimCreator = new DimensionsCreatorFromRow();
+
+<span class="nc" id="L81">    evenNormalParser = new Parse&lt;List&lt;String&gt;&gt;(evenReader, creator);</span>
+    stringParser = new Parse&lt;List&lt;String&gt;&gt;(stringReader, creator);
+<span class="nc" id="L83">    unevenNormalParser = new Parse&lt;List&lt;String&gt;&gt;(unevenReader, creator);</span>
+<span class="nc" id="L84">    evenDimParser = new Parse&lt;DimensionsTestClass&gt;(evenReader, dimCreator);</span>
+<span class="nc" id="L85">    unevenDimParser = new Parse&lt;DimensionsTestClass&gt;(unevenReader, dimCreator);</span>
+<span class="nc" id="L86">    nonIntDimParser = new Parse&lt;DimensionsTestClass&gt;(nonIntReader, dimCreator);</span>
+<span class="nc" id="L87">  }</span>
+<span class="nc" id="L88"></span>
+<span class="nc" id="L89">  // Basic test for parse with file reader</span>
+  @Test
+  public void testParseFileReader() {
+    List&lt;String&gt; row1 = List.of(&quot;Height&quot;, &quot;Weight&quot;, &quot;Length&quot;, &quot;Width&quot;);
+    List&lt;String&gt; row2 = List.of(&quot;51&quot;, &quot;54&quot;, &quot;32&quot;, &quot;31&quot;);
+<span class="nc" id="L94">    List&lt;String&gt; row3 = List.of(&quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;89&quot;);</span>
+<span class="nc" id="L95">    List&lt;String&gt; row4 = List.of(&quot;100&quot;, &quot;165&quot;, &quot;122&quot;, &quot;12&quot;);</span>
+<span class="nc" id="L96"></span>
+<span class="nc" id="L97">    List&lt;List&lt;String&gt;&gt; expected = List.of(row1, row2, row3, row4);</span>
+
+<span class="nc" id="L99">    assertEquals(expected, stringParser.parse());</span>
+  }
+<span class="nc" id="L101"></span>
+<span class="nc" id="L102">  // Basic test for parse with string reader</span>
+  @Test
+  public void testParseStringReader() {
+    List&lt;String&gt; row1 = List.of(&quot;Height&quot;, &quot;Weight&quot;, &quot;Length&quot;, &quot;Width&quot;);
+    List&lt;String&gt; row2 = List.of(&quot;51&quot;, &quot;54&quot;, &quot;32&quot;, &quot;31&quot;);
+<span class="nc" id="L107">    List&lt;String&gt; row3 = List.of(&quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;89&quot;);</span>
+<span class="nc" id="L108">    List&lt;String&gt; row4 = List.of(&quot;100&quot;, &quot;165&quot;, &quot;122&quot;, &quot;12&quot;);</span>
+<span class="nc" id="L109"></span>
+<span class="nc" id="L110">    List&lt;List&lt;String&gt;&gt; expected = List.of(row1, row2, row3, row4);</span>
+
+<span class="nc" id="L112">    assertEquals(expected, evenNormalParser.parse());</span>
+  }
+<span class="nc" id="L114"></span>
+<span class="nc" id="L115">  // Test for parse with uneven csv</span>
+  @Test
+  public void testParseUneven() {
+    List&lt;String&gt; row1 = List.of(&quot;Height&quot;, &quot;Weight&quot;, &quot;Length&quot;, &quot;Width&quot;);
+    List&lt;String&gt; row2 = List.of(&quot;51&quot;, &quot;54&quot;, &quot;32&quot;, &quot;31&quot;);
+<span class="nc" id="L120">    List&lt;String&gt; row3 = List.of(&quot;12&quot;, &quot;13&quot;, &quot;14&quot;);</span>
+<span class="nc" id="L121">    List&lt;String&gt; row4 = List.of(&quot;100&quot;, &quot;165&quot;, &quot;122&quot;, &quot;12&quot;);</span>
+<span class="nc" id="L122"></span>
+<span class="nc" id="L123">    List&lt;List&lt;String&gt;&gt; expected = List.of(row1, row2, row3, row4);</span>
+
+<span class="nc" id="L125">    assertEquals(expected, unevenNormalParser.parse());</span>
+  }
+<span class="nc" id="L127"></span>
+<span class="nc" id="L128">  // Test with custom CreaorFromRow that works</span>
+  @Test
+  public void testParseDim() {
+    DimensionsTestClass row1 = new DimensionsTestClass();
+    DimensionsTestClass row2 = new DimensionsTestClass(51, 54, 32, 31);
+<span class="nc" id="L133">    DimensionsTestClass row3 = new DimensionsTestClass(12, 13, 14, 89);</span>
+<span class="nc" id="L134">    DimensionsTestClass row4 = new DimensionsTestClass(100, 165, 122, 12);</span>
+
+<span class="nc" id="L136">    List&lt;DimensionsTestClass&gt; expected = List.of(row1, row2, row3, row4);</span>
+
+<span class="nc" id="L138">    assertEquals(expected, evenDimParser.parse());</span>
+  }
+
+<span class="nc" id="L141">  // Test with custom CreatorFromRow that has an error parsing the row</span>
+  // In this case, custom Creator needs row of 4 items, but is given 3
+<span class="nc" id="L143">  // So return an empty list and prints a message</span>
+<span class="nc" id="L144">  @Test</span>
+  public void testParseDimUneven() {
+    assertEquals(Collections.emptyList(), unevenDimParser.parse());
+  }
+
+  // Test with custon Creator that has trouble parsing
+  // In this case, custon Creator has to parse data to ints, but given string
+<span class="nc" id="L151">  // that can't be</span>
+<span class="nc" id="L152">  @Test</span>
+  public void testParseDimWrongType() {
+    assertEquals(Collections.emptyList(), nonIntDimParser.parse());
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
