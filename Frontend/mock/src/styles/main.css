@@ -1,0 +1,164 @@
+/*
+  This is a reasonable starting point for the CSS in Mock.
+  Positioning in CSS can sometimes be annoying to manage, so we've opted to 
+  give you this starter CSS. Feel free to modify it as you wish, though.
+*/
+
+.repl {
+  position: relative;
+  min-height: 95vh;
+}
+
+.repl-history {
+  height: 45vh;
+  margin: auto;
+  display: block;
+  overflow: scroll;
+}
+
+.repl-input {
+  margin: auto;
+  height: 10vh;
+}
+.repl-command-box {
+  width: 90%;
+  margin: auto;
+  display: block;
+}
+button {
+  margin: auto;
+  display: block;
+}
+
+/**
+* Style for tables for view/search
+*/
+.Output-Table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/**
+* Style for datum in tables for view/search
+*/
+.Output-Datum {
+  background-color: #96d4d4;
+  border: 1px solid black;
+}
+
+#searchInput {
+  height: 20px;
+  width: 300px;
+}
+
+#searchButton {
+  border-radius: 0px;
+  border: 1px solid transparent;
+  padding: 0.14em 1em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #80c3f6;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+#sortButton {
+  border-radius: 0px;
+  border: 1px solid transparent;
+  padding: 0.14em 1.65em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #80c3f6;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+#preferenceButton {
+  border-radius: 0px;
+  border: 1px solid transparent;
+  padding: 0.14em 1.65em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #80c3f6;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+#searchButton:hover {
+  border-color: black;
+}
+#sortButton:hover {
+  border-color: black;
+}
+#preferenceButton:hover {
+  border-color: black;
+}
+
+#listDiv {
+  border-radius: 8px;
+  border: 1px black;
+  border-color: black;
+}
+
+#sortDropdown {
+  border-radius: 1px;
+  border: 4px black;
+  padding: 0.21em 1.65em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  width: 308px;
+  background-color: rgb(75, 171, 75);
+  max-height: 182px;
+  overflow: auto;
+}
+
+#searchDropdown {
+  border-radius: 1px;
+  border: 4px black;
+  padding: 0.21em 1.65em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  width: 175px;
+  background-color: rgb(227, 151, 74);
+  max-height: 255px;
+  overflow: auto;
+}
+
+.sortTableDatum {
+  vertical-align: top;
+}
+
+.dropdownHR {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid rgb(0, 0, 0);
+  margin: 1em 0;
+  padding: 0;
+}
+
+#preferenceTableDatum {
+  align-content: center;
+  vertical-align: top;
+}
+
+#mainTable {
+  width: 100%;
+}
+
+.spacerDatum {
+  width: 30px;
+}
+
+#prefTable {
+  width: 100%;
+}
