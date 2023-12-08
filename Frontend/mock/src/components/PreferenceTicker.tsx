@@ -1,8 +1,10 @@
 import "../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
-import { ControlledInput } from "./ControlledInput";
-import { ResortDropdown } from "./ResortsDropdown";
 
+/**
+ * Props for the preference ticker. Includes a map from preference name to level, a setter for
+ * said map, a setter for the reset number, and the preference name.
+ */
 interface PreferenceTickerProps {
 	preferenceMap: Map<string, number>;
 	setPreferenceMap: Dispatch<SetStateAction<Map<string, number>>>;
@@ -13,13 +15,14 @@ interface PreferenceTickerProps {
 var resetNum = 1;
 
 /**
- * this is the REPLInput function that returns that actual input components with
- * functionality
- *
- * @param props
- * @returns
+ * Function that manages a preference ticker. Contains functions for the up and down arrows
+ * and returns a preference next to the two arrows.
  */
 export function PreferenceTicker(props: PreferenceTickerProps) {
+	/**
+	 * Function that manages the up arrow. Increases the count by 1 if it isn't at the max
+	 * value already.
+	 */
 	function up() {
 		var currentPref = props.preferenceMap.get(props.preference);
 		if (currentPref === undefined) {
@@ -31,6 +34,11 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 		props.setReset(resetNum);
 		resetNum += 1;
 	}
+
+	/**
+	 * Function that manages the down arrow. Decreases the count by 1 if it isn't at the max
+	 * value already.
+	 */
 	function down() {
 		var currentPref = props.preferenceMap.get(props.preference);
 		if (currentPref === undefined) {
@@ -42,6 +50,7 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 		props.setReset(resetNum);
 		resetNum += 1;
 	}
+
 	return (
 		<div>
 			<table>
