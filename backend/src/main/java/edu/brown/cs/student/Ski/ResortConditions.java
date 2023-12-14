@@ -1,19 +1,13 @@
 package edu.brown.cs.student.Ski;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.List;
-import java.util.regex.Pattern;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
-import edu.brown.cs.student.server.ACS.DatasourceException;
+import edu.brown.cs.student.Ski.Records.WeatherForecast;
 import okio.Buffer;
 
 import static spark.Spark.connect;
@@ -47,12 +41,11 @@ public class ResortConditions {
         WeatherForecast body =
                 jsonAdapter.fromJson(new Buffer().readFrom(connection.getInputStream()));
         connection.disconnect();
-        System.out.println(body);
+      //  System.out.println(body);
         return body;
-        }  catch (IOException e) {
-            e.printStackTrace();
+        }  catch (FileNotFoundException e) {
+            throw new FileNotFoundException();
         }
-        throw new RuntimeException();
     }
 
     public String regexInput(String input){
@@ -64,9 +57,17 @@ public class ResortConditions {
         if(splitArray.length > 1) {
             returnString = splitArray[0];
             for (int i = 1; i < splitArray.length; i++) {
+                if(splitArray[i].contains("/")){
+                    splitArray = splitArray[i].split("/");
+                    returnString = returnString + "%20"  + splitArray[0];
+                    break;
+                }
                 returnString = returnString + "%20" + splitArray[i];
             }
         } else {
+            if(splitArray[0].contains("/")){
+                splitArray = splitArray[0].split("/");
+            }
             returnString = splitArray[0];
         }
         return returnString;

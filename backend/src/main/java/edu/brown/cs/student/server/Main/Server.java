@@ -2,11 +2,15 @@ package edu.brown.cs.student.server.Main;
 
 import static spark.Spark.after;
 
+import edu.brown.cs.student.Ski.ResortList;
 import edu.brown.cs.student.server.ACS.StateIds;
 
 import edu.brown.cs.student.server.Caching.CachedItems;
+import edu.brown.cs.student.server.Caching.CachedResorts;
 import edu.brown.cs.student.server.Handlers.*;
 import spark.Spark;
+
+import java.io.IOException;
 
 /**
  * Server class for to run the server that can be used to make requests to load, search, and view
@@ -15,13 +19,13 @@ import spark.Spark;
  * instructions to send queries.
  */
 public class Server {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException, InterruptedException {
     int port = 3232;
 
 
-    StateIds states = new StateIds();
+      ResortList list = new ResortList();
 
-    CachedItems cache = new CachedItems();
+    CachedResorts cache = new CachedResorts(list);
 
 
     Spark.port(port);
@@ -32,7 +36,7 @@ public class Server {
           response.header("Access-Control-Allow-Methods", "*");
         });
 
-
+    Spark.get("resorts", new ResortHandler(list, cache));
     Spark.get("*", new WildCardHandler());
 
     Spark.init();
