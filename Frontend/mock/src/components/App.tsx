@@ -1,29 +1,36 @@
-import { SetStateAction, useState } from "react";
-import "../styles/App.css";
+import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import MainContainer from "./MainContainer";
+import LoginButton from "./auth/LoginButton";
+import Profile from "./auth/Profile"; // Import the Profile component
+import "../styles/App.css";
+import "../styles/index.css";
+import "../styles/main.css";
 import { mockResorts, Resort } from "./resorts/ResortClass";
 
-/**
- * This is the top level app class that creates the repl and instantiates the list of
- * resorts.
- * @returns Our app in HTML
- */
 function App() {
-  const [resortList, setResortList] = useState<Resort[]>(mockResorts);
-  return (
-    <div className="App">
-      <p className="App-header">
-        <h1
-          aria-label="Repl: the heading of the webpage"
-          // aria-label="Mock Heading"
-          // aria-description="Mock, the heading of the webpage"
-        >
-          Alpine Advisor
-        </h1>
-      </p>
-      <MainContainer resortList={resortList} setResortList={setResortList} />
-    </div>
-  );
+	const { isAuthenticated } = useAuth0(); // Get the authentication status
+	const [resortList, setResortList] = useState<string[]>(mockResorts);
+
+	return (
+		<div className="App">
+			<div className="App-header">
+				<h1>Alpine Advisor</h1>
+			</div>
+			<div className="profile-or-login-container">
+				{isAuthenticated ? (
+					<>
+						<Profile className="profile-container" />
+					</>
+				) : (
+					<LoginButton className="login-button" />
+				)}
+			</div>
+			<div className="main-content">
+				<MainContainer resortList={resortList} setResortList={setResortList} />
+			</div>
+		</div>
+	);
 }
 
 export default App;

@@ -1,14 +1,11 @@
-/**
-*Style for our header
-*/
-
 .Header {
-  text-align: center;
-  height: 8vh;
+	text-align: center;
+	height: 8vh;
+	width: 100%;
 }
 
 .Header-Table {
-  table-layout: fixed;
-  width: 100%;
-  background-color: darkgray;
+	table-layout: fixed;
+	width: 100%;
+	background-color: darkgray;
 }

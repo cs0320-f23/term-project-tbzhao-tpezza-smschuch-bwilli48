@@ -1,4 +1,3 @@
-import "../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { PreferenceTicker } from "./PreferenceTicker";
 import { mockResortsPref, Resort } from "./resorts/ResortClass";
@@ -61,8 +60,8 @@ export function Preferences(props: PreferencesProps) {
   const [preferenceMap, setPreferenceMap] =
     useState<Map<string, PreferenceAndValue>>(initialPrefs);
 
-  // State for the reset object.
-  const [reset, setReset] = useState<number>(0);
+	// State for the reset object.
+	const [reset, setReset] = useState<number>(0);
 
   /**
    * Updates the resort list when the submit button is clicked.
@@ -72,118 +71,118 @@ export function Preferences(props: PreferencesProps) {
     props.setResortList(mockResortsPref);
   }
 
-  return (
-    <div className="centerDiv">
-      <h2>Preferences</h2>
-      <table id="prefTable">
-        <tr>
-          <td>
-            <h4>Snowfall Amount</h4>
-          </td>
-          <td>
-            <PreferenceTicker
-              preferenceMap={preferenceMap}
-              setPreferenceMap={setPreferenceMap}
-              preference={"Snowfall Amount"}
-              setReset={setReset}
-            />
-          </td>
-          <td className="spacerDatum"></td>
-          <td>
-            <h4>Last Snowfall</h4>
-          </td>
-          <td>
-            <PreferenceTicker
-              preferenceMap={preferenceMap}
-              setPreferenceMap={setPreferenceMap}
-              preference={"Last Snowfall"}
-              setReset={setReset}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h4>Base-depth</h4>
-          </td>
-          <td>
-            <PreferenceTicker
-              preferenceMap={preferenceMap}
-              setPreferenceMap={setPreferenceMap}
-              preference={"Base-depth"}
-              setReset={setReset}
-            />
-          </td>
-          <td className="spacerDatum"></td>
-          <td>
-            <h4>Price</h4>
-          </td>
-          <td>
-            <PreferenceTicker
-              preferenceMap={preferenceMap}
-              setPreferenceMap={setPreferenceMap}
-              preference={"Price"}
-              setReset={setReset}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h4>Lifts Open</h4>
-          </td>
-          <td>
-            <PreferenceTicker
-              preferenceMap={preferenceMap}
-              setPreferenceMap={setPreferenceMap}
-              preference={"Lifts Open"}
-              setReset={setReset}
-            />
-          </td>
-          <td className="spacerDatum"></td>
-          <td>
-            <h4>Summit Elevation</h4>
-          </td>
-          <td>
-            <PreferenceTicker
-              preferenceMap={preferenceMap}
-              setPreferenceMap={setPreferenceMap}
-              preference={"Summit Elevation"}
-              setReset={setReset}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h4>Temperature</h4>
-          </td>
-          <td>
-            <PreferenceTicker
-              preferenceMap={preferenceMap}
-              setPreferenceMap={setPreferenceMap}
-              preference={"Temperature"}
-              setReset={setReset}
-            />
-          </td>
-          <td className="spacerDatum"></td>
-          <td>
-            <h4>Windspeed</h4>
-          </td>
-          <td>
-            <PreferenceTicker
-              preferenceMap={preferenceMap}
-              setPreferenceMap={setPreferenceMap}
-              preference={"Windspeed"}
-              setReset={setReset}
-            />
-          </td>
-        </tr>
-      </table>
-      <button
-        id="preferenceButton"
-        onClick={() => handleSubmit("pr")}
-        aria-label="Submit button. Click the Submit button with the mouse or click the return key on your keyboard to enter the command you entered in the input box"
-      >
-        Search By Preferences
-      </button>
-    </div>
-  );
+	return (
+		<div className="preferences-container">
+			<h2>Preferences</h2>
+			<table id="prefTable">
+				<tr>
+					<td>
+						<h4>Snowfall Amount</h4>
+					</td>
+					<td>
+						<PreferenceTicker
+							preferenceMap={preferenceMap}
+							setPreferenceMap={setPreferenceMap}
+							preference={"Snowfall Amount"}
+							setReset={setReset}
+						/>
+					</td>
+					<td className="spacerDatum"></td>
+					<td>
+						<h4>Last Snowfall</h4>
+					</td>
+					<td>
+						<PreferenceTicker
+							preferenceMap={preferenceMap}
+							setPreferenceMap={setPreferenceMap}
+							preference={"Last Snowfall"}
+							setReset={setReset}
+						/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h4>Base-depth</h4>
+					</td>
+					<td>
+						<PreferenceTicker
+							preferenceMap={preferenceMap}
+							setPreferenceMap={setPreferenceMap}
+							preference={"Base-depth"}
+							setReset={setReset}
+						/>
+					</td>
+					<td className="spacerDatum"></td>
+					<td>
+						<h4>Price</h4>
+					</td>
+					<td>
+						<PreferenceTicker
+							preferenceMap={preferenceMap}
+							setPreferenceMap={setPreferenceMap}
+							preference={"Price"}
+							setReset={setReset}
+						/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h4>Lifts Open</h4>
+					</td>
+					<td>
+						<PreferenceTicker
+							preferenceMap={preferenceMap}
+							setPreferenceMap={setPreferenceMap}
+							preference={"Lifts Open"}
+							setReset={setReset}
+						/>
+					</td>
+					<td className="spacerDatum"></td>
+					<td>
+						<h4>Summit Elevation</h4>
+					</td>
+					<td>
+						<PreferenceTicker
+							preferenceMap={preferenceMap}
+							setPreferenceMap={setPreferenceMap}
+							preference={"Summit Elevation"}
+							setReset={setReset}
+						/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h4>Temperature</h4>
+					</td>
+					<td>
+						<PreferenceTicker
+							preferenceMap={preferenceMap}
+							setPreferenceMap={setPreferenceMap}
+							preference={"Temperature"}
+							setReset={setReset}
+						/>
+					</td>
+					<td className="spacerDatum"></td>
+					<td>
+						<h4>Windspeed</h4>
+					</td>
+					<td>
+						<PreferenceTicker
+							preferenceMap={preferenceMap}
+							setPreferenceMap={setPreferenceMap}
+							preference={"Windspeed"}
+							setReset={setReset}
+						/>
+					</td>
+				</tr>
+			</table>
+			<button
+				id="preferenceButton"
+				onClick={() => handleSubmit("pr")}
+				aria-label="Submit button. Click the Submit button with the mouse or click the return key on your keyboard to enter the command you entered in the input box"
+			>
+				Search By Preferences
+			</button>
+		</div>
+	);
 }
