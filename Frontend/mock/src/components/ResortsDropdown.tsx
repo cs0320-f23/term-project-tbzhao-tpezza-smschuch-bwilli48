@@ -1,4 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import "../styles/main.css";
+import "../styles/index.css";
 
 /**
  * Props for ResortDropdown. An array of resort options, whether to show the dropdown,

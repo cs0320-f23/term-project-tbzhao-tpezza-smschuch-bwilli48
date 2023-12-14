@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import "../styles/main.css";
+import "../styles/index.css";
 import { Preferences } from "./Preferences";
 import { ResortsList } from "./ResortsList";
 import { Search } from "./Search";

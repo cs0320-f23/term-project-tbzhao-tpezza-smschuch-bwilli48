@@ -1,4 +1,5 @@
 import "../styles/main.css";
+import "../styles/index.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { ControlledInput } from "./ControlledInput";
 import { ResortDropdown } from "./ResortsDropdown";

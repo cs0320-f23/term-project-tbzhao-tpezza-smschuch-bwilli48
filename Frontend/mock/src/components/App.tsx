@@ -3,6 +3,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import MainContainer from "./MainContainer";
 import LoginButton from "./auth/LoginButton";
 import Profile from "./auth/Profile"; // Import the Profile component
+import "../styles/App.css";
+import "../styles/index.css";
+import "../styles/main.css";
 
 function App() {
 	const { isAuthenticated } = useAuth0(); // Get the authentication status
@@ -23,13 +26,13 @@ function App() {
 			<div className="App-header">
 				<h1>Alpine Advisor</h1>
 			</div>
-			<div>
+			<div className="profile-or-login-container">
 				{isAuthenticated ? (
 					<>
 						<Profile className="profile-container" />
 					</>
 				) : (
-					<LoginButton />
+					<LoginButton className="login-button" />
 				)}
 			</div>
 			<div className="main-content">

@@ -1,4 +1,3 @@
-import "../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { PreferenceTicker } from "./PreferenceTicker";
 
