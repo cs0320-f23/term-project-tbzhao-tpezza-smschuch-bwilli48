@@ -6,20 +6,11 @@ import Profile from "./auth/Profile"; // Import the Profile component
 import "../styles/App.css";
 import "../styles/index.css";
 import "../styles/main.css";
+import { mockResorts, Resort } from "./resorts/ResortClass";
 
 function App() {
 	const { isAuthenticated } = useAuth0(); // Get the authentication status
-	var resortsAlph = [
-		"Araphoe Basin",
-		"Big Sky",
-		"Jay Peak",
-		"Jackson Hole",
-		"Killington",
-		"Smuggler's Notch",
-		"Snowbird",
-		"Sugarbush",
-	];
-	const [resortList, setResortList] = useState<string[]>(resortsAlph);
+	const [resortList, setResortList] = useState<string[]>(mockResorts);
 
 	return (
 		<div className="App">
