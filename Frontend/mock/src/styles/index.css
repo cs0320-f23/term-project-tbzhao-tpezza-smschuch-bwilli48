@@ -6,7 +6,6 @@
 	--primary-button-color: #80c3f6;
 	--hover-button-color: #74b9ff;
 	--header-bg-color: #6db8f1;
-	--input-bg-color: #353b48;
 	--input-text-color: #d2dae2;
 	--input-border-color: #7f8fa6;
 }
@@ -17,6 +16,7 @@ body {
 }
 
 a {
+	font-weight: 500;
 	color: #646cff;
 	text-decoration: inherit;
 }

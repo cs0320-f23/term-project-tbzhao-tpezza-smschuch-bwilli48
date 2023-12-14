@@ -11,7 +11,8 @@
 .repl-history {
 	height: 45vh;
 	margin: auto;
-	overflow: auto;
+	display: block;
+	overflow: scroll;
 }
 
 .repl-input {
