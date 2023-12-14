@@ -2,16 +2,15 @@ import "../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { ControlledInput } from "./ControlledInput";
 // import { path_to_data, search } from "../data/mockedJson";
-import { path_to_data } from "../data/mockedJson";
 import { SortDropdown } from "./SortDropdown";
-import { sortResorts } from "./OrderResorts";
+import { mockResortsSort, Resort } from "./resorts/ResortClass";
 
 /**
  * Props for the sort function. Includes the array of resorts and a setter for said array.
  */
 interface SortProps {
-  resortList: string[];
-  setResortList: Dispatch<SetStateAction<string[]>>;
+  resortList: Resort[];
+  setResortList: Dispatch<SetStateAction<Resort[]>>;
 }
 
 /**
@@ -69,7 +68,7 @@ export function Sort(props: SortProps) {
    * @param commandString input by the user currently in the box when submit is clicked
    */
   function handleSubmit() {
-    props.setResortList(sortResorts(selectSort));
+    props.setResortList(mockResortsSort);
   }
 
   return (
