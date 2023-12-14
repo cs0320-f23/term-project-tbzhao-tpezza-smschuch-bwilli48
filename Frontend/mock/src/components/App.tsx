@@ -1,6 +1,7 @@
 import { SetStateAction, useState } from "react";
 import "../styles/App.css";
 import MainContainer from "./MainContainer";
+import LoginButton from "./auth/LoginButton";
 
 /**
  * This is the top level app class that creates the repl and instantiates the list of
@@ -30,6 +31,7 @@ function App() {
 					Alpine Advisor
 				</h1>
 			</p>
+			<LoginButton />
 			<MainContainer resortList={resortList} setResortList={setResortList} />
 		</div>
 	);
