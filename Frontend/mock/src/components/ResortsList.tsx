@@ -1,11 +1,13 @@
 import { unwatchFile } from "fs";
+import { Dispatch, SetStateAction } from "react";
 import "../styles/main.css";
+import { mockResortsPref, Resort } from "./resorts/ResortClass";
 
 /**
  * Props for the resorts list. Includes just an array of the resorts.
  */
 interface ResortsListProps {
-  resortList: string[];
+  resortList: Resort[];
 }
 
 /**
@@ -20,7 +22,7 @@ export function ResortsList(props: ResortsListProps) {
     >
       <h1>Resorts</h1>
       {props.resortList.map((resort) => (
-        <div>{resort}</div>
+        <p>{resort.name}</p>
       ))}
     </div>
   );
