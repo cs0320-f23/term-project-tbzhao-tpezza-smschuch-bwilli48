@@ -1,39 +1,40 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { PreferenceTicker } from "./PreferenceTicker";
 import { mockResortsPref, Resort } from "./resorts/ResortClass";
+import exp from "constants";
 
 /**
  * Props for the preference table. Contains the array of resorts and a setter for said array.
  */
 interface PreferencesProps {
-  resortList: Resort[];
-  setResortList: Dispatch<SetStateAction<Resort[]>>;
+	resortList: Resort[];
+	setResortList: Dispatch<SetStateAction<Resort[]>>;
 }
 
 export class PreferenceAndValue {
-  weight: number;
-  value: number;
+	weight: number;
+	value: number;
 
-  constructor(weight: number, value: number) {
-    this.weight = weight;
-    this.value = value;
-  }
+	constructor(weight: number, value: number) {
+		this.weight = weight;
+		this.value = value;
+	}
 
-  upWeight() {
-    this.weight += 1;
-  }
+	upWeight() {
+		this.weight += 1;
+	}
 
-  downWeight() {
-    this.weight -= 1;
-  }
+	downWeight() {
+		this.weight -= 1;
+	}
 
-  upValue() {
-    this.value += 1;
-  }
+	upValue() {
+		this.value += 1;
+	}
 
-  downValue() {
-    this.value -= 1;
-  }
+	downValue() {
+		this.value -= 1;
+	}
 }
 
 /**
@@ -42,34 +43,33 @@ export class PreferenceAndValue {
  * integer that represents its level and a set of arrows that controls it.
  */
 export function Preferences(props: PreferencesProps) {
-  /**
-   * Initial preferences that are set on page load.
-   */
-  var initialPrefs = new Map<string, PreferenceAndValue>([
-    ["Snowfall Amount", new PreferenceAndValue(5, 5)],
-    ["Last Snowfall", new PreferenceAndValue(5, 5)],
-    ["Base-depth", new PreferenceAndValue(5, 5)],
-    ["Price", new PreferenceAndValue(5, 5)],
-    ["Lifts Open", new PreferenceAndValue(5, 5)],
-    ["Summit Elevation", new PreferenceAndValue(5, 5)],
-    ["Temperature", new PreferenceAndValue(5, 5)],
-    ["Windspeed", new PreferenceAndValue(5, 5)],
-  ]);
+	/**
+	 * Initial preferences that are set on page load.
+	 */
+	var initialPrefs = new Map<string, PreferenceAndValue>([
+		["Snowfall Amount", new PreferenceAndValue(5, 5)],
+		["Last Snowfall", new PreferenceAndValue(5, 5)],
+		["Base-depth", new PreferenceAndValue(5, 5)],
+		["Price", new PreferenceAndValue(5, 5)],
+		["Lifts Open", new PreferenceAndValue(5, 5)],
+		["Summit Elevation", new PreferenceAndValue(5, 5)],
+		["Temperature", new PreferenceAndValue(5, 5)],
+		["Windspeed", new PreferenceAndValue(5, 5)],
+	]);
 
-  // State for the map of preference to level.
-  const [preferenceMap, setPreferenceMap] =
-    useState<Map<string, PreferenceAndValue>>(initialPrefs);
+	// State for the map of preference to level.
+	const [preferenceMap, setPreferenceMap] = useState<Map<string, PreferenceAndValue>>(initialPrefs);
 
 	// State for the reset object.
 	const [reset, setReset] = useState<number>(0);
 
-  /**
-   * Updates the resort list when the submit button is clicked.
-   * @param commandString input by the user currently in the box when submit is clicked
-   */
-  function handleSubmit(commandString: string) {
-    props.setResortList(mockResortsPref);
-  }
+	/**
+	 * Updates the resort list when the submit button is clicked.
+	 * @param commandString input by the user currently in the box when submit is clicked
+	 */
+	function handleSubmit(commandString: string) {
+		props.setResortList(mockResortsPref);
+	}
 
 	return (
 		<div className="preferences-container">

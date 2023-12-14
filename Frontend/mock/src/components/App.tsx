@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import MainContainer from "./MainContainer";
+import { Preferences } from "./Preferences";
+import { ResortsList } from "./ResortsList";
+import { Search } from "./Search";
+import { Sort } from "./Sort";
 import LoginButton from "./auth/LoginButton";
 import Profile from "./auth/Profile"; // Import the Profile component
 import "../styles/App.css";
@@ -10,25 +13,34 @@ import { mockResorts, Resort } from "./resorts/ResortClass";
 
 function App() {
 	const { isAuthenticated } = useAuth0(); // Get the authentication status
-	const [resortList, setResortList] = useState<string[]>(mockResorts);
+	const [resortList, setResortList] = useState<Resort[]>(mockResorts);
 
 	return (
 		<div className="App">
-			<div className="App-header">
+			<header className="App-header">
 				<h1>Alpine Advisor</h1>
-			</div>
-			<div className="profile-or-login-container">
-				{isAuthenticated ? (
-					<>
-						<Profile className="profile-container" />
-					</>
-				) : (
-					<LoginButton className="login-button" />
-				)}
-			</div>
-			<div className="main-content">
-				<MainContainer resortList={resortList} setResortList={setResortList} />
-			</div>
+			</header>
+			<main>
+				<section className="user-panel">
+					{isAuthenticated ? (
+						<>
+							<Profile className="profile-container" />
+						</>
+					) : (
+						<LoginButton className="login-button" />
+					)}
+				</section>
+				<section className="content-panel">
+					<div>
+						<Preferences resortList={resortList} setResortList={setResortList} />
+						<div className="search-sort-resorts">
+							<Search resortList={resortList} setResortList={setResortList} />
+							<Sort resortList={resortList} setResortList={setResortList} />
+							<ResortsList resortList={resortList} />
+						</div>
+					</div>
+				</section>
+			</main>
 		</div>
 	);
 }

@@ -8,18 +8,15 @@
 	color: var(--input-text-color);
 }
 
+.repl-input,
 .repl-history {
-	height: 45vh;
-	margin: auto;
-	display: block;
-	overflow: scroll;
+	flex: 1;
+	margin: 10px;
+	min-width: 300px;
 }
 
-.repl-input {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 20px;
+#listDiv {
+	flex: 2;
 }
 
 .repl-command-box {
@@ -31,6 +28,42 @@
 	border: 1px solid var(--input-border-color);
 	padding: 10px;
 	border-radius: 5px;
+}
+
+.user-panel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	padding: 20px;
+	max-width: 400px;
+	width: 100%;
+	min-height: 200px;
+	background-color: var(--input-bg-color);
+	color: var(--input-text-color);
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-bottom: 30px;
+}
+
+.content-panel {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.preferences-container {
+	width: 100%;
+	max-width: 1200px;
+	margin-bottom: 20px;
+}
+
+.search-sort-resorts {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	flex-wrap: wrap;
 }
 
 #searchButton,
@@ -45,6 +78,13 @@
 	border-radius: 4px;
 	cursor: pointer;
 	transition: background-color 0.25s;
+}
+
+#preferenceButton {
+	width: 100%;
+	padding: 10px;
+	font-size: 1em;
+	margin-top: 20px;
 }
 
 #searchButton:hover,
@@ -85,9 +125,32 @@
 	padding: 8px;
 }
 
+.preferences-container h2 {
+	border-bottom: 2px solid #7f8fa6;
+	padding-bottom: 30px;
+	margin-bottom: 10px;
+}
+
 #prefTable {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: separate;
+}
+
+#prefTable td {
+	border-bottom: 1px solid #7f8fa6;
+	padding: 10px;
+	position: relative;
+}
+
+#prefTable tr:last-child td {
+	border-bottom: none;
+}
+
+#prefTable td.spacerDatum {
+	width: 2px;
+	background-color: #242424;
+	border-left: 2px solid #7f8fa6;
+	border-right: 2px solid #242424;
 }
 
 #listDiv {
@@ -95,22 +158,6 @@
 	padding: 20px;
 	background-color: var(--input-bg-color);
 	color: var(--input-text-color);
-}
-
-.profile-or-login-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 20px;
-	padding: 20px;
-	max-width: 400px;
-	width: 100%;
-	min-height: 200px;
-	background-color: var(--input-bg-color);
-	color: var(--input-text-color);
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	margin-bottom: 30px;
 }
 
 .login-button {
