@@ -24,7 +24,7 @@ export default function MainContainer(props: MainContainerProps) {
 			<table id="mainTable">
 				<tr>
 					<td className="sortTableDatum">
-						<table>
+						<table className="nested-table">
 							<tr>
 								<td>
 									<Search resortList={props.resortList} setResortList={props.setResortList} />
