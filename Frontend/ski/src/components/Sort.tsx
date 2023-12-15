@@ -2,6 +2,7 @@ import "../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { SortDropdown } from "./SortDropdown";
 import {
+  getMockSortedResorts,
   getSortedResorts,
   mockResortsSort,
   Resort,
@@ -13,6 +14,7 @@ import {
 interface SortProps {
   resortList: Resort[];
   setResortList: Dispatch<SetStateAction<Resort[]>>;
+  mockMode: boolean;
 }
 
 /**
@@ -72,7 +74,11 @@ export function Sort(props: SortProps) {
   function handleSubmit() {
     if (selectSort === "") {
     } else {
-      props.setResortList(getSortedResorts(selectSort));
+      if (props.mockMode) {
+        props.setResortList(getMockSortedResorts(selectSort));
+      } else {
+        props.setResortList(getSortedResorts(selectSort));
+      }
     }
   }
 

@@ -245,3 +245,11 @@
   font-size: 50px;
   font-weight: 600;
 }
+
+#mockOffButton {
+  background-color: red;
+}
+
+#mockOnButton {
+  background-color: green;
+}
