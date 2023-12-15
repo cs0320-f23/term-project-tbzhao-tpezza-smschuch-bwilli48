@@ -46,15 +46,6 @@ button:hover {
 	background-color: var(--hover-button-color);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	color: var(--primary-text-color);
-}
-
 input,
 select,
 textarea {

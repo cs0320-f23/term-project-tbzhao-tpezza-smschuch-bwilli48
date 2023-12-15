@@ -34,9 +34,17 @@ function App() {
 					<div>
 						<Preferences resortList={resortList} setResortList={setResortList} />
 						<div className="search-sort-resorts">
-							<Search resortList={resortList} setResortList={setResortList} />
-							<Sort resortList={resortList} setResortList={setResortList} />
-							<ResortsList resortList={resortList} />
+							<div className="search-sort">
+								<div className="sort">
+									<Sort resortList={resortList} setResortList={setResortList} />
+								</div>
+								<div className="search">
+									<Search resortList={resortList} setResortList={setResortList} />
+								</div>
+							</div>
+							<div className="resorts">
+								<ResortsList resortList={resortList} />
+							</div>
 						</div>
 					</div>
 				</section>

@@ -1,8 +1,5 @@
 import "../styles/main.css";
-import "../styles/index.css";
 import { Dispatch, SetStateAction, useState } from "react";
-import { ControlledInput } from "./ControlledInput";
-// import { path_to_data, search } from "../data/mockedJson";
 import { SortDropdown } from "./SortDropdown";
 import { mockResortsSort, Resort } from "./resorts/ResortClass";
 
@@ -10,8 +7,8 @@ import { mockResortsSort, Resort } from "./resorts/ResortClass";
  * Props for the sort function. Includes the array of resorts and a setter for said array.
  */
 interface SortProps {
-  resortList: Resort[];
-  setResortList: Dispatch<SetStateAction<Resort[]>>;
+	resortList: Resort[];
+	setResortList: Dispatch<SetStateAction<Resort[]>>;
 }
 
 /**
@@ -64,53 +61,41 @@ export function Sort(props: SortProps) {
 		setSelectSort(sortOption);
 	};
 
-  /**
-   * Function that updates the resort list when the submut button is clicked
-   * @param commandString input by the user currently in the box when submit is clicked
-   */
-  function handleSubmit() {
-    props.setResortList(mockResortsSort);
-  }
+	/**
+	 * Function that updates the resort list when the submut button is clicked
+	 * @param commandString input by the user currently in the box when submit is clicked
+	 */
+	function handleSubmit() {
+		props.setResortList(mockResortsSort);
+	}
 
 	return (
-		//actually returning the input html dev thing
-		<div
-			className="repl-input"
-			aria-label="Input section, which contains a input box where you can enter the commands you wish to run."
-		>
-			<table>
-				<tr>
-					<td className="sortTableDatum">
-						<button
-							id="sortButton"
-							onClick={() => handleSubmit()}
-							aria-label="Submit button. Click the Submit button with the mouse or click the return key on your keyboard to enter the command you entered in the input box"
-						>
-							Sort
-						</button>
-					</td>
-					<td className="sortTableDatum">
-						<div>
-							<button
-								id="sortDropdown"
-								className={showDropDown ? "active" : undefined}
-								onClick={(): void => toggleDropDown()}
-								onBlur={(e: React.FocusEvent<HTMLButtonElement>): void => dismissHandler(e)}
-							>
-								<div>{selectSort ? "Sort by: " + selectSort : "Select ..."} </div>
-								{showDropDown && (
-									<SortDropdown
-										sortOptions={sortOptions()}
-										showDropDown={false}
-										toggleDropDown={(): void => toggleDropDown()}
-										sortOptionsSelection={sortOptionsSelection}
-									/>
-								)}
-							</button>
-						</div>
-					</td>
-				</tr>
-			</table>
+		<div className="sort-container">
+			<h3 className="sort-title">Select a sort method:</h3>
+			<button
+				id="sortDropdown"
+				className={`sort-dropdown ${showDropDown ? "active" : ""}`}
+				onClick={() => toggleDropDown()}
+				onBlur={dismissHandler}
+			>
+				{selectSort ? `Sort by: ${selectSort}` : "See methods..."}
+				{showDropDown && (
+					<SortDropdown
+						sortOptions={sortOptions()}
+						showDropDown={false}
+						toggleDropDown={toggleDropDown}
+						sortOptionsSelection={sortOptionsSelection}
+					/>
+				)}
+			</button>
+			<button
+				id="sortButton"
+				className="sort-button"
+				onClick={handleSubmit}
+				aria-label="Click the Sort button to apply the sorting method"
+			>
+				Sort
+			</button>
 		</div>
 	);
 }

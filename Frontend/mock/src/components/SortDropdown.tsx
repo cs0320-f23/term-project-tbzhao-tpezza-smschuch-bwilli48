@@ -37,24 +37,22 @@ export function SortDropdown(props: SortDropdownProps) {
 	}, [showDropDown]);
 
 	return (
-		<>
-			<div>
-				{props.sortOptions.map((sortOption: string, index: number): JSX.Element => {
-					return (
-						<div>
-							<hr className="dropdownHR"></hr>
-							<p
-								key={index}
-								onClick={(): void => {
-									onClickHandler(sortOption);
-								}}
-							>
-								{sortOption}
-							</p>
-						</div>
-					);
-				})}
-			</div>
-		</>
+		<div>
+			{props.sortOptions.map((sortOption: string, index: number): JSX.Element => {
+				return (
+					<div>
+						<hr className="dropdownHR"></hr>
+						<p
+							key={index}
+							onClick={(): void => {
+								onClickHandler(sortOption);
+							}}
+						>
+							{sortOption}
+						</p>
+					</div>
+				);
+			})}
+		</div>
 	);
 }

@@ -21,13 +21,13 @@ export function ControlledInput({ value, setValue, ariaLabel, onKeyDown }: Contr
 	return (
 		<input
 			id="searchInput"
-			type="input"
-			className="repl-command-box"
+			type="text"
+			className="search-box"
 			value={value}
-			placeholder="Search resort"
+			placeholder="Enter resort name here..."
 			onChange={(ev) => setValue(ev.target.value)}
 			aria-label={ariaLabel}
 			onKeyDown={onKeyDown}
-		></input>
+		/>
 	);
 }
