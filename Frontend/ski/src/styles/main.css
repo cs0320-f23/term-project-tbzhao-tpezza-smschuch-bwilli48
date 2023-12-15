@@ -55,6 +55,25 @@
 	border-radius: 10px;
 	padding: 20px;
 	box-sizing: border-box;
+	position: relative;
+}
+.preferences-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+#savePreferencesButton {
+	padding: 10px 20px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 0.9em;
+}
+#savePreferencesButton:hover {
+	background-color: #45a049;
 }
 .preferences-container h2 {
 	border-bottom: 2px solid #7f8fa6;

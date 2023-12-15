@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { PreferenceTicker } from "./PreferenceTicker";
 import { getMockRankedResorts, getRankedResorts, mockResortsPref, Resort } from "../resorts/ResortClass";
 import "../../styles/main.css";
@@ -7,8 +7,17 @@ import "../../styles/main.css";
 interface PreferencesProps {
 	resortList: Resort[];
 	setResortList: Dispatch<SetStateAction<Resort[]>>;
+	preferences: UserPreferences | null;
+	onSavePreferences: (newPreferences: UserPreferences) => void;
 	mockMode: boolean;
 }
+
+// Types used for mocking account preference saving.
+export type UserPreferences = Map<string, PreferenceItem>;
+export type PreferenceItem = {
+	weight: number;
+	value: number;
+};
 
 // Class representing a weight-value pair for a preference.
 export class PreferenceAndValue {
@@ -19,19 +28,15 @@ export class PreferenceAndValue {
 		this.weight = weight;
 		this.value = value;
 	}
-
 	upWeight() {
 		this.weight += 1;
 	}
-
 	downWeight() {
 		this.weight -= 1;
 	}
-
 	upValue() {
 		this.value += 1;
 	}
-
 	downValue() {
 		this.value -= 1;
 	}
@@ -54,8 +59,29 @@ export function Preferences(props: PreferencesProps) {
 		["Windspeed", new PreferenceAndValue(5, 5)],
 	]);
 
-	// State for the map of preference to level.
-	const [preferenceMap, setPreferenceMap] = useState<Map<string, PreferenceAndValue>>(initialPrefs);
+	/**
+	 * Converts the UserPreferences object to a map of string to PreferenceAndValue.
+	 * @param userPrefs The UserPreferences object to convert.
+	 * @returns map representing the user preferences.
+	 */
+	const convertUserPrefsToMap = (userPrefs: UserPreferences | null): Map<string, PreferenceAndValue> => {
+		const map = new Map<string, PreferenceAndValue>();
+		if (userPrefs) {
+			userPrefs.forEach((prefItem, key) => {
+				map.set(key, new PreferenceAndValue(prefItem.weight, prefItem.value));
+			});
+		} else {
+			// Populate map with initial preferences if userPrefs is null
+			initialPrefs.forEach((value, key) => {
+				map.set(key, new PreferenceAndValue(value.weight, value.value));
+			});
+		}
+		return map;
+	};
+
+	const [preferenceMap, setPreferenceMap] = useState<Map<string, PreferenceAndValue>>(() =>
+		convertUserPrefsToMap(props.preferences)
+	);
 
 	// State for the reset object.
 	const [reset, setReset] = useState<number>(0);
@@ -71,9 +97,25 @@ export function Preferences(props: PreferencesProps) {
 		}
 	}
 
+	const handleSaveClick = () => {
+		const updatedPreferences: UserPreferences = new Map(preferenceMap);
+		props.onSavePreferences(updatedPreferences);
+	};
+
+	useEffect(() => {
+		if (props.preferences !== null) {
+			setPreferenceMap(convertUserPrefsToMap(props.preferences));
+		}
+	}, [props.preferences]);
+
 	return (
 		<div className="preferences-container">
-			<h2>Preferences</h2>
+			<div className="preferences-header">
+				<h2>Preferences</h2>
+				<button id="savePreferencesButton" onClick={handleSaveClick} aria-label="Save preferences to your account">
+					Save to Account
+				</button>
+			</div>
 			<table id="prefTable">
 				<tr>
 					<td>

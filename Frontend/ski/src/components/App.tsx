@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Preferences } from "./prefs/Preferences";
 import { ResortsList } from "./resorts/ResortsList";
@@ -7,8 +7,9 @@ import { Sort } from "./sort/Sort";
 import LoginButton from "./auth/LoginButton";
 import Profile from "./auth/Profile"; // Import the Profile component
 import "../styles/App.css";
-import "../styles/index.css";
 import "../styles/main.css";
+import { UserPreferences } from "./prefs/Preferences";
+import { savePreferencesToLocalStorage, loadPreferencesFromLocalStorage } from "./utils/PreferenceUtils";
 import { getMockStartResorts, getStartResorts, mockResorts, Resort } from "./resorts/ResortClass";
 
 /**
@@ -19,7 +20,8 @@ import { getMockStartResorts, getStartResorts, mockResorts, Resort } from "./res
  */
 function App() {
 	// Gets authentication status from Auth0
-	const { isAuthenticated } = useAuth0();
+	const { isAuthenticated, user } = useAuth0();
+	const [preferences, setPreferences] = useState<UserPreferences | null>(null);
 
 	// Manages state for the resort list
 	const [resortList, setResortList] = useState<Resort[]>(getStartResorts);
@@ -51,6 +53,22 @@ function App() {
 		}
 	}
 
+	// Sets the preferences to whatever the account's preferences are on login.
+	useEffect(() => {
+		if (isAuthenticated && user?.sub) {
+			const loadedPreferences = loadPreferencesFromLocalStorage(user.sub);
+			setPreferences(loadedPreferences);
+		}
+	}, [isAuthenticated, user?.sub]);
+
+	// When a user clicks the save button, saves preferences.
+	const handleSavePreferences = (newPreferences: UserPreferences) => {
+		if (user?.sub) {
+			savePreferencesToLocalStorage(user.sub, newPreferences);
+			setPreferences(newPreferences);
+		}
+	};
+
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -76,7 +94,13 @@ function App() {
 				</section>
 				<section className="content-panel">
 					<div>
-						<Preferences resortList={resortList} setResortList={setResortList} mockMode={mockMode} />
+						<Preferences
+							preferences={preferences}
+							onSavePreferences={handleSavePreferences}
+							resortList={resortList}
+							setResortList={setResortList}
+							mockMode={mockMode}
+						/>
 						<div className="search-sort-resorts">
 							<div className="search-sort">
 								<div className="sort">
