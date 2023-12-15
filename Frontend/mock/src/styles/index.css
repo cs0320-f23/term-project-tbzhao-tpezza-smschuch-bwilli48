@@ -10,6 +10,13 @@
 	--input-border-color: #7f8fa6;
 }
 
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
 body {
 	color: var(--primary-text-color);
 	background-color: var(--primary-bg-color);
@@ -37,15 +44,6 @@ button {
 
 button:hover {
 	background-color: var(--hover-button-color);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	color: var(--primary-text-color);
 }
 
 input,

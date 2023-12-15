@@ -1,38 +1,186 @@
-.repl {
-	width: 90%;
-	margin: auto;
+/* LOGIN/PROFILE */
+.user-panel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 400px;
+	width: 100%;
+	min-height: 200px;
 	padding: 20px;
+	margin: 20px 0;
+	background-color: #1b1b1b;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+}
+.login-button {
+	padding: 10px 20px;
+	font-size: 1em;
+	background-color: var(--primary-button-color);
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	color: white;
+}
+
+/* MAIN PANEL */
+.content-panel {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 20px;
+	padding: 20px;
+	width: 100%;
+}
+
+/* PREFERENCES */
+.preferences-container {
+	width: 100%;
+	max-width: 1200px;
+	margin-bottom: 20px;
+	background-color: #1b1b1b;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 100%;
+	max-width: 1200px;
+	box-sizing: border-box;
+}
+.preferences-container h2 {
+	border-bottom: 2px solid #7f8fa6;
+	padding-bottom: 30px;
+	margin-bottom: 10px;
+}
+#prefTable {
+	width: 100%;
+	border-collapse: collapse;
+}
+#prefTable td {
+	border-bottom: 1px solid #7f8fa6;
+	padding: 10px;
 	position: relative;
-	min-height: 95vh;
+}
+#prefTable tr:last-child td {
+	border-bottom: none;
+}
+#prefTable td.spacerDatum {
+	width: 2px;
+	border-left: 2px solid #7f8fa6;
+}
+
+/* SEARCH/SORT/RESORTS TOP LEVEL */
+.search-sort-resorts {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+/* SEARCH/SORT TOP LEVEL */
+.search-sort {
+	flex: 1;
+	max-width: 33%;
+}
+
+/* SEARCH */
+.search {
+	background-color: #1b1b1b;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+}
+.search-container {
+	padding: 20px;
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.sort-title,
+.search-title {
+	text-align: center;
+	margin-bottom: 20px;
+}
+.search-box,
+.search-button,
+.search-dropdown {
+	padding: 10px 20px;
+	font-size: 1em;
+	border: 1px solid var(--input-border-color);
+	border-radius: 5px;
 	background-color: var(--input-bg-color);
 	color: var(--input-text-color);
 }
-
-.repl-history {
-	height: 45vh;
-	margin: auto;
-	display: block;
-	overflow: scroll;
+.search-button,
+.search-dropdown {
+	width: 100%;
+	cursor: pointer;
+	text-align: center;
+}
+.search-box {
+	width: 87%;
+	cursor: text;
 }
 
-.repl-input {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+.search-box,
+.search-dropdown:not(.active),
+.search-button {
 	margin-bottom: 20px;
 }
 
-.repl-command-box {
-	flex-grow: 1;
-	margin-right: 10px;
-	width: 90%;
+/* SORT */
+.sort {
+	background-color: #1b1b1b;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+}
+.sort-container {
+	padding: 20px;
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.sort-dropdown,
+.sort-button {
+	width: 100%;
+	padding: 10px 20px;
+	font-size: 1em;
+	border: 1px solid var(--input-border-color);
+	border-radius: 5px;
 	background-color: var(--input-bg-color);
 	color: var(--input-text-color);
-	border: 1px solid var(--input-border-color);
-	padding: 10px;
-	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+}
+.sort-dropdown:not(.active),
+.sort-button {
+	margin-bottom: 20px;
 }
 
+/* RESORTS LIST */
+.resorts {
+	flex: 1;
+	max-width: 65%;
+	margin: 20px 0;
+	background-color: #1b1b1b;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+}
+.resorts-list {
+	padding: 20px;
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.resorts-list p {
+	margin: 10px;
+}
+
+/* BUTTONS */
 #searchButton,
 #sortButton,
 #preferenceButton,
@@ -46,32 +194,23 @@
 	cursor: pointer;
 	transition: background-color 0.25s;
 }
-
-#searchButton:hover,
-#sortButton:hover,
-#preferenceButton:hover,
-#upButton:hover,
-#downButton:hover {
-	background-color: var(--hover-button-color);
+#preferenceButton {
+	width: 100%;
+	padding: 10px;
+	font-size: 1em;
+	margin-top: 20px;
 }
 
+/* DROPDOWNS */
 #sortDropdown,
 #searchDropdown {
-	width: 100%;
-	padding: 8px;
+	padding: 10px 20px;
+	font-size: 1em;
+	border: 1px solid var(--input-border-color);
+	border-radius: 5px;
 	background-color: var(--input-bg-color);
 	color: var(--input-text-color);
-	border: 1px solid var(--input-border-color);
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.25s;
 }
-
-#sortDropdown:hover,
-#searchDropdown:hover {
-	background-color: var(--hover-button-color);
-}
-
 .dropdownHR {
 	height: 1px;
 	background-color: var(--input-border-color);
@@ -79,50 +218,15 @@
 	margin: 8px 0;
 }
 
+/* TABLE DATUMS */
+.searchTableDatum,
 .sortTableDatum,
-#preferenceTableDatum,
 .spacerDatum {
 	padding: 8px;
 }
-
-#prefTable {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-#listDiv {
-	border-radius: 8px;
-	padding: 20px;
-	background-color: var(--input-bg-color);
-	color: var(--input-text-color);
-}
-
-.profile-or-login-container {
+.sortTableDatum,
+.searchTableDatum {
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	margin: 20px;
-	padding: 20px;
-	max-width: 400px;
-	width: 100%;
-	min-height: 200px;
-	background-color: var(--input-bg-color);
-	color: var(--input-text-color);
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	margin-bottom: 30px;
-}
-
-.login-button {
-	padding: 10px 20px;
-	font-size: 1em;
-	background-color: var(--primary-button-color);
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	color: white;
-}
-
-.login-button:hover {
-	background-color: var(--hover-button-color);
+	gap: 10px;
 }
