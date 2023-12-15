@@ -1,3 +1,5 @@
+import { PreferenceAndValue } from "../Preferences";
+
 export class Resort {
   name: string;
   snowfallAmount: number;
@@ -82,6 +84,24 @@ export const mockResortsPref = [
   JacksonHole,
   JayPeak,
 ];
+
+export function getStartResorts(): Resort[] {
+  return mockResorts;
+}
+
+export function getSearchResort(name: string): Resort[] {
+  return mockResortsSearch;
+}
+
+export function getSortedResorts(attribute: string): Resort[] {
+  return mockResortsSort;
+}
+
+export function getRankedResorts(
+  prefs: Map<string, PreferenceAndValue>
+): Resort[] {
+  return mockResortsPref;
+}
 
 // Returns a list of resort options
 export const resortNames = () => {
