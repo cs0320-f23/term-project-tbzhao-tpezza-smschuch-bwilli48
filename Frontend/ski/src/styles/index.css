@@ -22,12 +22,18 @@ body {
 	background-color: var(--primary-bg-color);
 }
 
+h1 {
+	font-size: 2.5em;
+}
+h2 {
+	font-size: 1.7em;
+}
+
 a {
 	font-weight: 500;
 	color: #646cff;
 	text-decoration: inherit;
 }
-
 a:hover {
 	color: #535bf2;
 }
@@ -39,11 +45,15 @@ button {
 	padding: 10px 20px;
 	border-radius: 5px;
 	cursor: pointer;
-	transition: background-color 0.25s;
+	transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
 button:hover {
 	background-color: var(--hover-button-color);
+	transform: scale(1.015);
+}
+button:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px rgba(128, 195, 246, 0.5); /* Adjust color as needed */
 }
 
 input,
@@ -52,8 +62,8 @@ textarea {
 	background-color: var(--input-bg-color);
 	color: var(--input-text-color);
 	border: 1px solid var(--input-border-color);
-	padding: 10px;
-	border-radius: 4px;
+	padding: 15px;
+	border-radius: 8px;
 	margin: 8px 0;
 }
 

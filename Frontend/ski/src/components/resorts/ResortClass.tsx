@@ -1,5 +1,8 @@
 import { PreferenceAndValue } from "../prefs/Preferences";
 
+/**
+ * Represents a resort with various attributes like snowfall amount, price, etc.
+ */
 export class Resort {
 	name: string;
 	snowfallAmount: number;
@@ -33,6 +36,8 @@ export class Resort {
 		this.windspeed = windspeed;
 	}
 }
+
+// Mock data and utility functions:
 
 export const MockA = new Resort("Mock A", 12, 4, 71, 100, 4, 9000, 12, 21);
 export const MockB = new Resort("Mock B", 11, 4, 56, 120, 6, 10000, 15, 30);
