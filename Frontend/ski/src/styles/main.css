@@ -21,6 +21,12 @@
 	cursor: pointer;
 	color: white;
 }
+.profile-pic {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	object-fit: cover;
+}
 
 /* MAIN PANEL */
 .content-panel {

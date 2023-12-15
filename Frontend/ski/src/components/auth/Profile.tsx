@@ -26,7 +26,7 @@ const Profile: React.FC<ProfileProps> = ({ className }) => {
 
 	return (
 		<div className={className}>
-			<img src={user.picture} alt={user.name} aria-label="Profile picture" />
+			<img src={user.picture} alt={user.name} className="profile-pic" aria-label="Profile picture" />
 			<h2>{user.name}</h2>
 			<p>{user.email}</p>
 			<LogoutButton aria-label="Log out" />
