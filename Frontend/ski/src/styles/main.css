@@ -1,183 +1,183 @@
 /* LOGIN/PROFILE */
 .user-panel {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	max-width: 400px;
-	width: 100%;
-	min-height: 200px;
-	padding: 20px;
-	margin: 20px 0;
-	background-color: #1b1b1b;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  min-height: 200px;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #1b1b1b;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 .login-button {
-	padding: 10px 20px;
-	font-size: 1em;
-	background-color: var(--primary-button-color);
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	color: white;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: var(--primary-button-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
 }
 
 /* MAIN PANEL */
 .content-panel {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: flex-start;
-	gap: 20px;
-	padding: 20px;
-	width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
 }
 
 /* PREFERENCES */
 .preferences-container {
-	width: 100%;
-	max-width: 1200px;
-	margin-bottom: 20px;
-	background-color: #1b1b1b;
-	border-radius: 10px;
-	padding: 20px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	width: 100%;
-	max-width: 1200px;
-	box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  background-color: #1b1b1b;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
 }
 .preferences-container h2 {
-	border-bottom: 2px solid #7f8fa6;
-	padding-bottom: 30px;
-	margin-bottom: 10px;
+  border-bottom: 2px solid #7f8fa6;
+  padding-bottom: 30px;
+  margin-bottom: 10px;
 }
 #prefTable {
-	width: 100%;
-	border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 #prefTable td {
-	border-bottom: 1px solid #7f8fa6;
-	padding: 10px;
-	position: relative;
+  border-bottom: 1px solid #7f8fa6;
+  padding: 10px;
+  position: relative;
 }
 #prefTable tr:last-child td {
-	border-bottom: none;
+  border-bottom: none;
 }
 #prefTable td.spacerDatum {
-	width: 2px;
-	border-left: 2px solid #7f8fa6;
+  width: 2px;
+  border-left: 2px solid #7f8fa6;
 }
 
 /* SEARCH/SORT/RESORTS TOP LEVEL */
 .search-sort-resorts {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 /* SEARCH/SORT TOP LEVEL */
 .search-sort {
-	flex: 1;
-	max-width: 33%;
+  flex: 1;
+  max-width: 33%;
 }
 
 /* SEARCH */
 .search {
-	background-color: #1b1b1b;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	box-sizing: border-box;
+  background-color: #1b1b1b;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 .search-container {
-	padding: 20px;
-	margin: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .sort-title,
 .search-title {
-	text-align: center;
-	margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 .search-box,
 .search-button,
 .search-dropdown {
-	padding: 10px 20px;
-	font-size: 1em;
-	border: 1px solid var(--input-border-color);
-	border-radius: 5px;
-	background-color: var(--input-bg-color);
-	color: var(--input-text-color);
+  padding: 10px 20px;
+  font-size: 1em;
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  background-color: var(--input-bg-color);
+  color: var(--input-text-color);
 }
 .search-button,
 .search-dropdown {
-	width: 100%;
-	cursor: pointer;
-	text-align: center;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
 }
 .search-box {
-	width: 87%;
-	cursor: text;
+  width: 87%;
+  cursor: text;
 }
 
 .search-box,
 .search-dropdown:not(.active),
 .search-button {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* SORT */
 .sort {
-	background-color: #1b1b1b;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	box-sizing: border-box;
+  background-color: #1b1b1b;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 .sort-container {
-	padding: 20px;
-	margin: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .sort-dropdown,
 .sort-button {
-	width: 100%;
-	padding: 10px 20px;
-	font-size: 1em;
-	border: 1px solid var(--input-border-color);
-	border-radius: 5px;
-	background-color: var(--input-bg-color);
-	color: var(--input-text-color);
-	cursor: pointer;
-	text-align: center;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  background-color: var(--input-bg-color);
+  color: var(--input-text-color);
+  cursor: pointer;
+  text-align: center;
 }
 .sort-dropdown:not(.active),
 .sort-button {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* RESORTS LIST */
 .resorts {
-	flex: 1;
-	max-width: 65%;
-	margin: 20px 0;
-	background-color: #1b1b1b;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	box-sizing: border-box;
+  flex: 1;
+  max-width: 65%;
+  margin: 20px 0;
+  background-color: #1b1b1b;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 .resorts-list {
-	padding: 20px;
-	margin: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .resorts-list p {
-	margin: 10px;
+  margin: 10px;
 }
 
 /* BUTTONS */
@@ -186,47 +186,62 @@
 #preferenceButton,
 #upButton,
 #downButton {
-	background-color: var(--primary-button-color);
-	color: white;
-	padding: 8px 16px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.25s;
+  background-color: var(--primary-button-color);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.25s;
 }
 #preferenceButton {
-	width: 100%;
-	padding: 10px;
-	font-size: 1em;
-	margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  margin-top: 20px;
 }
 
 /* DROPDOWNS */
 #sortDropdown,
 #searchDropdown {
-	padding: 10px 20px;
-	font-size: 1em;
-	border: 1px solid var(--input-border-color);
-	border-radius: 5px;
-	background-color: var(--input-bg-color);
-	color: var(--input-text-color);
+  padding: 10px 20px;
+  font-size: 1em;
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  background-color: var(--input-bg-color);
+  color: var(--input-text-color);
 }
 .dropdownHR {
-	height: 1px;
-	background-color: var(--input-border-color);
-	border: none;
-	margin: 8px 0;
+  height: 1px;
+  background-color: var(--input-border-color);
+  border: none;
+  margin: 8px 0;
 }
 
 /* TABLE DATUMS */
 .searchTableDatum,
 .sortTableDatum,
 .spacerDatum {
-	padding: 8px;
+  padding: 8px;
 }
 .sortTableDatum,
 .searchTableDatum {
-	display: flex;
-	align-items: center;
-	gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#resortName {
+  color: var(--primary-button-color);
+}
+
+.resortListDatum {
+  align-items: right;
+  vertical-align: top;
+  text-align: center;
+}
+
+#resortTitle {
+  font-size: 50px;
+  font-weight: 600;
 }
