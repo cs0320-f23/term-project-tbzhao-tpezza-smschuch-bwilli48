@@ -9,48 +9,54 @@ import Profile from "./auth/Profile"; // Import the Profile component
 import "../styles/App.css";
 import "../styles/index.css";
 import "../styles/main.css";
-import { mockResorts, Resort } from "./resorts/ResortClass";
+import { getStartResorts, mockResorts, Resort } from "./resorts/ResortClass";
 
 function App() {
-	const { isAuthenticated } = useAuth0(); // Get the authentication status
-	const [resortList, setResortList] = useState<Resort[]>(mockResorts);
+  const { isAuthenticated } = useAuth0(); // Get the authentication status
+  const [resortList, setResortList] = useState<Resort[]>(getStartResorts);
 
-	return (
-		<div className="App">
-			<header className="App-header">
-				<h1>Alpine Advisor</h1>
-			</header>
-			<main>
-				<section className="user-panel">
-					{isAuthenticated ? (
-						<>
-							<Profile className="profile-container" />
-						</>
-					) : (
-						<LoginButton className="login-button" />
-					)}
-				</section>
-				<section className="content-panel">
-					<div>
-						<Preferences resortList={resortList} setResortList={setResortList} />
-						<div className="search-sort-resorts">
-							<div className="search-sort">
-								<div className="sort">
-									<Sort resortList={resortList} setResortList={setResortList} />
-								</div>
-								<div className="search">
-									<Search resortList={resortList} setResortList={setResortList} />
-								</div>
-							</div>
-							<div className="resorts">
-								<ResortsList resortList={resortList} />
-							</div>
-						</div>
-					</div>
-				</section>
-			</main>
-		</div>
-	);
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Alpine Advisor</h1>
+      </header>
+      <main>
+        <section className="user-panel">
+          {isAuthenticated ? (
+            <>
+              <Profile className="profile-container" />
+            </>
+          ) : (
+            <LoginButton className="login-button" />
+          )}
+        </section>
+        <section className="content-panel">
+          <div>
+            <Preferences
+              resortList={resortList}
+              setResortList={setResortList}
+            />
+            <div className="search-sort-resorts">
+              <div className="search-sort">
+                <div className="sort">
+                  <Sort resortList={resortList} setResortList={setResortList} />
+                </div>
+                <div className="search">
+                  <Search
+                    resortList={resortList}
+                    setResortList={setResortList}
+                  />
+                </div>
+              </div>
+              <div className="resorts">
+                <ResortsList resortList={resortList} />
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }
 
 export default App;
