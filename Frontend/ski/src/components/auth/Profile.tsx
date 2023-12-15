@@ -4,6 +4,7 @@ import LogoutButton from "./LogoutButton";
 
 type ProfileProps = {
 	className?: string;
+	user: User;
 };
 
 const Profile: React.FC<ProfileProps> = ({ className }) => {
