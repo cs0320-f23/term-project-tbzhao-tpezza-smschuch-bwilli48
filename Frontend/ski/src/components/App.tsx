@@ -22,8 +22,6 @@ function App() {
 	useEffect(() => {
 		if (isAuthenticated && user?.sub) {
 			const loadedPreferences = loadPreferencesFromLocalStorage(user.sub);
-			// Debugging
-			console.log("Prefs loaded from local storage:", loadedPreferences);
 			setPreferences(loadedPreferences);
 		}
 	}, [isAuthenticated, user?.sub]);

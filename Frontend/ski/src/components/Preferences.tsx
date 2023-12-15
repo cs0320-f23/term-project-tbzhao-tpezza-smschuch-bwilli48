@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { PreferenceTicker } from "./PreferenceTicker";
 import { mockResortsPref, Resort } from "./resorts/ResortClass";
-import exp from "constants";
 
 /**
  * Props for the preference table. Contains the array of resorts and a setter for said array.
@@ -28,19 +27,15 @@ export class PreferenceAndValue {
 		this.weight = weight;
 		this.value = value;
 	}
-
 	upWeight() {
 		this.weight += 1;
 	}
-
 	downWeight() {
 		this.weight -= 1;
 	}
-
 	upValue() {
 		this.value += 1;
 	}
-
 	downValue() {
 		this.value -= 1;
 	}
@@ -74,24 +69,21 @@ export function Preferences(props: PreferencesProps) {
 	const convertUserPrefsToMap = (userPrefs: UserPreferences | null): Map<string, PreferenceAndValue> => {
 		const map = new Map<string, PreferenceAndValue>();
 		if (userPrefs) {
-			Object.entries(userPrefs).forEach(([key, prefItem]) => {
+			userPrefs.forEach((prefItem, key) => {
 				map.set(key, new PreferenceAndValue(prefItem.weight, prefItem.value));
 			});
-			// Debugging
-			console.log("Converted user preferences:", map);
-			return map;
+		} else {
+			// Populate map with initial preferences if userPrefs is null
+			initialPrefs.forEach((value, key) => {
+				map.set(key, new PreferenceAndValue(value.weight, value.value));
+			});
 		}
-		return initialPrefs;
+		return map;
 	};
 
 	const [preferenceMap, setPreferenceMap] = useState<Map<string, PreferenceAndValue>>(() =>
 		convertUserPrefsToMap(props.preferences)
 	);
-
-	// Debugging.
-	useEffect(() => {
-		console.log("Updated preferenceMap:", preferenceMap);
-	}, [preferenceMap]);
 
 	// State for the reset object.
 	const [reset, setReset] = useState<number>(0);
@@ -108,6 +100,12 @@ export function Preferences(props: PreferencesProps) {
 		const updatedPreferences: UserPreferences = new Map(preferenceMap);
 		props.onSavePreferences(updatedPreferences);
 	};
+
+	useEffect(() => {
+		if (props.preferences !== null) {
+			setPreferenceMap(convertUserPrefsToMap(props.preferences));
+		}
+	}, [props.preferences]);
 
 	return (
 		<div className="preferences-container">

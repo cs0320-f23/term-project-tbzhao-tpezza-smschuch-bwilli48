@@ -31,7 +31,9 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 			throw console.error();
 		}
 		if (currentPref.weight < 10) {
-			props.preferenceMap.get(props.preference)?.upWeight();
+			const newMap = new Map(props.preferenceMap);
+			newMap.get(props.preference)?.upWeight();
+			props.setPreferenceMap(newMap);
 		}
 		props.setReset(resetNum);
 		resetNum += 1;
@@ -47,7 +49,9 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 			throw console.error();
 		}
 		if (currentPref.weight > 0) {
-			props.preferenceMap.get(props.preference)?.downWeight();
+			const newMap = new Map(props.preferenceMap);
+			newMap.get(props.preference)?.downWeight();
+			props.setPreferenceMap(newMap);
 		}
 		props.setReset(resetNum);
 		resetNum += 1;
@@ -62,7 +66,11 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 		if (currentPref === undefined) {
 			throw console.error();
 		}
-		props.preferenceMap.get(props.preference)?.upValue();
+		if (currentPref.value < 10) {
+			const newMap = new Map(props.preferenceMap);
+			newMap.get(props.preference)?.upValue();
+			props.setPreferenceMap(newMap);
+		}
 		props.setReset(resetNum);
 		resetNum += 1;
 	}
@@ -76,15 +84,14 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 		if (currentPref === undefined) {
 			throw console.error();
 		}
-		props.preferenceMap.get(props.preference)?.downValue();
+		if (currentPref.value > 0) {
+			const newMap = new Map(props.preferenceMap);
+			newMap.get(props.preference)?.downValue();
+			props.setPreferenceMap(newMap);
+		}
 		props.setReset(resetNum);
 		resetNum += 1;
 	}
-
-	// Debugging:
-	useEffect(() => {
-		console.log("Preferences received in Ticker:", props.preferenceMap);
-	}, [props.preferenceMap]);
 
 	return (
 		<div>
