@@ -5,16 +5,14 @@ import static org.testng.AssertJUnit.assertEquals;
 import edu.brown.cs.student.Ski.ResortConditions;
 import edu.brown.cs.student.Ski.ResortList;
 import edu.brown.cs.student.Ski.SnowConditions;
-import edu.brown.cs.student.Ski.SnowForecast;
+import edu.brown.cs.student.server.Caching.CachedResorts;
 import edu.brown.cs.student.server.Search.ColumnIdentifier;
 import edu.brown.cs.student.server.Search.Search;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.SortedMap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -136,12 +134,15 @@ public class SearchTest {
   @Test
   public void test() throws IOException, InterruptedException {
     ResortList list = new ResortList();
+
   //  System.out.println(list.getResortMap());
     //System.out.println(list.getResortNames());
     ResortConditions conditions = new ResortConditions();
-    conditions.getForecast("Zermatt");
+    System.out.println(conditions.getForecast("Schladming – Planai/\u200B\u200BHochwurzen/\u200B\u200BHauser Kaibling/\u200B\u200BReiteralm (4-Berge-Skischaukel)"));
     SnowConditions snow = new SnowConditions();
-    snow.getForecast("Zermatt");
+    CachedResorts resorts = new CachedResorts(list);
+    resorts.populateCache(list);
+    System.out.println(snow.getForecast("Schladming – Planai/\u200B\u200BHochwurzen/\u200B\u200BHauser Kaibling/\u200B\u200BReiteralm (4-Berge-Skischaukel)"));
     // System.out.println(conditions.regexInput("Two words"));
   }
 }

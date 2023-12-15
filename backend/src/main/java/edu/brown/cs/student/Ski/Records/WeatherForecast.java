@@ -1,4 +1,7 @@
-package edu.brown.cs.student.Ski;
+package edu.brown.cs.student.Ski.Records;
+
+import edu.brown.cs.student.Ski.Records.BasicInfo;
+import edu.brown.cs.student.Ski.Records.DayForecast;
 
 import java.util.List;
 
