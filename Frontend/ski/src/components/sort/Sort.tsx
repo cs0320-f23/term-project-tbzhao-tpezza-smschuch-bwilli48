@@ -3,9 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { SortDropdown } from "./SortDropdown";
 import { getMockSortedResorts, getSortedResorts, mockResortsSort, Resort } from "../resorts/ResortClass";
 
-/**
- * Props for the sort function. Includes the array of resorts and a setter for said array.
- */
+// Properties for the Sort component.
 interface SortProps {
 	resortList: Resort[];
 	setResortList: Dispatch<SetStateAction<Resort[]>>;
@@ -13,8 +11,8 @@ interface SortProps {
 }
 
 /**
- * Function that represents the sort menu. Handles a dropdown box with the avaliable
- * sort methods and a button that performs the sorting.
+ * Allows users to select a sorting method for the list of resorts. Handles the display
+ * of sorting options via a dropdown menu and applies the selected sort method.
  */
 export function Sort(props: SortProps) {
 	// State for whether to show the dropdown menu.
@@ -37,16 +35,13 @@ export function Sort(props: SortProps) {
 		];
 	};
 
-	/**
-	 * Toggle the select drop down menu
-	 */
+	// Toggles the visibility of the dropdown menu.
 	const toggleDropDown = () => {
 		setShowDropDown(!showDropDown);
 	};
 
 	/**
 	 * Handler that hides the dropdown menu if a click occurs outside of the dropdown element.
-	 * @param event The mouse event
 	 */
 	const dismissHandler = (event: React.FocusEvent<HTMLButtonElement>): void => {
 		if (event.currentTarget === event.target) {
@@ -55,7 +50,7 @@ export function Sort(props: SortProps) {
 	};
 
 	/**
-	 * Callback function to consume the sort option
+	 * Sets the currently selected sort option.
 	 * @param sortOption The selected options
 	 */
 	const sortOptionsSelection = (sortOption: string): void => {
@@ -63,10 +58,9 @@ export function Sort(props: SortProps) {
 	};
 
 	/**
-	 * Function that updates the resort list when the submut button is clicked
-	 * @param commandString input by the user currently in the box when submit is clicked
+	 * Updates the resort list based on the selected sort method.
 	 */
-	function handleSubmit() {
+	function handleSort() {
 		if (selectSort === "") {
 		} else {
 			if (props.mockMode) {
@@ -78,13 +72,14 @@ export function Sort(props: SortProps) {
 	}
 
 	return (
-		<div className="sort-container">
+		<div className="sort-container" aria-label="Sort resorts section">
 			<h3 className="sort-title">Select a sort method:</h3>
 			<button
 				id="sortDropdown"
 				className={`sort-dropdown ${showDropDown ? "active" : ""}`}
 				onClick={() => toggleDropDown()}
 				onBlur={dismissHandler}
+				aria-label="Sort methods dropdown"
 			>
 				{selectSort ? `Sort by: ${selectSort}` : "See methods..."}
 				{showDropDown && (
@@ -99,8 +94,8 @@ export function Sort(props: SortProps) {
 			<button
 				id="sortButton"
 				className="sort-button"
-				onClick={handleSubmit}
-				aria-label="Click the Sort button to apply the sorting method"
+				onClick={handleSort}
+				aria-label={selectSort ? `Sort resorts by ${selectSort}` : "Sort resorts by selected method"}
 			>
 				Sort
 			</button>

@@ -11,14 +11,33 @@ import "../styles/index.css";
 import "../styles/main.css";
 import { getMockStartResorts, getStartResorts, mockResorts, Resort } from "./resorts/ResortClass";
 
+/**
+ * The `App` component serves as the main container for the Alpine Advisor application.
+ * It uses Auth0 for authentication, manages state for resort data and mock mode, and
+ * renders various components such as `Preferences`, `Search`, `Sort`, `ResortsList`,
+ * `LoginButton`, and `Profile`.
+ */
 function App() {
-	const { isAuthenticated } = useAuth0(); // Get the authentication status
+	// Gets authentication status from Auth0
+	const { isAuthenticated } = useAuth0();
+
+	// Manages state for the resort list
 	const [resortList, setResortList] = useState<Resort[]>(getStartResorts);
+
+	// Manages state for mock mode
 	const [mockMode, setMockMode] = useState<boolean>(false);
+
+	// Manages state for the mock indicator
 	const [mockString, setMockString] = useState<string>("Mock Mode: Off");
+
+	// Manages state for the mock ID
 	const [mockID, setMockID] = useState<string>("mockOffButton");
 
-	function handleSubmit() {
+	/**
+	 * Toggles the mock mode state and updates the resort list accordingly.
+	 * Switches between real and mock data for resorts.
+	 */
+	function handleMockButton() {
 		if (mockMode) {
 			setMockMode(false);
 			setMockString("Mock Mode: Off");
@@ -40,8 +59,8 @@ function App() {
 			<button
 				className="search-button"
 				id={mockID}
-				onClick={() => handleSubmit()}
-				aria-label="Click the Search button to perform the search"
+				onClick={() => handleMockButton()}
+				aria-label={mockMode ? "Disable mock mode" : "Enable mock mode"}
 			>
 				{mockString}
 			</button>
@@ -49,10 +68,10 @@ function App() {
 				<section className="user-panel">
 					{isAuthenticated ? (
 						<>
-							<Profile className="profile-container" />
+							<Profile className="profile-container" aria-label="User profile" />
 						</>
 					) : (
-						<LoginButton className="login-button" />
+						<LoginButton className="login-button" aria-label="Login button" />
 					)}
 				</section>
 				<section className="content-panel">
@@ -68,7 +87,7 @@ function App() {
 								</div>
 							</div>
 							<div className="resorts">
-								<ResortsList resortList={resortList} />
+								<ResortsList resortList={resortList} aria-label="List of resorts" />
 							</div>
 						</div>
 					</div>

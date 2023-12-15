@@ -12,7 +12,7 @@ import {
 } from "../resorts/ResortClass";
 
 /**
- * Props for the search bar. Includes the array of resorts and a setter for said array.
+ * Properties for the Search component.
  */
 interface SearchProps {
 	resortList: Resort[];
@@ -21,8 +21,8 @@ interface SearchProps {
 }
 
 /**
- * Function that represents the search component. Handles a command box, a search button,
- * an a dropdown box containing the list of resorts.
+ * Provides an interface for searching resorts by name. Includes a text input for
+ * entering search commands, a search button, and a dropdown menu that lists resorts.
  */
 export function Search(props: SearchProps) {
 	// State that manages whether the see resorts dropdown is shown
@@ -34,23 +34,17 @@ export function Search(props: SearchProps) {
 	// State the manages the command string
 	const [commandString, setCommandString] = useState<string>("");
 
-	var resorts: string[] = [];
-	if (props.mockMode) {
-		resorts = mockResortNames();
-	} else {
-		resorts = resortNames();
-	}
+	var resorts: string[] = props.mockMode ? mockResortNames() : resortNames();
 
 	/**
-	 * Toggle for the see resorts dropdown menu
+	 * Toggles the visibility of the dropdown menu.
 	 */
 	const toggleDropDown = () => {
 		setShowDropDown(!showDropDown);
 	};
 
 	/**
-	 * Handler that hides the dropdown menu if a click occurs outside of the dropdown element.
-	 * @param event The mouse event
+	 * Handles closing the dropdown menu if an outside click is detected.
 	 */
 	const dismissHandler = (event: React.FocusEvent<HTMLButtonElement>): void => {
 		if (event.currentTarget === event.target) {
@@ -59,48 +53,43 @@ export function Search(props: SearchProps) {
 	};
 
 	/**
-	 * Callback function to consume the resort option
-	 * @param resortOption The selected options
+	 * Sets the currently selected resort from the dropdown.
+	 * @param {string} resortOption - The resort option that was selected.
 	 */
 	const resortOptionsSelection = (resortOption: string): void => {
 		setSelectResort(resortOption);
 	};
 
 	/**
-	 * Function that updates the resort list when the submut button is clicked
-	 * @param commandString input by the user currently in the box when submit is clicked
+	 * Handles a search button click by updating the resort list accordingly.
+	 * @param {string} commandString - The resort to search for.
 	 */
-	function handleSubmit(commandString: string) {
-		if (commandString === "") {
-		} else {
-			if (props.mockMode) {
-				props.setResortList(getMockSearchResort(commandString));
-			} else {
-				props.setResortList(getSearchResort(commandString));
-			}
+	function handleSearch(commandString: string) {
+		if (commandString !== "") {
+			const result = props.mockMode ? getMockSearchResort(commandString) : getSearchResort(commandString);
+			props.setResortList(result);
 		}
 		setCommandString("");
 	}
 
 	return (
-		<div className="search-container">
+		<div className="search-container" aria-label="Resort search section">
 			<h3 className="search-title">Search for a specific resort:</h3>
 			<ControlledInput
 				value={commandString}
 				setValue={setCommandString}
-				ariaLabel="Command input box. Please enter command here and hit enter or click submit button"
 				onKeyDown={(event) => {
 					if (event.key === "Enter") {
 						event.preventDefault();
-						handleSubmit(commandString);
+						handleSearch(commandString);
 					}
 				}}
 			/>
 			<button
 				className="search-button"
 				id="searchButton"
-				onClick={() => handleSubmit(commandString)}
-				aria-label="Click the Search button to perform the search"
+				onClick={() => handleSearch(commandString)}
+				aria-label="Search for a resort"
 			>
 				Search
 			</button>
@@ -109,12 +98,13 @@ export function Search(props: SearchProps) {
 				className={`search-dropdown ${showDropDown ? "active" : ""}`}
 				onClick={toggleDropDown}
 				onBlur={dismissHandler}
+				aria-label="Show or hide resort list dropdown"
 			>
 				{selectResort ? "See resorts ..." : " See full list of resorts..."}
 				{showDropDown && (
 					<ResortDropdown
 						resortOptions={resorts}
-						showDropDown={false}
+						showDropDown={showDropDown}
 						toggleDropDown={toggleDropDown}
 						resortOptionsSelection={resortOptionsSelection}
 						setCommandString={setCommandString}

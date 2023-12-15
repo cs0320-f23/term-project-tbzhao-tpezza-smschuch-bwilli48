@@ -2,8 +2,7 @@ import "../../styles/main.css";
 import React, { useEffect, useState } from "react";
 
 /**
- * Props for the sort dropdown. Includes an array of sort options, a boolean for whether to show
- * the dropdown, a function to toggle the dropdown, and a function to sort the options
+ * Properties for the SortDropdown component.
  */
 interface SortDropdownProps {
 	sortOptions: string[];
@@ -13,42 +12,30 @@ interface SortDropdownProps {
 }
 
 /**
- * Function that represents the sort dropdown menu. Contains a list of the ways that the
- * resorts can be sorted and responds to clicks.
+ * Renders a dropdown menu with sorting options. Allows a user to select a sorting
+ * method for the resort list. The selection is managed through a callback.
  */
 export function SortDropdown(props: SortDropdownProps) {
-	// State for whether to show the dropdown.
-	const [showDropDown, setShowDropDown] = useState<boolean>(false);
-
 	/**
-	 * Handles passing the city name back to the parent component on mouse click.
-	 * @param sortOption  The selected city
+	 * Calls the sortOptionsSelection function with the chosen sort option.
+	 * @param {string} sortOption - The sort option selected by the user.
 	 */
-	const onClickHandler = (sortOption: string): void => {
+	const sortClickHandler = (sortOption: string): void => {
 		props.sortOptionsSelection(sortOption);
 	};
 
-	/**
-	 * UseEffect that updates showDropDown on change.
-	 */
-	useEffect(() => {
-		setShowDropDown(showDropDown);
-	}, [showDropDown]);
-
 	return (
-		<div>
+		<div className={props.showDropDown ? "dropdown-visible" : "dropdown-hidden"} aria-label="Sort options dropdown">
 			{props.sortOptions.map((sortOption: string, index: number): JSX.Element => {
 				return (
-					<div>
+					<div
+						key={index}
+						className="dropdown-item"
+						onClick={(): void => sortClickHandler(sortOption)}
+						aria-label={`Sort by ${sortOption}`}
+					>
 						<hr className="dropdownHR"></hr>
-						<p
-							key={index}
-							onClick={(): void => {
-								onClickHandler(sortOption);
-							}}
-						>
-							{sortOption}
-						</p>
+						<p>{sortOption}</p>
 					</div>
 				);
 			})}

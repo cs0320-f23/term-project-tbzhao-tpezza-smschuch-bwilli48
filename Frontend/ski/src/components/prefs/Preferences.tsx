@@ -2,17 +2,15 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { PreferenceTicker } from "./PreferenceTicker";
 import { getMockRankedResorts, getRankedResorts, mockResortsPref, Resort } from "../resorts/ResortClass";
 import "../../styles/main.css";
-import exp from "constants";
 
-/**
- * Props for the preference table. Contains the array of resorts and a setter for said array.
- */
+// Properties for the Preferences component.
 interface PreferencesProps {
 	resortList: Resort[];
 	setResortList: Dispatch<SetStateAction<Resort[]>>;
 	mockMode: boolean;
 }
 
+// Class representing a weight-value pair for a preference.
 export class PreferenceAndValue {
 	weight: number;
 	value: number;
@@ -40,14 +38,11 @@ export class PreferenceAndValue {
 }
 
 /**
- * Function that represents table of preferences. Current preferences are snowfall, weather,
- * affordability, trail count, vertical drop, and base snow level. Each preference has an
- * integer that represents its level and a set of arrows that controls it.
+ * Renders a table of user preferences regarding resort conditions. Users can adjust the
+ * weight and value of each preference, which is used to sort the list of resorts.
  */
 export function Preferences(props: PreferencesProps) {
-	/**
-	 * Initial preferences that are set on page load.
-	 */
+	// Initial preferences that are set for a new user.
 	var initialPrefs = new Map<string, PreferenceAndValue>([
 		["Snowfall Amount", new PreferenceAndValue(5, 5)],
 		["Last Snowfall", new PreferenceAndValue(5, 5)],
@@ -66,10 +61,9 @@ export function Preferences(props: PreferencesProps) {
 	const [reset, setReset] = useState<number>(0);
 
 	/**
-	 * Updates the resort list when the submit button is clicked.
-	 * @param commandString input by the user currently in the box when submit is clicked
+	 * Updates the resort list based on a user's custom preferences.
 	 */
-	function handleSubmit(commandString: string) {
+	function handlePrefSearch() {
 		if (props.mockMode) {
 			props.setResortList(getMockRankedResorts(preferenceMap));
 		} else {
@@ -182,11 +176,7 @@ export function Preferences(props: PreferencesProps) {
 					</td>
 				</tr>
 			</table>
-			<button
-				id="preferenceButton"
-				onClick={() => handleSubmit("pr")}
-				aria-label="Submit button. Click the Submit button with the mouse or click the return key on your keyboard to enter the command you entered in the input box"
-			>
+			<button id="preferenceButton" onClick={() => handlePrefSearch()} aria-label="Search resorts based on preferences">
 				Search By Preferences
 			</button>
 		</div>
