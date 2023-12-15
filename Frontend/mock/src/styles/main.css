@@ -79,7 +79,7 @@
 /* SEARCH/SORT TOP LEVEL */
 .search-sort {
 	flex: 1;
-	max-width: 38%;
+	max-width: 33%;
 }
 
 /* SEARCH */
@@ -91,7 +91,7 @@
 }
 .search-container {
 	padding: 20px;
-	margin: 20px 0;
+	margin: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -118,7 +118,7 @@
 	text-align: center;
 }
 .search-box {
-	width: 90%;
+	width: 87%;
 	cursor: text;
 }
 
@@ -137,7 +137,7 @@
 }
 .sort-container {
 	padding: 20px;
-	margin: 20px 0;
+	margin: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -162,21 +162,22 @@
 /* RESORTS LIST */
 .resorts {
 	flex: 1;
-	max-width: 60%;
-	padding: 20px;
+	max-width: 65%;
 	margin: 20px 0;
 	background-color: #1b1b1b;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 }
-#listDiv {
-	border-radius: 8px;
+.resorts-list {
 	padding: 20px;
-	background-color: var(--input-bg-color);
-	color: var(--input-text-color);
-	max-width: calc(50% - 10px);
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.resorts-list p {
+	margin: 10px;
 }
 
 /* BUTTONS */
