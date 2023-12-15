@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { PreferenceTicker } from "./PreferenceTicker";
-import { getMockRankedResorts, getRankedResorts, mockResortsPref, Resort } from "../resorts/ResortClass";
+import { getMockRankedResorts, getRankedResorts, Resort } from "../resorts/ResortClass";
 import "../../styles/main.css";
 
 // Properties for the Preferences component.
@@ -12,7 +12,7 @@ interface PreferencesProps {
 	mockMode: boolean;
 }
 
-// Types used for mocking account preference saving.
+// Types used for account preference saving.
 export type UserPreferences = Map<string, PreferenceItem>;
 export type PreferenceItem = {
 	weight: number;
@@ -79,6 +79,7 @@ export function Preferences(props: PreferencesProps) {
 		return map;
 	};
 
+	// State for the preference map.
 	const [preferenceMap, setPreferenceMap] = useState<Map<string, PreferenceAndValue>>(() =>
 		convertUserPrefsToMap(props.preferences)
 	);
@@ -97,11 +98,18 @@ export function Preferences(props: PreferencesProps) {
 		}
 	}
 
+	/**
+	 * Handles saving the current state of user preferences. Triggered when the
+	 * 'Save to Account' button is clicked.
+	 */
 	const handleSaveClick = () => {
 		const updatedPreferences: UserPreferences = new Map(preferenceMap);
 		props.onSavePreferences(updatedPreferences);
 	};
 
+	/**
+	 * useEffect hook to update the preferenceMap state whenever the props.preferences changes.
+	 */
 	useEffect(() => {
 		if (props.preferences !== null) {
 			setPreferenceMap(convertUserPrefsToMap(props.preferences));

@@ -5,7 +5,7 @@ import { ResortsList } from "./resorts/ResortsList";
 import { Search } from "./search/Search";
 import { Sort } from "./sort/Sort";
 import LoginButton from "./auth/LoginButton";
-import Profile from "./auth/Profile"; // Import the Profile component
+import Profile from "./auth/Profile";
 import "../styles/App.css";
 import "../styles/main.css";
 import { UserPreferences } from "./prefs/Preferences";
@@ -19,19 +19,42 @@ import { getMockStartResorts, getStartResorts, mockResorts, Resort } from "./res
  * `LoginButton`, and `Profile`.
  */
 function App() {
-	// Gets authentication status from Auth0
-	const { isAuthenticated, user } = useAuth0();
-	const [preferences, setPreferences] = useState<UserPreferences | null>(null);
-
 	// Manages state for the resort list
 	const [resortList, setResortList] = useState<Resort[]>(getStartResorts);
 
+	// Gets authentication status and user info from Auth0
+	const { isAuthenticated, user } = useAuth0();
+
+	// Manages state for user preferences
+	const [preferences, setPreferences] = useState<UserPreferences | null>(null);
+
+	/**
+	 * useEffect hook to load user preferences from local storage when the user logs in.
+	 * It checks if the user is authenticated and if so, it loads preferences associated
+	 * with that user and sets them in state.
+	 */
+	useEffect(() => {
+		if (isAuthenticated && user?.sub) {
+			const loadedPreferences = loadPreferencesFromLocalStorage(user.sub);
+			setPreferences(loadedPreferences);
+		}
+	}, [isAuthenticated, user?.sub]);
+
+	/**
+	 * Saves new user preferences. First checks if the user is authenticated and
+	 * if so, saves the new preferences to local storage and updates the state.
+	 */
+	const handleSavePreferences = (newPreferences: UserPreferences) => {
+		if (user?.sub) {
+			savePreferencesToLocalStorage(user.sub, newPreferences);
+			setPreferences(newPreferences);
+		}
+	};
+
 	// Manages state for mock mode
 	const [mockMode, setMockMode] = useState<boolean>(false);
-
 	// Manages state for the mock indicator
 	const [mockString, setMockString] = useState<string>("Mock Mode: Off");
-
 	// Manages state for the mock ID
 	const [mockID, setMockID] = useState<string>("mockOffButton");
 
@@ -52,22 +75,6 @@ function App() {
 			setResortList(getMockStartResorts);
 		}
 	}
-
-	// Sets the preferences to whatever the account's preferences are on login.
-	useEffect(() => {
-		if (isAuthenticated && user?.sub) {
-			const loadedPreferences = loadPreferencesFromLocalStorage(user.sub);
-			setPreferences(loadedPreferences);
-		}
-	}, [isAuthenticated, user?.sub]);
-
-	// When a user clicks the save button, saves preferences.
-	const handleSavePreferences = (newPreferences: UserPreferences) => {
-		if (user?.sub) {
-			savePreferencesToLocalStorage(user.sub, newPreferences);
-			setPreferences(newPreferences);
-		}
-	};
 
 	return (
 		<div className="App">
