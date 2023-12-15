@@ -3,7 +3,9 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { ControlledInput } from "./ControlledInput";
 import { ResortDropdown } from "./ResortsDropdown";
 import {
+  getMockSearchResort,
   getSearchResort,
+  mockResortNames,
   mockResortsSearch,
   Resort,
   resortNames,
@@ -15,6 +17,7 @@ import {
 interface SearchProps {
   resortList: Resort[];
   setResortList: Dispatch<SetStateAction<Resort[]>>;
+  mockMode: boolean;
 }
 
 /**
@@ -30,6 +33,13 @@ export function Search(props: SearchProps) {
 
   // State the manages the command string
   const [commandString, setCommandString] = useState<string>("");
+
+  var resorts: string[] = [];
+  if (props.mockMode) {
+    resorts = mockResortNames();
+  } else {
+    resorts = resortNames();
+  }
 
   /**
    * Toggle for the see resorts dropdown menu
@@ -63,7 +73,11 @@ export function Search(props: SearchProps) {
   function handleSubmit(commandString: string) {
     if (commandString === "") {
     } else {
-      props.setResortList(getSearchResort(commandString));
+      if (props.mockMode) {
+        props.setResortList(getMockSearchResort(commandString));
+      } else {
+        props.setResortList(getSearchResort(commandString));
+      }
     }
     setCommandString("");
   }
@@ -99,7 +113,7 @@ export function Search(props: SearchProps) {
         {selectResort ? "See resorts ..." : " See full list of resorts..."}
         {showDropDown && (
           <ResortDropdown
-            resortOptions={resortNames()}
+            resortOptions={resorts}
             showDropDown={false}
             toggleDropDown={toggleDropDown}
             resortOptionsSelection={resortOptionsSelection}

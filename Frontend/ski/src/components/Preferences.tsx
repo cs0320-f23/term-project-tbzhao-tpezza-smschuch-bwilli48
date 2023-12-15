@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { PreferenceTicker } from "./PreferenceTicker";
 import {
+  getMockRankedResorts,
   getRankedResorts,
   mockResortsPref,
   Resort,
@@ -13,6 +14,7 @@ import exp from "constants";
 interface PreferencesProps {
   resortList: Resort[];
   setResortList: Dispatch<SetStateAction<Resort[]>>;
+  mockMode: boolean;
 }
 
 export class PreferenceAndValue {
@@ -73,7 +75,11 @@ export function Preferences(props: PreferencesProps) {
    * @param commandString input by the user currently in the box when submit is clicked
    */
   function handleSubmit(commandString: string) {
-    props.setResortList(getRankedResorts(preferenceMap));
+    if (props.mockMode) {
+      props.setResortList(getMockRankedResorts(preferenceMap));
+    } else {
+      props.setResortList(getRankedResorts(preferenceMap));
+    }
   }
 
   return (
