@@ -1,12 +1,8 @@
-import "../styles/main.css";
-import "../styles/index.css";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import "../../styles/main.css";
+import { Dispatch, SetStateAction, useState } from "react";
 import { PreferenceAndValue } from "./Preferences";
 
-/**
- * Props for the preference ticker. Includes a map from preference name to level, a setter for
- * said map, a setter for the reset number, and the preference name.
- */
+// Properties for the PreferenceTicker component.
 interface PreferenceTickerProps {
 	preferenceMap: Map<string, PreferenceAndValue>;
 	setPreferenceMap: Dispatch<SetStateAction<Map<string, PreferenceAndValue>>>;
@@ -17,14 +13,11 @@ interface PreferenceTickerProps {
 var resetNum = 1;
 
 /**
- * Function that manages a preference ticker. Contains functions for the up and down arrows
- * and returns a preference next to the two arrows.
+ * Allows users to increase or decrease the weight and value of a particular preference.
+ * Renders a set of controls for adjusting these attributes associated with a user's preference.
  */
 export function PreferenceTicker(props: PreferenceTickerProps) {
-	/**
-	 * Function that manages the up arrow. Increases the count by 1 if it isn't at the max
-	 * value already.
-	 */
+	// Manages the up arrow. Increases the count by 1 if it isn't at the max value already.
 	function upWeight() {
 		var currentPref = props.preferenceMap.get(props.preference);
 		if (currentPref === undefined) {
@@ -39,10 +32,7 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 		resetNum += 1;
 	}
 
-	/**
-	 * Function that manages the down arrow. Decreases the count by 1 if it isn't at the max
-	 * value already.
-	 */
+	// Manages the down arrow. Decreases the count by 1 if it isn't at the max.
 	function downWeight() {
 		var currentPref = props.preferenceMap.get(props.preference);
 		if (currentPref === undefined) {
@@ -57,10 +47,7 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 		resetNum += 1;
 	}
 
-	/**
-	 * Function that manages the up arrow. Increases the count by 1 if it isn't at the max
-	 * value already.
-	 */
+	// Manages the up arrow. Increases the count by 1 if it isn't at the max
 	function upValue() {
 		var currentPref = props.preferenceMap.get(props.preference);
 		if (currentPref === undefined) {
@@ -75,10 +62,7 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 		resetNum += 1;
 	}
 
-	/**
-	 * Function that manages the down arrow. Decreases the count by 1 if it isn't at the max
-	 * value already.
-	 */
+	// Manages the down arrow. Decreases the count by 1 if it isn't at the max
 	function downValue() {
 		var currentPref = props.preferenceMap.get(props.preference);
 		if (currentPref === undefined) {
@@ -107,7 +91,7 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 									<button
 										id="upButton"
 										onClick={() => upWeight()}
-										aria-label="Submit button. Click the Submit button with the mouse or click the return key on your keyboard to enter the command you entered in the input box"
+										aria-label={`Increase weight for ${props.preference}`}
 									>
 										^
 									</button>
@@ -118,7 +102,7 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 									<button
 										id="downButton"
 										onClick={() => downWeight()}
-										aria-label="Submit button. Click the Submit button with the mouse or click the return key on your keyboard to enter the command you entered in the input box"
+										aria-label={`Decrease weight for ${props.preference}`}
 									>
 										v
 									</button>
@@ -133,11 +117,7 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 						<table>
 							<tr>
 								<td>
-									<button
-										id="upButton"
-										onClick={() => upValue()}
-										aria-label="Submit button. Click the Submit button with the mouse or click the return key on your keyboard to enter the command you entered in the input box"
-									>
+									<button id="upButton" onClick={() => upValue()} aria-label={`Increase value for ${props.preference}`}>
 										^
 									</button>
 								</td>
@@ -147,7 +127,7 @@ export function PreferenceTicker(props: PreferenceTickerProps) {
 									<button
 										id="downButton"
 										onClick={() => downValue()}
-										aria-label="Submit button. Click the Submit button with the mouse or click the return key on your keyboard to enter the command you entered in the input box"
+										aria-label={`Decrease value for ${props.preference}`}
 									>
 										v
 									</button>

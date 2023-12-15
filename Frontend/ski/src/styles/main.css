@@ -10,7 +10,6 @@
 	margin: 20px 0;
 	background-color: #1b1b1b;
 	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 }
 .login-button {
@@ -21,6 +20,12 @@
 	border-radius: 5px;
 	cursor: pointer;
 	color: white;
+}
+.profile-pic {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 /* MAIN PANEL */
@@ -33,6 +38,13 @@
 	padding: 20px;
 	width: 100%;
 }
+.user-panel,
+.preferences-container,
+.search,
+.sort,
+.resorts {
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
 
 /* PREFERENCES */
 .preferences-container {
@@ -42,9 +54,6 @@
 	background-color: #1b1b1b;
 	border-radius: 10px;
 	padding: 20px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	width: 100%;
-	max-width: 1200px;
 	box-sizing: border-box;
 	position: relative;
 }
@@ -82,6 +91,7 @@
 }
 #prefTable tr:last-child td {
 	border-bottom: none;
+	padding: 9px;
 }
 #prefTable td.spacerDatum {
 	width: 2px;
@@ -105,7 +115,6 @@
 .search {
 	background-color: #1b1b1b;
 	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 }
 .search-container {
@@ -140,18 +149,27 @@
 	width: 87%;
 	cursor: text;
 }
-
 .search-box,
 .search-dropdown:not(.active),
 .search-button {
 	margin-bottom: 20px;
+}
+.dropdown-visible {
+	animation: fadeIn 0.3s;
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 /* SORT */
 .sort {
 	background-color: #1b1b1b;
 	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 }
 .sort-container {
@@ -185,7 +203,6 @@
 	margin: 20px 0;
 	background-color: #1b1b1b;
 	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 }
 .resorts-list {
@@ -197,6 +214,13 @@
 }
 .resorts-list p {
 	margin: 10px;
+}
+#resortName {
+	color: var(--primary-button-color);
+}
+#resortTitle {
+	font-size: 50px;
+	font-weight: 600;
 }
 
 /* BUTTONS */
@@ -211,13 +235,18 @@
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
-	transition: background-color 0.25s;
 }
 #preferenceButton {
 	width: 100%;
 	padding: 10px;
 	font-size: 1em;
 	margin-top: 20px;
+}
+#mockOffButton {
+	background-color: rgb(72, 29, 29);
+}
+#mockOnButton {
+	background-color: rgb(21, 79, 21);
 }
 
 /* DROPDOWNS */
@@ -248,4 +277,9 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
+}
+.resortListDatum {
+	align-items: right;
+	vertical-align: top;
+	text-align: center;
 }

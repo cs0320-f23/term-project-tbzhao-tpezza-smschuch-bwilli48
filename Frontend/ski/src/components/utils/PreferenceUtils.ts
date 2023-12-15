@@ -1,4 +1,4 @@
-import { UserPreferences, PreferenceItem } from "../Preferences";
+import { UserPreferences, PreferenceItem } from "../prefs/Preferences";
 
 const USER_PREFERENCES_KEY = "userPreferences";
 
