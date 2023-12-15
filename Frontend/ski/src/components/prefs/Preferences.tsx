@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { PreferenceTicker } from "./PreferenceTicker";
 import { getMockRankedResorts, getRankedResorts, mockResortsPref, Resort } from "../resorts/ResortClass";
+import "../../styles/main.css";
 import exp from "constants";
 
 /**

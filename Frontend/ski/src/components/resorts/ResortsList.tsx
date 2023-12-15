@@ -1,7 +1,6 @@
 import { unwatchFile } from "fs";
 import { Dispatch, SetStateAction } from "react";
-import "../styles/main.css";
-import "../styles/index.css";
+import "../../styles/main.css";
 import { mockResortsPref, Resort } from "./ResortClass";
 import { SingleResort } from "./SingleResort";
 

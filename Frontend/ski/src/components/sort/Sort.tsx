@@ -1,6 +1,6 @@
-import "../styles/main.css";
+import "../../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
-import { SortDropdown } from "../SortDropdown";
+import { SortDropdown } from "./SortDropdown";
 import { getMockSortedResorts, getSortedResorts, mockResortsSort, Resort } from "../resorts/ResortClass";
 
 /**

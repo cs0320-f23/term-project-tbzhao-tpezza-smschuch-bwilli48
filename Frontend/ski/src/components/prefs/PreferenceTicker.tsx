@@ -1,5 +1,4 @@
-import "../styles/main.css";
-import "../styles/index.css";
+import "../../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { PreferenceAndValue } from "./Preferences";
 

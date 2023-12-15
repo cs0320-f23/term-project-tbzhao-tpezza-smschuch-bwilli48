@@ -1,5 +1,4 @@
-import "../styles/main.css";
-import "../styles/index.css";
+import "../../styles/main.css";
 import React, { useEffect, useState } from "react";
 
 /**

@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import "../styles/main.css";
-import "../styles/index.css";
+import "../../styles/main.css";
 
 /**
  * Props for ResortDropdown. An array of resort options, whether to show the dropdown,
@@ -8,11 +7,11 @@ import "../styles/index.css";
  * to set the command string.
  */
 interface ResortDropdownProps {
-  resortOptions: string[];
-  showDropDown: boolean;
-  toggleDropDown: Function;
-  resortOptionsSelection: Function;
-  setCommandString: Dispatch<SetStateAction<string>>;
+	resortOptions: string[];
+	showDropDown: boolean;
+	toggleDropDown: Function;
+	resortOptionsSelection: Function;
+	setCommandString: Dispatch<SetStateAction<string>>;
 }
 
 /**
@@ -20,45 +19,43 @@ interface ResortDropdownProps {
  * it is clicked and handles hiding and showing the menu.
  */
 export function ResortDropdown(props: ResortDropdownProps) {
-  const [showDropDown, setShowDropDown] = useState<boolean>(false);
+	const [showDropDown, setShowDropDown] = useState<boolean>(false);
 
-  /**
-   * Handler for passing the city name back to the parent component on click.
-   * @param resortOption The selected city
-   */
-  const onClickHandler = (resortOption: string): void => {
-    props.resortOptionsSelection(resortOption);
-    props.setCommandString(resortOption);
-  };
+	/**
+	 * Handler for passing the city name back to the parent component on click.
+	 * @param resortOption The selected city
+	 */
+	const onClickHandler = (resortOption: string): void => {
+		props.resortOptionsSelection(resortOption);
+		props.setCommandString(resortOption);
+	};
 
-  /**
-   * UseEffect that updates showDropDown on change.
-   */
-  useEffect(() => {
-    setShowDropDown(showDropDown);
-  }, [showDropDown]);
+	/**
+	 * UseEffect that updates showDropDown on change.
+	 */
+	useEffect(() => {
+		setShowDropDown(showDropDown);
+	}, [showDropDown]);
 
-  return (
-    <>
-      <div>
-        {props.resortOptions.map(
-          (resortOption: string, index: number): JSX.Element => {
-            return (
-              <div>
-                <hr className="dropdownHR"></hr>
-                <p
-                  key={index}
-                  onClick={(): void => {
-                    onClickHandler(resortOption);
-                  }}
-                >
-                  {resortOption}
-                </p>
-              </div>
-            );
-          }
-        )}
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div>
+				{props.resortOptions.map((resortOption: string, index: number): JSX.Element => {
+					return (
+						<div>
+							<hr className="dropdownHR"></hr>
+							<p
+								key={index}
+								onClick={(): void => {
+									onClickHandler(resortOption);
+								}}
+							>
+								{resortOption}
+							</p>
+						</div>
+					);
+				})}
+			</div>
+		</>
+	);
 }

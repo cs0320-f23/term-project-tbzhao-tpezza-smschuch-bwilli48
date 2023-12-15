@@ -1,6 +1,6 @@
-import "../styles/main.css";
+import "../../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
-import { ControlledInput } from "../ControlledInput";
+import { ControlledInput } from "./ControlledInput";
 import { ResortDropdown } from "./ResortsDropdown";
 import {
 	getMockSearchResort,
