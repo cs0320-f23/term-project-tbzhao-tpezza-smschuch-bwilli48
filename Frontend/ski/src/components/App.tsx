@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Preferences } from "./Preferences";
 import { ResortsList } from "./ResortsList";
@@ -7,13 +7,34 @@ import { Sort } from "./Sort";
 import LoginButton from "./auth/LoginButton";
 import Profile from "./auth/Profile"; // Import the Profile component
 import "../styles/App.css";
-import "../styles/index.css";
 import "../styles/main.css";
 import { mockResorts, Resort } from "./resorts/ResortClass";
+import { UserPreferences } from "./Preferences";
+import { savePreferencesToLocalStorage, loadPreferencesFromLocalStorage } from "./utils/PreferenceUtils";
 
 function App() {
-	const { isAuthenticated } = useAuth0(); // Get the authentication status
+	// Gets authentication status from Auth0
+	const { isAuthenticated, user } = useAuth0();
+	const [preferences, setPreferences] = useState<UserPreferences | null>(null);
 	const [resortList, setResortList] = useState<Resort[]>(mockResorts);
+
+	// Sets the preferences to whatever the account's preferences are on login.
+	useEffect(() => {
+		if (isAuthenticated && user?.sub) {
+			const loadedPreferences = loadPreferencesFromLocalStorage(user.sub);
+			// Debugging
+			console.log("Prefs loaded from local storage:", loadedPreferences);
+			setPreferences(loadedPreferences);
+		}
+	}, [isAuthenticated, user?.sub]);
+
+	// When a user clicks the save button, saves preferences.
+	const handleSavePreferences = (newPreferences: UserPreferences) => {
+		if (user?.sub) {
+			savePreferencesToLocalStorage(user.sub, newPreferences);
+			setPreferences(newPreferences);
+		}
+	};
 
 	return (
 		<div className="App">
@@ -32,7 +53,12 @@ function App() {
 				</section>
 				<section className="content-panel">
 					<div>
-						<Preferences resortList={resortList} setResortList={setResortList} />
+						<Preferences
+							preferences={preferences}
+							onSavePreferences={handleSavePreferences}
+							resortList={resortList}
+							setResortList={setResortList}
+						/>
 						<div className="search-sort-resorts">
 							<div className="search-sort">
 								<div className="sort">
