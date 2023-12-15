@@ -5,38 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc57b4cd-7aef-4ffe-bbeb-a369314bb184" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/Lifts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/Resort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/SkiLifts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/Stats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortLifts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Caching/CachedResorts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Handlers/ResortHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Sk Resort Prices, Names, Location.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/Sk Resort Prices, Names, Location.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Sk Resort Prices, Names, Location.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/BasicInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/BasicInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/DayForecast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/DayForecast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ForecastDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/ForecastDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortConditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortConditions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/ResortInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SnowConditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SnowConditions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SnowForecast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/SnowForecast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/WeatherForecast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/WeatherForecast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/CSVTesting/SearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/CSVTesting/SearchTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/BasicInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/DayForecast.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ForecastDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortConditions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortConditions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/SnowConditions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/SnowConditions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/SnowForecast.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/WeatherForecast.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/SearchTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/SearchTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +168,7 @@
       <workItem from="1701475156403" duration="5724000" />
       <workItem from="1701812731192" duration="25000" />
       <workItem from="1701812768854" duration="8730000" />
-      <workItem from="1702354337469" duration="10112000" />
+      <workItem from="1702354337469" duration="10949000" />
     </task>
     <servers />
   </component>
