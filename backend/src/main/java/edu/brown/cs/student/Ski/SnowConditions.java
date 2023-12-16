@@ -2,6 +2,7 @@ package edu.brown.cs.student.Ski;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+import edu.brown.cs.student.Ski.Records.SnowForecast;
 import okio.Buffer;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class SnowConditions {
             SnowForecast body =
                     jsonAdapter.fromJson(new Buffer().readFrom(connection.getInputStream()));
             connection.disconnect();
-            System.out.println(body);
+          //  System.out.println(body);
             return body;
         }  catch (IOException e) {
             e.printStackTrace();
@@ -55,9 +56,17 @@ public class SnowConditions {
         if(splitArray.length > 1) {
             returnString = splitArray[0];
             for (int i = 1; i < splitArray.length; i++) {
+                if(splitArray[i].contains("/")){
+                    splitArray = splitArray[i].split("/");
+                    returnString = returnString + "%20"  + splitArray[0];
+                    break;
+                }
                 returnString = returnString + "%20" + splitArray[i];
             }
         } else {
+            if(splitArray[0].contains("/")){
+                splitArray = splitArray[0].split("/");
+            }
             returnString = splitArray[0];
         }
         return returnString;

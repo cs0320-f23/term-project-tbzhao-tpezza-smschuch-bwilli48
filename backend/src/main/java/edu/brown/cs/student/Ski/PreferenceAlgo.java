@@ -3,6 +3,7 @@ package edu.brown.cs.student.Ski;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Types;
+import edu.brown.cs.student.Ski.Records.Resort;
 import edu.brown.cs.student.server.ACS.DatasourceException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -30,11 +31,11 @@ public class PreferenceAlgo implements Route {
   private int elevationPreference;
   private int tempPreference;
   private int windPreference;
-  private List<SkiResort> skiResortList;
+  private List<Resort> skiResortList;
   private Map<String, Integer> preferenceMap;
   private Map<String, Integer> scoreMap;
 
-  public PreferenceAlgo(List<SkiResort> skiResortList) {
+  public PreferenceAlgo(List<Resort> skiResortList) {
 
 
     this.skiResortList = skiResortList;
@@ -46,7 +47,7 @@ public class PreferenceAlgo implements Route {
     Set<String> params = request.queryParams();
     String preferences = request.queryParams("preferences");
     if (params.size() != 1) {
-      throw new DatasourceException("Must input preferences in the JSON format");
+      return "Must input preferences in the JSON format";
     }
     Moshi moshi = new Moshi.Builder().build();
     Type mapStringObject = Types.newParameterizedType(Map.class, String.class, Map.class, String.class, String.class);
@@ -91,7 +92,7 @@ public class PreferenceAlgo implements Route {
 
 
   private Map<String,Integer> calculateResortScores() {
-    for (SkiResort resort : this.skiResortList) {
+    for (Resort resort : this.skiResortList) {
       int score = (this.getTotalSnowfallAccuracy(resort)*this.totalSnowfallWeight) +
           (this.getSnowfallRecencyAccuracy(resort)*this.snowfallRecencyWeight) +
           (this.getBaseDepthAccuracy(resort)*this.baseDepthWeight) +
@@ -101,14 +102,14 @@ public class PreferenceAlgo implements Route {
           (this.getTempAccuracy(resort)*this.tempWeight) +
           (this.getWindAccuracy(resort)*this.windWeight);// + this.getPreference2acccuracy(resort) + ...
       score = this.totalSnowfallWeight * score; //accounts for weighted preferences
-      this.scoreMap.put(resort.getResortName, score);
+      this.scoreMap.put(resort.name(), score);
 
     }
     return this.scoreMap;
   }
 
   //will have one for each preference being used
-  private int getTotalSnowfallAccuracy(SkiResort resort) {
+  private int getTotalSnowfallAccuracy(Resort resort) {
     int score = 0;
     int difference = Math.abs(resort.totalSnowfall - this.totalSnowfallPreference);
     if (difference < 1000) {
@@ -121,7 +122,7 @@ public class PreferenceAlgo implements Route {
     return score;
   }
 
-  private int getSnowfallRecencyAccuracy(SkiResort resort) {
+  private int getSnowfallRecencyAccuracy(Resort resort) {
     int score = 0;
     int difference = Math.abs(resort.snowfallRecency - this.snowfallRecencyPreference);
     if (difference < 2) {
@@ -134,7 +135,7 @@ public class PreferenceAlgo implements Route {
     }
     return score;
   }
-  private int getBaseDepthAccuracy(SkiResort resort) {
+  private int getBaseDepthAccuracy(Resort resort) {
     int score = 0;
     int difference = Math.abs(resort.baseDepth - this.baseDepthPreference);
     if (difference < 10) {
@@ -147,7 +148,7 @@ public class PreferenceAlgo implements Route {
     }
     return score;
   }
-  private int getPriceAccuracy(SkiResort resort) {
+  private int getPriceAccuracy(Resort resort) {
     int score = 0;
     int difference = Math.abs(resort.price - this.pricePreference);
     if (difference < 3) {
@@ -160,9 +161,9 @@ public class PreferenceAlgo implements Route {
     }
     return score;
   }
-  private int getLiftsAccuracy(SkiResort resort) {
+  private int getLiftsAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(resort.lifts - this.liftsPreference);
+    int difference = Math.abs(Integer.parseInt(resort.liftsOpen()) - this.liftsPreference);
     if (difference < 3) {
       score = 100;
     } else if(difference < 5) {
@@ -173,7 +174,7 @@ public class PreferenceAlgo implements Route {
     }
     return score;
   }
-  private int getElevationAccuracy(SkiResort resort) {
+  private int getElevationAccuracy(Resort resort) {
     int score = 0;
     int difference = Math.abs(resort.elevation - this.elevationPreference);
     if (difference < 150) {
@@ -186,7 +187,7 @@ public class PreferenceAlgo implements Route {
     }
     return score;
   }
-  private int getTempAccuracy(SkiResort resort) {
+  private int getTempAccuracy(Resort resort) {
     int score = 0;
     int difference = Math.abs(resort.temperature - this.tempPreference);
     if (difference < 5) {
@@ -199,7 +200,7 @@ public class PreferenceAlgo implements Route {
     }
     return score;
   }
-  private int getWindAccuracy(SkiResort resort) {
+  private int getWindAccuracy(Resort resort) {
     int score = 0;
     int difference = Math.abs(resort.windSpeed - this.windPreference);
     if (difference < 5) {

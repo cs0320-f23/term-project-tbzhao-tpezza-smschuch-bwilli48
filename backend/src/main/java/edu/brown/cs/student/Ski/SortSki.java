@@ -1,11 +1,13 @@
 package edu.brown.cs.student.Ski;
 
+import edu.brown.cs.student.Ski.Records.Resort;
+import java.util.List;
+
 public class SortSki {
 
-  private List<SkiResort> skiResortList;
+  private List<Resort> skiResortList;
 
-  public SortSki(List<SkiResort> skiResortList) {
-
+  public SortSki(List<Resort> skiResortList) {
     this.skiResortList = skiResortList;
   }
 
@@ -14,7 +16,7 @@ public class SortSki {
   // to the frontend
 
   private List<SkiResort> sortResorts(String attributeType) {
-    List<SkiResort> snowfallList = this.skiResortList;
+    List<Resort> snowfallList = this.skiResortList;
     String attribute = attributeType;
     int n = snowfallList.size();
     for (int i = 0; i < n - 1; i++) {

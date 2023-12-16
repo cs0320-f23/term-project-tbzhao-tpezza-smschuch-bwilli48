@@ -4,7 +4,160 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc57b4cd-7aef-4ffe-bbeb-a369314bb184" name="Changes" comment="" />
+    <list default="true" id="cc57b4cd-7aef-4ffe-bbeb-a369314bb184" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/build/assets/index-8c4750d9.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/build/assets/index-dcd30ae9.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/playwright-report/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/auth/LoginButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/auth/LogoutButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/auth/PrefManager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/auth/Preferences.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/auth/Profile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/mocks/Database.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/prefs/PreferenceTicker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/prefs/Preferences.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/resorts/ResortClass.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/resorts/ResortsList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/resorts/SingleResort.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/search/ControlledInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/search/ResortsDropdown.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/search/Search.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/sort/Sort.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/sort/SortDropdown.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/utils/PreferenceUtils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/styles/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/styles/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/src/styles/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/test-results/Auth-Multiple-preferences-should-save-and-persist-chromium/trace.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/test-results/Auth-One-preference-should-save-and-persist-chromium/trace.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/test-results/Auth-Preferences-save-and-persist-chromium/trace.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/test-results/Auth-Preferences-should-not-save-without-clicking-Save-to-Account--chromium/trace.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/test-results/Auth-preferences-should-save-and-persist-after-logout-and-login-chromium/trace.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/tests/Auth.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Frontend/ski/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scraper/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scraper/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scraper/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scraper/reference.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/Lifts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/Resort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/SkiLifts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/Stats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortLifts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Caching/CachedResorts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Handlers/ResortHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Lifts.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Resort.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/SkiLifts.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/SnowForecast.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Stats.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/WeatherForecast.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortLifts.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/CachedResorts.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ResortFailure.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ResortSuccess.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/CSV-README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/build/assets/index-997efe4b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/build/assets/index-c9fef5ae.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/ski/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/dist/bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/dist/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/dist/main.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/playwright.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/ski/playwright.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/components/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/components/ControlledInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/components/REPLInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/data/mockedJson.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/ski/src/data/mockedJson.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/ski/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/styles/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/styles/Header.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/styles/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/src/styles/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests-examples/demo-todo-app.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/ski/tests-examples/demo-todo-app.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/API Tests/Broadband.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/API Tests/Load.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/API Tests/Search.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/API Tests/View.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/Mocked Tests/BadInputs.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/Mocked Tests/MockedBroadband.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/Mocked Tests/MockedLoad.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/Mocked Tests/MockedSearch.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/Mocked Tests/MockedView.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/Mocked Tests/Mode.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/Mocked Tests/RegisterCommand.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tests/parse.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/ski/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/webpack.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/Sk Resort Prices, Names, Location.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/Sk Resort Prices, Names, Location.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/Sk Resort Prices, Names, Location.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/BasicInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/BasicInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/DayForecast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/DayForecast.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ForecastDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/ForecastDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/PreferenceAlgo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/PreferenceAlgo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortConditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortConditions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/ResortInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SnowConditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SnowConditions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SnowForecast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/SnowForecast.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SortSki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SortSki.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/WeatherForecast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/WeatherForecast.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/CSVTesting/SearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/CSVTesting/SearchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/CreatorFromRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/CreatorFromRow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/FactoryFailureException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/FactoryFailureException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/Parse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/Parse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/main/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/main/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/BasicInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/BasicInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/DayForecast.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/DayForecast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ForecastDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/ForecastDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortConditions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortConditions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/ResortInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/SnowConditions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/SnowConditions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/SnowForecast.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/WeatherForecast.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/ACSAPISource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/ACSAPISource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/BroadbandData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/BroadbandData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/DatasourceException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/DatasourceException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/StateIds.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/StateIds.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/CachedItems.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/CachedItems.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/OurRemoveCache.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/OurRemoveCache.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler$EndpointNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler$EndpointNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Main/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Main/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier$Identifier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier$Identifier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/Search$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/Search$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/Search.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/Search.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/PracTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/PracTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DemoParse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DemoParse$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DemoParse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DemoParse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DimensionsCreatorFromRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DimensionsCreatorFromRow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DimensionsTestClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DimensionsTestClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/ParseTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/ParseTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/ParseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/ParseTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/SearchTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/SearchTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/serverTesting/ACSAPISourceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/serverTesting/ACSAPISourceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +195,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tonyb/cs320/term-project-tbzhao-tpezza-smschuch-bwilli48/backend/pom.xml&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tonyb/cs320/term-project-tbzhao-tpezza-smschuch-bwilli48/backend&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -55,6 +208,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="edu.brown.cs.student.Ski.Records" />
+    </key>
+  </component>
   <component name="RunManager" selected="JUnit.SearchTest.test">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
@@ -160,6 +318,9 @@
       <workItem from="1701320119363" duration="10870000" />
       <workItem from="1701375834409" duration="8187000" />
       <workItem from="1701475156403" duration="5724000" />
+      <workItem from="1701812731192" duration="25000" />
+      <workItem from="1701812768854" duration="8730000" />
+      <workItem from="1702354337469" duration="10949000" />
     </task>
     <servers />
   </component>
