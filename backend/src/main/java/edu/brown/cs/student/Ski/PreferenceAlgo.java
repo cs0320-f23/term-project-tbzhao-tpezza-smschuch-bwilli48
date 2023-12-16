@@ -3,9 +3,10 @@ package edu.brown.cs.student.Ski;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Types;
+import edu.brown.cs.student.Ski.Records.DayForecast;
 import edu.brown.cs.student.Ski.Records.Resort;
-import edu.brown.cs.student.server.ACS.DatasourceException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class PreferenceAlgo implements Route {
   private int tempWeight;
   private int windWeight;
   private int totalSnowfallPreference;
-  private int snowfallRecencyPreference;
+  private String snowfallRecencyPreference;
   private int baseDepthPreference;
   private int pricePreference;
   private int liftsPreference;
@@ -60,7 +61,7 @@ public class PreferenceAlgo implements Route {
     this.totalSnowfallWeight = Integer.parseInt(preferenceMap.get("snowfallamount").get("weight"));
     this.totalSnowfallPreference = Integer.parseInt(preferenceMap.get("snowfallamount").get("value"));
     this.snowfallRecencyWeight = Integer.parseInt(preferenceMap.get("lastsnowfall").get("weight"));
-    this.snowfallRecencyPreference = Integer.parseInt(preferenceMap.get("lastsnowfall").get("value"));
+    this.snowfallRecencyPreference = preferenceMap.get("lastsnowfall").get("value");
     this.baseDepthWeight = Integer.parseInt(preferenceMap.get("basedepth").get("weight"));
     this.baseDepthPreference = Integer.parseInt(preferenceMap.get("basedepth").get("value"));
     this.priceWeight = Integer.parseInt(preferenceMap.get("price").get("weight"));
@@ -100,10 +101,8 @@ public class PreferenceAlgo implements Route {
           (this.getLiftsAccuracy(resort)*this.liftsWeight) +
           (this.getElevationAccuracy(resort)*this.elevationWeight) +
           (this.getTempAccuracy(resort)*this.tempWeight) +
-          (this.getWindAccuracy(resort)*this.windWeight);// + this.getPreference2acccuracy(resort) + ...
-      score = this.totalSnowfallWeight * score; //accounts for weighted preferences
+          (this.getWindAccuracy(resort)*this.windWeight);
       this.scoreMap.put(resort.name(), score);
-
     }
     return this.scoreMap;
   }
@@ -111,7 +110,7 @@ public class PreferenceAlgo implements Route {
   //will have one for each preference being used
   private int getTotalSnowfallAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(resort.totalSnowfall - this.totalSnowfallPreference);
+    int difference = Math.abs(Integer.parseInt(resort.snowForecast().freshSnowfall()) - this.totalSnowfallPreference);
     if (difference < 1000) {
       score = 100;
     } else if (difference < 2000) {
@@ -122,9 +121,14 @@ public class PreferenceAlgo implements Route {
     return score;
   }
 
+
   private int getSnowfallRecencyAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(resort.snowfallRecency - this.snowfallRecencyPreference);
+    String dateString = resort.snowForecast().lastSnowfallDate();
+    String[] splitDate = dateString.split("\\s+");
+    //turn date into number now for user's preference:
+    String[] splitDatePreference = this.snowfallRecencyPreference.split("\\s+");
+    int difference = Math.abs(this.parseDate(splitDate) - this.parseDate(splitDatePreference));
     if (difference < 2) {
       score = 100;
     } else if(difference < 5) {
@@ -135,9 +139,32 @@ public class PreferenceAlgo implements Route {
     }
     return score;
   }
+  private int parseDate(String[] splitDate) {
+    int day = Integer.parseInt(splitDate[0]);
+    int month = Integer.parseInt(splitDate[1]);
+    int year = Integer.parseInt(splitDate[2]);
+
+    Map<String, Integer> monthMap = new HashMap<>();
+    monthMap.put("Jan", 1);
+    monthMap.put("Feb", 2);
+    monthMap.put("Mar", 3);
+    monthMap.put("Apr", 4);
+    monthMap.put("May", 5);
+    monthMap.put("Jun", 6);
+    monthMap.put("Jul", 7);
+    monthMap.put("Sug", 8);
+    monthMap.put("Sep", 9);
+    monthMap.put("Oct", 10);
+    monthMap.put("Nov", 11);
+    monthMap.put("Dec", 12);
+    int monthNum = monthMap.get(month);
+    int score = day + (monthNum*30) + (year*365);
+    return score;
+  }
   private int getBaseDepthAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(resort.baseDepth - this.baseDepthPreference);
+    int difference = Math.abs(((Integer.parseInt(resort.snowForecast().topSnowDepth()) +
+        (Integer.parseInt(resort.snowForecast().botSnowDepth())))/2 )- this.baseDepthPreference);
     if (difference < 10) {
       score = 100;
     } else if(difference < 20) {
@@ -150,7 +177,7 @@ public class PreferenceAlgo implements Route {
   }
   private int getPriceAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(resort.price - this.pricePreference);
+    int difference = Math.abs(Integer.parseInt(resort.info().resortPrice()) - this.pricePreference);
     if (difference < 3) {
       score = 100;
     } else if(difference < 7) {
@@ -176,7 +203,7 @@ public class PreferenceAlgo implements Route {
   }
   private int getElevationAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(resort.elevation - this.elevationPreference);
+    int difference = Math.abs(Integer.parseInt(resort.weatherForecast().basicInfo().topLiftElevation()) - this.elevationPreference);
     if (difference < 150) {
       score = 100;
     } else if(difference < 500) {
@@ -189,7 +216,8 @@ public class PreferenceAlgo implements Route {
   }
   private int getTempAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(resort.temperature - this.tempPreference);
+    List<DayForecast> forecastList = resort.weatherForecast().forecast5Day();
+    int difference = Math.abs(this.parseTemp(forecastList) - this.tempPreference);
     if (difference < 5) {
       score = 100;
     } else if(difference < 10) {
@@ -200,9 +228,27 @@ public class PreferenceAlgo implements Route {
     }
     return score;
   }
+
+  private int parseTemp(List<DayForecast> forecastList) {
+    List<Integer> tempList = new ArrayList<>();
+    for(DayForecast day : forecastList) {
+      int maxTemp = Integer.parseInt(day.pm().maxTemp());
+      int minTemp = Integer.parseInt(day.pm().minTemp());
+      int avTemp = (maxTemp + minTemp)/2;
+      tempList.add(avTemp);
+    }
+    int totalTemp = 0;
+    for (int i = 0; i<tempList.size(); i++) {
+      int temp = tempList.get(i);
+      totalTemp += temp;
+    }
+    int tempScore = totalTemp/5;
+    return tempScore;
+  }
   private int getWindAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(resort.windSpeed - this.windPreference);
+    List<DayForecast> forecastList = resort.weatherForecast().forecast5Day();
+    int difference = Math.abs(this.parseWind(forecastList) - this.windPreference);
     if (difference < 5) {
       score = 100;
     } else if(difference < 10) {
@@ -212,6 +258,20 @@ public class PreferenceAlgo implements Route {
       score = 50;
     }
     return score;
+  }
+  private int parseWind(List<DayForecast> forecastList) {
+    List<Integer> windList = new ArrayList<>();
+    for(DayForecast day : forecastList) {
+      int windSpeed = Integer.parseInt(day.pm().windSpeed());
+      windList.add(windSpeed);
+    }
+    int totalWind = 0;
+    for (int i = 0; i<windList.size(); i++) {
+      int wind = windList.get(i);
+      totalWind += wind;
+    }
+    int windScore = totalWind/5;
+    return windScore;
   }
 
 }
