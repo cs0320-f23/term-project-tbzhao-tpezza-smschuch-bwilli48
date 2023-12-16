@@ -36,40 +36,91 @@ public class SortSki {
 
   private int getResortAttribute(Resort resort, String attributeType) {
     if (attributeType.equals("snowfallamount")) {
-      int snowfallAmount = Integer.parseInt(resort.snowForecast().freshSnowfall());
-      return snowfallAmount;
+      String snowfall = resort.snowForecast().freshSnowfall();
+      if (snowfall != null) {
+        int snowfallAmount = Integer.parseInt(snowfall);
+        return snowfallAmount;
+      }
+      return 0;
     }
     else if (attributeType.equals("lastsnowfall")) {
       String date = resort.snowForecast().lastSnowfallDate();
-      String[] splitDate = date.split("\\s+");
-      return this.parseDate(splitDate);
+      if (date != null) {
+        String[] splitDate = date.split("\\s+");
+        return this.parseDate(splitDate);
+      }
+      return 0;
     }
     else if (attributeType.equals("basedepth")) {
-      int baseDepth = ((Integer.parseInt(resort.snowForecast().botSnowDepth())) +
-          (Integer.parseInt(resort.snowForecast().topSnowDepth())))/2;
-      return baseDepth;
+      String topDepth = resort.snowForecast().topSnowDepth();
+      String bottomDepth = resort.snowForecast().botSnowDepth();
+      int topCounter = 0;
+      int bottomCounter = 0;
+      Boolean oneNull = false;
+      if (topDepth != null || bottomDepth != null) {
+        if (topDepth == null) {
+          oneNull = true;
+        }
+        else{
+          topCounter = Integer.parseInt(topDepth);
+        }
+        if (bottomDepth == null) {
+          oneNull = true;
+        }
+        else{
+          bottomCounter = Integer.parseInt(bottomDepth);
+        }
+        int baseDepth = 0;
+        if (!oneNull) {
+          baseDepth = ((Integer.parseInt(resort.snowForecast().botSnowDepth())) +
+              (Integer.parseInt(resort.snowForecast().topSnowDepth()))) / 2;
+        }
+        else {
+          baseDepth = topCounter + bottomCounter;
+        }
+        return baseDepth;
+      }
+      return 0;
     }
     else if (attributeType.equals("price")) {
-      int price = Integer.parseInt(resort.info().resortPrice());
-      return price;
+      String resortPrice = resort.info().resortPrice();
+      if (resortPrice != null) {
+        int price = Integer.parseInt(resortPrice);
+        return price;
+      }
+      return 0;
     }
     else if (attributeType.equals("lifts")) {
-      int lifts = Integer.parseInt(resort.liftsOpen());
-      return lifts;
+      String liftNum = resort.liftsOpen();
+      if (liftNum != null) {
+        int lifts = Integer.parseInt(liftNum);
+        return lifts;
+      }
+      return 0;
     }
     else if (attributeType.equals("elevation")) {
-      int elevation = Integer.parseInt(resort.weatherForecast().basicInfo().topLiftElevation());
-      return elevation;
+      String resortElevation = resort.weatherForecast().basicInfo().topLiftElevation();
+      if (resortElevation != null) {
+        int elevation = Integer.parseInt(resortElevation);
+        return elevation;
+      }
+      return 0;
     }
     else if (attributeType.equals("temp")) {
       List<DayForecast> forecastList = resort.weatherForecast().forecast5Day();
-      int temp = this.parseTemp(forecastList);
-      return temp;
+      if (forecastList != null) {
+        int temp = this.parseTemp(forecastList);
+        return temp;
+      }
+      return 0;
     }
     else {
       List<DayForecast> forecastList = resort.weatherForecast().forecast5Day();
-      int wind = this.parseWind(forecastList);
-      return wind;
+      if (forecastList != null) {
+        int wind = this.parseWind(forecastList);
+        return wind;
+      }
+      return 0;
     }
   }
 
@@ -97,32 +148,44 @@ public class SortSki {
   }
   private int parseTemp(List<DayForecast> forecastList) {
     List<Integer> tempList = new ArrayList<>();
+    int sizeCounter = 5;
     for(DayForecast day : forecastList) {
-      int maxTemp = Integer.parseInt(day.pm().maxTemp());
-      int minTemp = Integer.parseInt(day.pm().minTemp());
-      int avTemp = (maxTemp + minTemp)/2;
-      tempList.add(avTemp);
+      if (day != null) {
+        int maxTemp = Integer.parseInt(day.pm().maxTemp());
+        int minTemp = Integer.parseInt(day.pm().minTemp());
+        int avTemp = (maxTemp + minTemp) / 2;
+        tempList.add(avTemp);
+      }
+      else{
+        sizeCounter--;
+      }
     }
     int totalTemp = 0;
     for (int i = 0; i<tempList.size(); i++) {
       int temp = tempList.get(i);
       totalTemp += temp;
     }
-    int tempScore = totalTemp/5;
+    int tempScore = totalTemp/sizeCounter;
     return tempScore;
   }
   private int parseWind(List<DayForecast> forecastList) {
     List<Integer> windList = new ArrayList<>();
+    int sizeCounter = 5;
     for(DayForecast day : forecastList) {
-      int windSpeed = Integer.parseInt(day.pm().windSpeed());
-      windList.add(windSpeed);
+      if (day != null) {
+        int windSpeed = Integer.parseInt(day.pm().windSpeed());
+        windList.add(windSpeed);
+      }
+      else {
+        sizeCounter--;
+      }
     }
     int totalWind = 0;
     for (int i = 0; i<windList.size(); i++) {
       int wind = windList.get(i);
       totalWind += wind;
     }
-    int windScore = totalWind/5;
+    int windScore = totalWind/sizeCounter;
     return windScore;
   }
 }

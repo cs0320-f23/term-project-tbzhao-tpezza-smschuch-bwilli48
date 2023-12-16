@@ -110,34 +110,41 @@ public class PreferenceAlgo implements Route {
   //will have one for each preference being used
   private int getTotalSnowfallAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(Integer.parseInt(resort.snowForecast().freshSnowfall()) - this.totalSnowfallPreference);
-    if (difference < 1000) {
-      score = 100;
-    } else if (difference < 2000) {
-      score = 75;
-    } else {
-      score = 50;
+    String totalSnow = resort.snowForecast().freshSnowfall();
+    if (totalSnow != null) {
+      int difference = Math.abs(
+          Integer.parseInt(totalSnow) - this.totalSnowfallPreference);
+      if (difference < 1000) {
+        score = 100;
+      } else if (difference < 2000) {
+        score = 75;
+      } else {
+        score = 50;
+      }
+      return score;
     }
-    return score;
+    return 0;
   }
 
 
   private int getSnowfallRecencyAccuracy(Resort resort) {
     int score = 0;
     String dateString = resort.snowForecast().lastSnowfallDate();
-    String[] splitDate = dateString.split("\\s+");
-    //turn date into number now for user's preference:
-    String[] splitDatePreference = this.snowfallRecencyPreference.split("\\s+");
-    int difference = Math.abs(this.parseDate(splitDate) - this.parseDate(splitDatePreference));
-    if (difference < 2) {
-      score = 100;
-    } else if(difference < 5) {
-      score = 75;
+    if (dateString != null) {
+      String[] splitDate = dateString.split("\\s+");
+      //turn date into number now for user's preference:
+      String[] splitDatePreference = this.snowfallRecencyPreference.split("\\s+");
+      int difference = Math.abs(this.parseDate(splitDate) - this.parseDate(splitDatePreference));
+      if (difference < 2) {
+        score = 100;
+      } else if (difference < 5) {
+        score = 75;
+      } else {
+        score = 50;
+      }
+      return score;
     }
-    else {
-      score = 50;
-    }
-    return score;
+    return 0;
   }
   private int parseDate(String[] splitDate) {
     int day = Integer.parseInt(splitDate[0]);
@@ -163,114 +170,170 @@ public class PreferenceAlgo implements Route {
   }
   private int getBaseDepthAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(((Integer.parseInt(resort.snowForecast().topSnowDepth()) +
-        (Integer.parseInt(resort.snowForecast().botSnowDepth())))/2 )- this.baseDepthPreference);
-    if (difference < 10) {
-      score = 100;
-    } else if(difference < 20) {
-      score = 75;
+    String topSnow = resort.snowForecast().topSnowDepth();
+    String bottomSnow = resort.snowForecast().topSnowDepth();
+    if (topSnow != null || bottomSnow != null) {
+      int topCounter = 0;
+      int bottomCounter = 0;
+      Boolean oneNull = false;
+      if (topSnow == null) {
+        topCounter = 0;
+        oneNull = true;
+      }
+      else {
+        topCounter = Integer.parseInt(topSnow);
+      }
+      if (bottomSnow == null) {
+        bottomCounter = 0;
+        oneNull = true;
+      }
+      else {
+        bottomCounter = Integer.parseInt(bottomSnow);
+      }
+      int difference = 0;
+      if (!oneNull) {
+         difference = Math.abs(((topCounter +
+            bottomCounter) / 2)
+            - this.baseDepthPreference);
+      }
+      else {
+         difference = (topCounter + bottomCounter) - this.baseDepthPreference; //top or bottom is 0
+      }
+      if (difference < 10) {
+        score = 100;
+      } else if (difference < 20) {
+        score = 75;
+      } else {
+        score = 50;
+      }
+      return score;
     }
-    else {
-      score = 50;
-    }
-    return score;
+    return 0;
   }
   private int getPriceAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(Integer.parseInt(resort.info().resortPrice()) - this.pricePreference);
-    if (difference < 3) {
-      score = 100;
-    } else if(difference < 7) {
-      score = 75;
+    String price = resort.info().resortPrice();
+    if (price != null) {
+      int difference = Math.abs(
+          Integer.parseInt(resort.info().resortPrice()) - this.pricePreference);
+      if (difference < 3) {
+        score = 100;
+      } else if (difference < 7) {
+        score = 75;
+      } else {
+        score = 50;
+      }
+      return score;
     }
-    else {
-      score = 50;
-    }
-    return score;
+    return 0;
   }
   private int getLiftsAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(Integer.parseInt(resort.liftsOpen()) - this.liftsPreference);
-    if (difference < 3) {
-      score = 100;
-    } else if(difference < 5) {
-      score = 75;
+    String lifts = resort.liftsOpen();
+    if (lifts != null) {
+      int difference = Math.abs(Integer.parseInt(resort.liftsOpen()) - this.liftsPreference);
+      if (difference < 3) {
+        score = 100;
+      } else if (difference < 5) {
+        score = 75;
+      } else {
+        score = 50;
+      }
+      return score;
     }
-    else {
-      score = 50;
-    }
-    return score;
+    return 0;
   }
   private int getElevationAccuracy(Resort resort) {
     int score = 0;
-    int difference = Math.abs(Integer.parseInt(resort.weatherForecast().basicInfo().topLiftElevation()) - this.elevationPreference);
-    if (difference < 150) {
-      score = 100;
-    } else if(difference < 500) {
-      score = 75;
+    String liftElevation = resort.weatherForecast().basicInfo().topLiftElevation();
+    if (liftElevation != null) {
+      int difference = Math.abs(
+          Integer.parseInt(resort.weatherForecast().basicInfo().topLiftElevation())
+              - this.elevationPreference);
+      if (difference < 150) {
+        score = 100;
+      } else if (difference < 500) {
+        score = 75;
+      } else {
+        score = 50;
+      }
+      return score;
     }
-    else {
-      score = 50;
-    }
-    return score;
+    return 0;
   }
   private int getTempAccuracy(Resort resort) {
     int score = 0;
     List<DayForecast> forecastList = resort.weatherForecast().forecast5Day();
-    int difference = Math.abs(this.parseTemp(forecastList) - this.tempPreference);
-    if (difference < 5) {
-      score = 100;
-    } else if(difference < 10) {
-      score = 75;
+    if (forecastList != null) {
+      int difference = Math.abs(this.parseTemp(forecastList) - this.tempPreference);
+      if (difference < 5) {
+        score = 100;
+      } else if (difference < 10) {
+        score = 75;
+      } else {
+        score = 50;
+      }
+      return score;
     }
-    else {
-      score = 50;
-    }
-    return score;
+    return 0;
   }
 
   private int parseTemp(List<DayForecast> forecastList) {
     List<Integer> tempList = new ArrayList<>();
+    int sizeCounter = 5;
     for(DayForecast day : forecastList) {
-      int maxTemp = Integer.parseInt(day.pm().maxTemp());
-      int minTemp = Integer.parseInt(day.pm().minTemp());
-      int avTemp = (maxTemp + minTemp)/2;
-      tempList.add(avTemp);
+      if (day != null) {
+        int maxTemp = Integer.parseInt(day.pm().maxTemp());
+        int minTemp = Integer.parseInt(day.pm().minTemp());
+        int avTemp = (maxTemp + minTemp) / 2;
+        tempList.add(avTemp);
+      }
+      else{
+        sizeCounter--;
+      }
     }
     int totalTemp = 0;
     for (int i = 0; i<tempList.size(); i++) {
       int temp = tempList.get(i);
       totalTemp += temp;
     }
-    int tempScore = totalTemp/5;
+    int tempScore = totalTemp/sizeCounter;
     return tempScore;
   }
   private int getWindAccuracy(Resort resort) {
     int score = 0;
     List<DayForecast> forecastList = resort.weatherForecast().forecast5Day();
-    int difference = Math.abs(this.parseWind(forecastList) - this.windPreference);
-    if (difference < 5) {
-      score = 100;
-    } else if(difference < 10) {
-      score = 75;
+    if (forecastList != null) {
+      int difference = Math.abs(this.parseWind(forecastList) - this.windPreference);
+      if (difference < 5) {
+        score = 100;
+      } else if (difference < 10) {
+        score = 75;
+      } else {
+        score = 50;
+      }
+      return score;
     }
-    else {
-      score = 50;
-    }
-    return score;
+    return 0;
   }
   private int parseWind(List<DayForecast> forecastList) {
     List<Integer> windList = new ArrayList<>();
+    int sizeCounter = 5;
     for(DayForecast day : forecastList) {
-      int windSpeed = Integer.parseInt(day.pm().windSpeed());
-      windList.add(windSpeed);
+      if (day != null) {
+        int windSpeed = Integer.parseInt(day.pm().windSpeed());
+        windList.add(windSpeed);
+      }
+      else {
+        sizeCounter--;
+      }
     }
     int totalWind = 0;
     for (int i = 0; i<windList.size(); i++) {
       int wind = windList.get(i);
       totalWind += wind;
     }
-    int windScore = totalWind/5;
+    int windScore = totalWind/sizeCounter;
     return windScore;
   }
 
