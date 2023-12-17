@@ -2,16 +2,25 @@ package edu.brown.cs.student.Ski;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+import com.squareup.moshi.Types;
+import edu.brown.cs.student.CSVCode.Parsing.Parse;
+import edu.brown.cs.student.Ski.Records.ResortInfo;
+import edu.brown.cs.student.Ski.Records.SkiLifts;
 import edu.brown.cs.student.server.ACS.DatasourceException;
 import edu.brown.cs.student.server.ACS.StateIds;
 import edu.brown.cs.student.server.Search.ColumnIdentifier;
 import edu.brown.cs.student.server.Search.Search;
 import okio.Buffer;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,47 +29,27 @@ import static spark.Spark.connect;
 
 public class ScrapeRetrieval {
 
-    private Map<String, String> lifts;
+    private Map<String, Integer> lifts;
 
     public ScrapeRetrieval(){
         this.lifts = new HashMap<>();
     }
 
-    private static String resolveStateID(StateIds states, String stateName)
+    public List<SkiLifts> retrieve()
             throws DatasourceException {
         try {
-            if (states.isStateToIdsEmpty()) {
                 URL requestURL =
-                        new URL("http://localhost:3000/scrape");
+                        new URL("http://localhost:4000/scrape");
                 HttpURLConnection clientConnection = connect(requestURL);
                 Moshi moshi = new Moshi.Builder().build();
-                JsonAdapter<List> jsonAdapter = moshi.adapter(List.class);
-                List<List<String>> body =
+                Type type = Types.newParameterizedType(List.class, SkiLifts.class);
+                JsonAdapter <List<SkiLifts>> jsonAdapter = moshi.adapter(type);
+                List<SkiLifts> body =
                         jsonAdapter.fromJson(new Buffer().readFrom(clientConnection.getInputStream()));
                 clientConnection.disconnect();
-                Search search =
-                        new Search(body, stateName, ColumnIdentifier.Identifier.NONE, "", true, false);
-                List<List<String>> stateRow = search.searchParsed();
-                if (stateRow.isEmpty()) {
-                    throw new DatasourceException("State not found");
-                }
-                states.setStatesToIds(body);
-                String stateID = stateRow.get(0).get(1);
-                if (body == null) throw new DatasourceException("Malformed response from ACS");
+            System.out.println("Done!");
+                return body;
 
-                return stateID;
-            } else {
-                Search search =
-                        new Search(
-                                states.getStatesToIds(),
-                                stateName,
-                                ColumnIdentifier.Identifier.NONE,
-                                "",
-                                true,
-                                false);
-                String stateID = search.searchParsed().get(0).get(1);
-                return stateID;
-            }
         } catch (IOException e) {
             throw new DatasourceException(e.getMessage());
         }
@@ -79,5 +68,62 @@ public class ScrapeRetrieval {
                     "Server error");
         }
         return clientConnection;
+    }
+
+    public void organize(List<SkiLifts> liftList){
+        for(SkiLifts items: liftList){
+            String liftName = items.name().toLowerCase();
+            Integer liftNumber = this.parseNumber(items.lifts());
+            this.lifts.put(liftName, liftNumber);
+        }
+    }
+
+//    private String parseName(String input){
+//        String[] splitArray = input.split(" ");
+//
+//        String returnString = "";
+//        if(splitArray.length > 2) {
+//            for (int i = 1; i < splitArray.length; i++) {
+//                if(splitArray[i].contains("/")){
+//                    splitArray = splitArray[i].split("/");
+//                    returnString = returnString + splitArray[0];
+//                    break;
+//                }
+//                else{
+//                    returnString = returnString + splitArray[i];
+//                }
+//            }
+//        } else {
+//            returnString = splitArray[1];
+//        }
+//        return returnString.toLowerCase();
+//    }
+
+    private Integer parseNumber(String input){
+        if(input == null){
+            return 0;
+        }
+        String[] splitArray = input.split(" ");
+
+        String returnString = "";
+        if(splitArray.length == 1) {
+            return 0;
+        } else {
+            return Integer.parseInt(splitArray[0]);
+        }
+    }
+
+    public Integer getLift(String input){
+        List<String> list = this.lifts.keySet().stream().toList();
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).contains(input.toLowerCase())){
+                return this.lifts.get(list.get(i));
+            }
+        }
+        return 0;
+    }
+
+    public Map<String, Integer> getLifts(){
+        return this.lifts;
     }
 }

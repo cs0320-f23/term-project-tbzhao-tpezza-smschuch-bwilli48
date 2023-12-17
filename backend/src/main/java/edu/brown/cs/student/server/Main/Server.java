@@ -3,6 +3,8 @@ package edu.brown.cs.student.server.Main;
 import static spark.Spark.after;
 
 import edu.brown.cs.student.Ski.ResortList;
+import edu.brown.cs.student.Ski.ScrapeRetrieval;
+import edu.brown.cs.student.server.ACS.DatasourceException;
 import edu.brown.cs.student.server.ACS.StateIds;
 
 import edu.brown.cs.student.server.Caching.CachedItems;
@@ -19,13 +21,16 @@ import java.io.IOException;
  * instructions to send queries.
  */
 public class Server {
-  public static void main(String[] args) throws IOException, InterruptedException {
+  public static void main(String[] args) throws IOException, InterruptedException, DatasourceException {
     int port = 3232;
 
 
-      ResortList list = new ResortList();
+    ResortList list = new ResortList();
+      ScrapeRetrieval scraper = new ScrapeRetrieval();
+      scraper.organize(scraper.retrieve());
 
     CachedResorts cache = new CachedResorts(list);
+      System.out.println("Server is ready to use!");
 
 
     Spark.port(port);
