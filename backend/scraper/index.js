@@ -1,4 +1,4 @@
-import { it } from "node:test";
+
 import puppeteer from "puppeteer";
 import express from "express"
 
@@ -9,18 +9,29 @@ import express from "express"
 // - Scrape the author's about page (by clicking on the author's name on each quote)
 // - Categorize the quotes by tags or authors (it's not 100% related to the scraping itself, but that can be a good improvement)
 
-const app = express();
+// const app = express();
+
+const http = require("http");
+
 const port = process.env.port || 3000;
 
-app.get("/scrape", async (req, res) => {
-  try {
-    const resorts = await scrapeResorts();
-    res.json(resorts);
-  } catch (error) {
-    console.error("Error during scraping:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+// Create HTTP server
+const server = http.createServer(function (req, res) {
+  // Set the response HTTP header with HTTP status and Content type
+  res.scrapeResorts();
 });
+
+// app.get("/scrape", async (req, res) => {
+//   try {
+//     const resorts = await scrapeResorts();
+//     res.json(resorts);
+//   } catch (error) {
+//     console.error("Error during scraping:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
+
 
 const scrapeResorts = async () => {
   const browser = await puppeteer.launch();
@@ -63,6 +74,6 @@ const scrapeResorts = async () => {
   return JSON.stringify(allResorts);
 };
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
