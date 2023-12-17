@@ -8,13 +8,15 @@ tpezza - things done - X hours
 
 tbzhao - things done - X hours
 
-bwilli48 - things done - X hours
+bwilli48 - Spent many hours reading Firebase documentation intially, and tried to integrate before eventually deciding that it was far too complex and not what we needed for this app. Switched to Auth0 and integrated logging in and out of our app. Then connected the accounts to user preferences so that when you're logged in your preferences are saved. Mocked this initially and wrote tests for it. Wrote javadocs and README for the entire frontend. Spent a lot of time reading CSS docs and developing the aesthetic of our frontend. Added aria-labels to everything I could in the interest of accessibility. - 30 hours
 
 smschuch - things done - X hours
 
 Link to repo: https://github.com/cs0320-f23/term-project-tbzhao-tpezza-smschuch-bwilli48
 
 ## Design choices -- high level design of your program
+
+### Frontend
 
 ## Errors/Bugs
 
