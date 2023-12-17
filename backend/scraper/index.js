@@ -3,6 +3,8 @@ import puppeteer from "puppeteer";
 import express from "express"
 import http from "http";
 
+require("dotenv").config();
+
 // TODO: Now it's your turn to improve the scraper and make him get more data from the Quotes to Scrape website.
 // Here's a list of potential improvements you can make:
 // - Navigate between all pages using the "Next" button and fetch the quotes on all the pages
@@ -17,7 +19,16 @@ const port = process.env.PORT || 4000;
 
 
 const scrapeResorts = async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: true,
+    args: [
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+      "--single-process",
+      "--no-zygote",
+    ],
+    executablePath: process.env.NODE_ENV === "production"
+    ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
+  });
   const page = await browser.newPage();
   const allResorts = [];
 
