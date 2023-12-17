@@ -67,7 +67,7 @@ const scrapeResorts = async () => {
     allResorts.push(...resorts);
 
     // Click on the "Next page" button
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
   }
 
   await browser.close();
