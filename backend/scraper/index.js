@@ -3,7 +3,8 @@ import puppeteer from "puppeteer";
 import express from "express"
 import http from "http";
 
-require("dotenv").config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 // TODO: Now it's your turn to improve the scraper and make him get more data from the Quotes to Scrape website.
 // Here's a list of potential improvements you can make:
