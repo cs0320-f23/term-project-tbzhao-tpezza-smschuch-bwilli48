@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc57b4cd-7aef-4ffe-bbeb-a369314bb184" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ScrapeRetrieval.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scraper/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/scraper/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/scraper/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper/reference.js" beforeDir="false" afterPath="$PROJECT_DIR$/scraper/reference.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Caching/CachedResorts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Caching/CachedResorts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/CSVTesting/SearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/CSVTesting/SearchTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Resort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Resort.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/CachedResorts.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/CachedResorts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/SearchTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/SearchTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="cc57b4cd-7aef-4ffe-bbeb-a369314bb184" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -178,7 +167,7 @@
       <workItem from="1701812731192" duration="25000" />
       <workItem from="1701812768854" duration="8730000" />
       <workItem from="1702354337469" duration="10949000" />
-      <workItem from="1702773961568" duration="1549000" />
+      <workItem from="1702773961568" duration="2218000" />
     </task>
     <servers />
   </component>
