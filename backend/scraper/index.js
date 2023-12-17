@@ -13,24 +13,11 @@ import http from "http";
 // const app = express();
 
 
-const port = process.env.port || 3000;
-
-// Create HTTP server
-
-// app.get("/scrape", async (req, res) => {
-//   try {
-//     const resorts = await scrapeResorts();
-//     res.json(resorts);
-//   } catch (error) {
-//     console.error("Error during scraping:", error);
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
-// });
-
+const port = process.env.PORT || 3000;
 
 
 const scrapeResorts = async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   const allResorts = [];
 
@@ -65,7 +52,7 @@ const scrapeResorts = async () => {
     await page.waitForTimeout(500);
   }
 
-  //await browser.close();
+  await browser.close();
 
   return JSON.stringify(allResorts);
 };
