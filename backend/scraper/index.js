@@ -21,7 +21,7 @@ const scrapeResorts = async () => {
   const page = await browser.newPage();
   const allResorts = [];
 
-  for (let index = 0; index < 3; index++) {
+  for (let index = 0; index < 33; index++) {
     let link;
 
     if (index === 0) {
@@ -39,9 +39,15 @@ const scrapeResorts = async () => {
 
       return Array.from(resortList).map((resort) => {
         const name = resort.querySelector(".h3").innerText;
-        const lifts = resort.querySelector(".inline-dot").innerText;
+        if(resort.querySelector(".inline-dot") !== null){
+          const lifts = resort.querySelector(".inline-dot").innerText;
+          return { name, lifts };
+        } else{
+          const newLifts = "N/A";
 
-        return { name, lifts };
+          return {name, newLifts}
+        }
+      
       });
     });
 

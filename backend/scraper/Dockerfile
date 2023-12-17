@@ -1,26 +1,11 @@
-# Use the official Node.js image as the base image
-FROM node:14
+FROM ghcr.io/puppeteer/puppeteer:21.6.1
 
-# Set the working directory in the container
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETTER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-
-# Install project dependencies
-RUN npm install
-
-# Install additional dependencies required by Puppeteer
-RUN apt-get update && apt-get install -y \
-    chromium \
-    libgtk-3-0 \
-    libgbm-dev
-
-# Copy the rest of the application code to the container
+RUN npm ci
 COPY . .
-
-# Expose the port your app runs on
-EXPOSE 4000
-
-# Command to run your application
-CMD [ "npm", "start" ]
+CMD [ "node", "index.js"]
