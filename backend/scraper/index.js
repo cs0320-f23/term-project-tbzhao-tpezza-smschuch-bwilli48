@@ -16,10 +16,6 @@ const http = require("http");
 const port = process.env.port || 3000;
 
 // Create HTTP server
-const server = http.createServer(function (req, res) {
-  // Set the response HTTP header with HTTP status and Content type
-  res.scrapeResorts();
-});
 
 // app.get("/scrape", async (req, res) => {
 //   try {
@@ -73,6 +69,11 @@ const scrapeResorts = async () => {
 
   return JSON.stringify(allResorts);
 };
+
+const server = http.createServer(function (req, res) {
+  // Set the response HTTP header with HTTP status and Content type
+  res.scrapeResorts();
+});
 
 server.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
