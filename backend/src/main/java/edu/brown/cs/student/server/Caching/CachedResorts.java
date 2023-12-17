@@ -42,7 +42,7 @@ public class CachedResorts {
 
                 for (String resort: nameList) {
                     try {
-                        Resort cached = new Resort(resort, list.getResortMap().get(resort.toLowerCase()),
+                        Resort cached = new Resort(resort, "0", list.getResortMap().get(resort.toLowerCase()),
                                 resortConditions.getForecast(resort), snowConditions.getForecast(resort));
                         this.addResort(resort.toLowerCase(), cached);
                     }  catch (IOException | InterruptedException e) {

@@ -1,4 +1,6 @@
+import { it } from "node:test";
 import puppeteer from "puppeteer";
+import express from "express"
 
 // TODO: Now it's your turn to improve the scraper and make him get more data from the Quotes to Scrape website.
 // Here's a list of potential improvements you can make:
@@ -7,55 +9,60 @@ import puppeteer from "puppeteer";
 // - Scrape the author's about page (by clicking on the author's name on each quote)
 // - Categorize the quotes by tags or authors (it's not 100% related to the scraping itself, but that can be a good improvement)
 
-const getResorts = async () => {
-  // Start a Puppeteer session with:
-  // - a visible browser (`headless: false` - easier to debug because you'll see the browser in action)
-  // - no default viewport (`defaultViewport: null` - website page will in full width and height)
-  const browser = await puppeteer.launch({
-    headless: false,
-    defaultViewport: null,
-  });
+const app = express();
+const port = process.env.port || 3000;
 
-  // Open a new page
+app.get("/scrape", async (req, res) => {
+  try {
+    const resorts = await scrapeResorts();
+    res.json(resorts);
+  } catch (error) {
+    console.error("Error during scraping:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+const scrapeResorts = async () => {
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
+  const allResorts = [];
 
-  // On this new page:
-  // - wait until the dom content is loaded (HTML is ready)
-  await page.goto("https://www.skiresort.info/ski-resorts/sorted/number-lifts/", {
-    waitUntil: "domcontentloaded",
-  });
+  for (let index = 0; index < 3; index++) {
+    let link;
 
- // while( page.evaluate(() => {
-  //  document.querySelector(".pager > .next > a")}
-   // )){
+    if (index === 0) {
+      link = "sorted/number-lifts/";
+    } else {
+      link = "page/" + index.toString() + "/sorted/number-lifts/";
+    }
 
-  // Get page data
-  const resorts = await page.evaluate(() => {
-        // Get the displayed text and returns it
-    const resortList = document.querySelectorAll(".panel.panel-default.resort-list-item.resort-list-item-image--big");
-    console.log(resortList);
-    
-
-    return Array.from(resortList).map((resort) => {
-      const name = resort.querySelector(".h3").innerText;
-      console.log(name);
-      const lifts = resort.querySelector(".inline-dot").innerText;
-      console.log(lifts);
-
-      return { name, lifts };
+    await page.goto("https://www.skiresort.info/ski-resorts/" + link, {
+      waitUntil: "domcontentloaded",
     });
-  });
 
-  // Display the quotes
-  console.log(resorts);
+    const resorts = await page.evaluate(() => {
+      const resortList = document.querySelectorAll(".panel.panel-default.resort-list-item.resort-list-item-image--big");
 
-  // Click on the "Next page" button
-  await page.click(".pagination.pull-right > .li > a ");
-  await page.waitForTimeout(1000);
-}
-  // Close the browser
+      return Array.from(resortList).map((resort) => {
+        const name = resort.querySelector(".h3").innerText;
+        const lifts = resort.querySelector(".inline-dot").innerText;
+
+        return { name, lifts };
+      });
+    });
+
+    // Append the resorts from this page to the allResorts array
+    allResorts.push(...resorts);
+
+    // Click on the "Next page" button
+    await page.waitForTimeout(500);
+  }
+
   //await browser.close();
-//};
 
-// Start the scraping
-getResorts();
+  return JSON.stringify(allResorts);
+};
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});

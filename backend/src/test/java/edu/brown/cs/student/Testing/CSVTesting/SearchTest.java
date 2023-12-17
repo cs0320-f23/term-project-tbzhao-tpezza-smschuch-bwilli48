@@ -141,7 +141,7 @@ public class SearchTest {
     System.out.println(conditions.getForecast("Schladming – Planai/\u200B\u200BHochwurzen/\u200B\u200BHauser Kaibling/\u200B\u200BReiteralm (4-Berge-Skischaukel)"));
     SnowConditions snow = new SnowConditions();
     CachedResorts resorts = new CachedResorts(list);
-    resorts.populateCache(list);
+ //   resorts.populateCache(list);
     System.out.println(snow.getForecast("Schladming – Planai/\u200B\u200BHochwurzen/\u200B\u200BHauser Kaibling/\u200B\u200BReiteralm (4-Berge-Skischaukel)"));
     // System.out.println(conditions.regexInput("Two words"));
   }
