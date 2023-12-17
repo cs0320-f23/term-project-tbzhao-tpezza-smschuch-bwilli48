@@ -1,6 +1,7 @@
 
 import puppeteer from "puppeteer";
 import express from "express"
+import http from "http";
 
 // TODO: Now it's your turn to improve the scraper and make him get more data from the Quotes to Scrape website.
 // Here's a list of potential improvements you can make:
@@ -11,7 +12,6 @@ import express from "express"
 
 // const app = express();
 
-const http = require("http");
 
 const port = process.env.port || 3000;
 
@@ -70,9 +70,16 @@ const scrapeResorts = async () => {
   return JSON.stringify(allResorts);
 };
 
-const server = http.createServer(function (req, res) {
-  // Set the response HTTP header with HTTP status and Content type
-  res.scrapeResorts();
+const server = http.createServer(async function (req, res) {
+  try {
+    const resorts = await scrapeResorts();
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(resorts);
+  } catch (error) {
+    console.error("Error during scraping:", error);
+    res.writeHead(500, { "Content-Type": "text/plain" });
+    res.end("Internal Server Error");
+  }
 });
 
 server.listen(port, () => {
