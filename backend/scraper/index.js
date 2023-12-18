@@ -55,6 +55,7 @@ const scrapeResorts = async () => {
       } else {
         throw error; // Re-throw other errors
       }
+    }
     
 
     const resorts = await page.evaluate(() => {
