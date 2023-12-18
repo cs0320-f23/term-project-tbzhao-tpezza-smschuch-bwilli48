@@ -92,7 +92,7 @@ public class PreferenceAlgo implements Route {
   }
 
 
-  private Map<String,Integer> calculateResortScores() {
+  public Map<String,Integer> calculateResortScores() {
     for (Resort resort : this.skiResortList) {
       int score = (this.getTotalSnowfallAccuracy(resort)*this.totalSnowfallWeight) +
           (this.getSnowfallRecencyAccuracy(resort)*this.snowfallRecencyWeight) +
