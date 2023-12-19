@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import spark.Request;
+import spark.Response;
+import spark.Route;
 
-public class SortSki {
+public class SortSki implements Route {
 
   private List<Resort> skiResortList;
 
@@ -15,10 +18,16 @@ public class SortSki {
     this.skiResortList = skiResortList;
   }
 
+  @Override
+  public Object handle(Request request, Response response) throws Exception {
+   String attribute = request.queryParams("attribute");
+   return this.sortResorts(attribute);
+  }
+
   //will have two endpoints that return a serialized list of skiResorts with all their info back
   // to the frontend
 
-  private List<Resort> sortResorts(String attributeType) {
+  public List<Resort> sortResorts(String attributeType) {
     List<Resort> snowfallList = this.skiResortList;
     int n = snowfallList.size();
     for (int i = 0; i < n - 1; i++) {
@@ -188,4 +197,6 @@ public class SortSki {
     int windScore = totalWind/sizeCounter;
     return windScore;
   }
+
+
 }

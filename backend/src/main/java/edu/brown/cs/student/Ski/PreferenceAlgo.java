@@ -55,7 +55,8 @@ public class PreferenceAlgo implements Route {
     JsonAdapter<Map<String,Map<String,String>>> jsonAdapter = moshi.adapter(mapStringObject);
     Map<String,Map<String,String>> preferenceMap = jsonAdapter.fromJson(preferences);
     this.parseMap(preferenceMap);
-    return this.sortHashMapByValues(this.calculateResortScores());
+    return this.sortHashMapByValues(this.calculateResortScores(this.totalSnowfallWeight,this.snowfallRecencyWeight,
+        this.baseDepthWeight,this.priceWeight,this.liftsWeight,this.elevationWeight,this.tempWeight,this.windWeight));
   }
   public void parseMap(Map<String,Map<String,String>> preferenceMap) {
     this.totalSnowfallWeight = Integer.parseInt(preferenceMap.get("snowfallamount").get("weight"));
@@ -92,16 +93,19 @@ public class PreferenceAlgo implements Route {
   }
 
 
-  public Map<String,Integer> calculateResortScores() {
+  //can i do score without the weights first
+  public Map<String,Integer> calculateResortScores(Integer totalSnowfallWeight, Integer snowfallRecencyWeight,
+      Integer baseDepthWeight, Integer priceWeight, Integer liftsWeight, Integer elevationWeight,
+      Integer tempWeight, Integer windWeight) {
     for (Resort resort : this.skiResortList) {
-      int score = (this.getTotalSnowfallAccuracy(resort)*this.totalSnowfallWeight) +
-          (this.getSnowfallRecencyAccuracy(resort)*this.snowfallRecencyWeight) +
-          (this.getBaseDepthAccuracy(resort)*this.baseDepthWeight) +
-          (this.getPriceAccuracy(resort)*this.priceWeight) +
-          (this.getLiftsAccuracy(resort)*this.liftsWeight) +
-          (this.getElevationAccuracy(resort)*this.elevationWeight) +
-          (this.getTempAccuracy(resort)*this.tempWeight) +
-          (this.getWindAccuracy(resort)*this.windWeight);
+      int score = (this.getTotalSnowfallAccuracy(resort)*totalSnowfallWeight) +
+          (this.getSnowfallRecencyAccuracy(resort)*snowfallRecencyWeight) +
+          (this.getBaseDepthAccuracy(resort)*baseDepthWeight) +
+          (this.getPriceAccuracy(resort)*priceWeight) +
+          (this.getLiftsAccuracy(resort)*liftsWeight) +
+          (this.getElevationAccuracy(resort)*elevationWeight) +
+          (this.getTempAccuracy(resort)*tempWeight) +
+          (this.getWindAccuracy(resort)*windWeight);
       this.scoreMap.put(resort.name(), score);
     }
     return this.scoreMap;

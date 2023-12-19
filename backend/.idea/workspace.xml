@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc57b4cd-7aef-4ffe-bbeb-a369314bb184" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/skiTesting/AlgoTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/skiTesting/SortTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/PreferenceAlgo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/PreferenceAlgo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortConditions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/SnowConditions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Main/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SortSki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SortSki.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/skiTesting/AlgoTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/skiTesting/AlgoTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +70,7 @@
       <recent name="edu.brown.cs.student.Ski.Records" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AlgoTests.testBasicAlgo">
+  <component name="RunManager" selected="JUnit.SortTests.testBasicSort">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -120,22 +118,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FuzzTest.testRandomBounds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.brown.cs.student.Testing.MapTesting.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.MapTesting" />
-      <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.MapTesting.FuzzTest" />
-      <option name="METHOD_NAME" value="testRandomBounds" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SearchTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="s0" />
       <extension name="coverage">
@@ -152,13 +134,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SortTests.testBasicSort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="s0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.brown.cs.student.Testing.skiTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.skiTesting" />
+      <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.skiTesting.SortTests" />
+      <option name="METHOD_NAME" value="testBasicSort" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SortTests.testBasicSort" />
         <item itemvalue="JUnit.AlgoTests.testBasicAlgo" />
         <item itemvalue="JUnit.SearchTest.test" />
         <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.BroadMapTest.testInteraction" />
-        <item itemvalue="JUnit.FuzzTest.testRandomBounds" />
       </list>
     </recent_temporary>
   </component>

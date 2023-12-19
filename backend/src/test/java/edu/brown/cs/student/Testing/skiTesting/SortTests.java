@@ -1,6 +1,5 @@
 package edu.brown.cs.student.Testing.skiTesting;
 
-import edu.brown.cs.student.Ski.PreferenceAlgo;
 import edu.brown.cs.student.Ski.Records.BasicInfo;
 import edu.brown.cs.student.Ski.Records.DayForecast;
 import edu.brown.cs.student.Ski.Records.ForecastDetails;
@@ -8,12 +7,14 @@ import edu.brown.cs.student.Ski.Records.Resort;
 import edu.brown.cs.student.Ski.Records.ResortInfo;
 import edu.brown.cs.student.Ski.Records.SnowForecast;
 import edu.brown.cs.student.Ski.Records.WeatherForecast;
+import edu.brown.cs.student.Ski.SortSki;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AlgoTests {
+public class SortTests {
+
   private List<Resort> basicResortList;
   @Before
   public void setup() {
@@ -166,24 +167,12 @@ public class AlgoTests {
     this.basicResortList.add(resort2);
     this.basicResortList.add(resort3);
 
-
   }
 
   @Test
-  public void testBasicAlgo() {
-    Integer totalSnowfallWeight = 2;
-    Integer snowfallRecencyWeight = 3;
-    Integer baseDepthWeight = 1;
-    Integer priceWeight = 6;
-    Integer liftsWeight = 2;
-    Integer elevationWeight = 2;
-    Integer tempWeight = 1;
-    Integer windWeight = 1;
-
-
-    PreferenceAlgo algo = new PreferenceAlgo(this.basicResortList);
-    System.out.println(algo.calculateResortScores(totalSnowfallWeight,snowfallRecencyWeight,baseDepthWeight,
-    priceWeight,liftsWeight,elevationWeight,tempWeight,windWeight));
+  public void testBasicSort() {
+    SortSki sortSki = new SortSki(this.basicResortList);
+    System.out.println(sortSki.sortResorts("price"));
   }
 
 }

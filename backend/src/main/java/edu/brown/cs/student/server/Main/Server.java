@@ -2,12 +2,16 @@ package edu.brown.cs.student.server.Main;
 
 import static spark.Spark.after;
 
+import edu.brown.cs.student.Ski.PreferenceAlgo;
+import edu.brown.cs.student.Ski.Records.Resort;
 import edu.brown.cs.student.Ski.ResortList;
 import edu.brown.cs.student.server.ACS.StateIds;
 
 import edu.brown.cs.student.server.Caching.CachedItems;
 import edu.brown.cs.student.server.Caching.CachedResorts;
 import edu.brown.cs.student.server.Handlers.*;
+import java.util.ArrayList;
+import java.util.List;
 import spark.Spark;
 
 import java.io.IOException;
@@ -38,6 +42,9 @@ public class Server {
 
     Spark.get("resorts", new ResortHandler(list, cache));
     Spark.get("*", new WildCardHandler());
+
+    List<Resort> fillerResortList = new ArrayList<>(); //need to get query from tony's stuff and can do it all in the algo class
+    Spark.get("algo", new PreferenceAlgo(fillerResortList));
 
     Spark.init();
     Spark.awaitInitialization();
