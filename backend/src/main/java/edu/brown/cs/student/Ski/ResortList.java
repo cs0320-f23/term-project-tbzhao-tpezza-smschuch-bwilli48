@@ -21,7 +21,7 @@ public class ResortList {
     public ResortList() throws IOException {
         String filePath = new File("").getAbsolutePath();
         System.out.println(filePath);
-        this.path = filePath + "/data/Sk Resort Prices, Names, Location.csv";
+        this.path = filePath + "/Mocked.csv";
         this.creatorNameHelper();
         this.parseResorts();
         //System.out.println(this.resortMap);

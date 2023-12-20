@@ -6,19 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="cc57b4cd-7aef-4ffe-bbeb-a369314bb184" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scraper/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/Lifts.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/Resort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/Resort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/SkiLifts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/Records/SkiLifts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ScrapeRetrieval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ScrapeRetrieval.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Caching/CachedResorts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Caching/CachedResorts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/CSVTesting/SearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/CSVTesting/SearchTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Lifts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Resort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Resort.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/SkiLifts.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/SkiLifts.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/CachedResorts.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/CachedResorts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/SearchTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/SearchTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Main/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Main/Server.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +66,7 @@
       <recent name="edu.brown.cs.student.Ski.Records" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SearchTest.test">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -156,9 +148,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.SearchTest.test" />
         <item itemvalue="JUnit.SearchTest.test2" />
-        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.BroadMapTest.testInteraction" />
         <item itemvalue="JUnit.FuzzTest.testRandomBounds" />
       </list>

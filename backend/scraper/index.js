@@ -3,7 +3,8 @@ import puppeteer from "puppeteer";
 import express from "express"
 import http from "http";
 
-require("dotenv").config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 // TODO: Now it's your turn to improve the scraper and make him get more data from the Quotes to Scrape website.
 // Here's a list of potential improvements you can make:
@@ -41,9 +42,21 @@ const scrapeResorts = async () => {
       link = "page/" + index.toString() + "/sorted/number-lifts/";
     }
 
-    await page.goto("https://www.skiresort.info/ski-resorts/" + link, {
-      waitUntil: "domcontentloaded",
-    });
+    try {
+      await page.goto("https://www.skiresort.info/ski-resorts/" + link, {
+        waitUntil: "domcontentloaded",
+        timeout: 60000,
+      });
+    } catch (error) {
+      if (error.name === "TimeoutError") {
+        console.error("TimeoutError: Navigation timed out");
+        // Handle appropriately, e.g., by skipping this page
+        continue;
+      } else {
+        throw error; // Re-throw other errors
+      }
+    }
+    
 
     const resorts = await page.evaluate(() => {
       const resortList = document.querySelectorAll(".panel.panel-default.resort-list-item.resort-list-item-image--big");
@@ -66,7 +79,7 @@ const scrapeResorts = async () => {
     allResorts.push(...resorts);
 
     // Click on the "Next page" button
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
   }
 
   await browser.close();
