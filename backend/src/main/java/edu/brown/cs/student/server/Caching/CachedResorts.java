@@ -9,8 +9,10 @@ import edu.brown.cs.student.Ski.SnowConditions;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CachedResorts {
         HashMap<String, Resort> resortHashMap;
@@ -32,6 +34,19 @@ public class CachedResorts {
             this.populateCache(list);
         }
 
+        public Map<String, Resort> getCache(){
+            return this.resortHashMap;
+        }
+
+        public Resort searchResort(String term){
+            List<String> keyList = this.resortHashMap.keySet().stream().toList();
+            for (int i = 0; i < keyList.size(); i++) {
+                if (keyList.get(i).contains(term.toLowerCase())){
+                    return this.resortHashMap.get(keyList.get(i));
+                }
+            }
+            throw new RuntimeException();
+        }
         /**
          * This is a getter that returns the list of list of strings for a state.
          *
