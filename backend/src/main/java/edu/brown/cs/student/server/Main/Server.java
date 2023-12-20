@@ -29,7 +29,7 @@ public class Server {
       ScrapeRetrieval scraper = new ScrapeRetrieval();
       scraper.organize(scraper.retrieve());
 
-    CachedResorts cache = new CachedResorts(list);
+    CachedResorts cache = new CachedResorts(list, scraper);
       System.out.println("Server is ready to use!");
 
 

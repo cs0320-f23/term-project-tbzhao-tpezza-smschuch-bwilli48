@@ -4,6 +4,7 @@ import edu.brown.cs.student.Ski.Records.Resort;
 import edu.brown.cs.student.Ski.Records.ResortInfo;
 import edu.brown.cs.student.Ski.ResortConditions;
 import edu.brown.cs.student.Ski.ResortList;
+import edu.brown.cs.student.Ski.ScrapeRetrieval;
 import edu.brown.cs.student.Ski.SnowConditions;
 
 import java.io.FileNotFoundException;
@@ -15,6 +16,7 @@ public class CachedResorts {
         HashMap<String, Resort> resortHashMap;
         RemoveCacheItem customRemove;
         HashMap<String, Integer> countyFrequency;
+        ScrapeRetrieval scraped;
 
 
 
@@ -22,11 +24,12 @@ public class CachedResorts {
          * This constructor initializes a hashmap for.resortHashMap, frequency, and the cache removal
          * system.
          */
-        public CachedResorts(ResortList list) throws IOException, InterruptedException {
+        public CachedResorts(ResortList list, ScrapeRetrieval scraper) throws IOException, InterruptedException {
             this.resortHashMap = new HashMap<String, Resort>();
             this.countyFrequency = new HashMap<>();
             this.customRemove = new OurRemoveCache(this.countyFrequency);
-         //   this.populateCache(list);
+            this.scraped = scraper;
+            this.populateCache(list);
         }
 
         /**
@@ -42,7 +45,7 @@ public class CachedResorts {
 
                 for (String resort: nameList) {
                     try {
-                        Resort cached = new Resort(resort, 0, list.getResortMap().get(resort.toLowerCase()),
+                        Resort cached = new Resort(resort, this.scraped.getLift(resort), list.getResortMap().get(resort.toLowerCase()),
                                 resortConditions.getForecast(resort), snowConditions.getForecast(resort));
                         this.addResort(resort.toLowerCase(), cached);
                     }  catch (IOException | InterruptedException e) {
