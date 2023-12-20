@@ -8,6 +8,7 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+import java.util.List;
 import java.util.Set;
 
 public class ResortHandler implements Route {
@@ -23,7 +24,7 @@ public class ResortHandler implements Route {
     public Object handle(Request request, Response response) throws Exception {
 
         Set<String> params = request.queryParams();
-        if (params.size() != 1) {
+        if (params.size() < 1 || params.size() > 2) {
             return new ResortFailure(
                     "error_bad_json",
                     params.toString(),
@@ -37,9 +38,16 @@ public class ResortHandler implements Route {
                     "Must have parameter type.")
                     .serialize();
         }
-        if(request.queryParams("type").equals("populate")){
-            this.cache.populateCache(this.list);
-            return new ResortSuccess("Populating!");
+        if(request.queryParams("type").equals("list")){
+            return new ListSuccess("Success!", this.cache.getCache().values().stream().toList());
+        }
+        if(request.queryParams("type").equals("search") && params.contains("term")){
+            try {
+                Resort resort = this.cache.searchResort(request.queryParams("term"));
+                return new ResortSuccess(resort);
+            } catch (RuntimeException e){
+                return new ResortFailure(request.queryParams("term"), "Term not found");
+            }
         }
         return new ResortFailure(
                 "error_bad_json",
@@ -48,15 +56,15 @@ public class ResortHandler implements Route {
                 .serialize();
     }
 
-    public record ResortSuccess(String result, String SUCCESSMESSAGE) {
+    public record ResortSuccess(String result, Resort resort) {
         /**
          * Constructor
          *
          * @param params params passed into query
          * @param ERRORMESSAGE informative message for why broadband call failed
          */
-        public ResortSuccess(String SUCCESSMESSAGE) {
-            this("success", SUCCESSMESSAGE);
+        public ResortSuccess(Resort resort) {
+            this("success", resort);
         }
         /**
          * Method serialize message into json
@@ -66,6 +74,27 @@ public class ResortHandler implements Route {
         String serialize() {
             Moshi moshi = new Moshi.Builder().build();
             return moshi.adapter(ResortSuccess.class).toJson(this);
+        }
+    }
+
+    public record ListSuccess(String result, String SUCCESSMESSAGE, List<Resort> resorts) {
+        /**
+         * Constructor
+         *
+         * @param params params passed into query
+         * @param ERRORMESSAGE informative message for why broadband call failed
+         */
+        public ListSuccess(String SUCCESSMESSAGE, List<Resort> resorts) {
+            this("success", SUCCESSMESSAGE,resorts);
+        }
+        /**
+         * Method serialize message into json
+         *
+         * @return json of the failure message
+         */
+        String serialize() {
+            Moshi moshi = new Moshi.Builder().build();
+            return moshi.adapter(ListSuccess.class).toJson(this);
         }
     }
 
