@@ -97,31 +97,50 @@ export function getMockStartResorts(): Resort[] {
 }
 
 export function getMockSearchResort(name: string): Resort[] {
-  mockResorts.forEach((resort) => {
-    if (resort.name === "name") {
-      return [resort];
-    }
-  });
+  if (name === "Mock A") {
+    return [MockA];
+  }
+  if (name === "Mock B") {
+    return [MockB];
+  }
+  if (name === "Mock C") {
+    return [MockC];
+  }
+  if (name === "Mock D") {
+    return [MockD];
+  }
+  if (name === "Mock E") {
+    return [MockE];
+  }
+  if (name === "Mock F") {
+    return [MockF];
+  }
+  if (name === "Mock G") {
+    return [MockG];
+  }
+  if (name === "Mock H") {
+    return [MockH];
+  }
   return [new Resort("Resort Not Found", 0, 0, 0, 0, 0, 0, 0, 0)];
 }
 
 export function getMockSortedResorts(attribute: string): Resort[] {
   if (attribute === "Snowfall Amount") {
-    return [MockD, MockH, MockC, MockF, MockG, MockA, MockB, MockE];
+    return [MockD, MockC, MockF, MockG, MockA, MockB, MockE];
   } else if (attribute === "Last Snowfall") {
-    return [MockH, MockC, MockG, MockD, MockF, MockA, MockB, MockE];
+    return [MockH, MockC, MockG, MockF, MockA, MockB, MockE];
   } else if (attribute === "Base-Depth") {
-    return [MockD, MockH, MockC, MockA, MockG, MockB, MockF, MockE];
+    return [MockC, MockA, MockG, MockB, MockF, MockE];
   } else if (attribute === "Price") {
-    return [MockB, MockG, MockA, MockC, MockH, MockD, MockE, MockF];
+    return [MockB, MockG, MockA, MockC, MockE, MockF];
   } else if (attribute === "Lifts Open") {
-    return [MockA, MockB, MockC, MockF, MockH, MockD, MockG, MockE];
+    return [MockA, MockB, MockC, MockF, MockG, MockE];
   } else if (attribute === "Summit Elevation") {
-    return [MockC, MockF, MockE, MockA, MockB, MockH, MockD, MockG];
+    return [MockC, MockF, MockE, MockA, MockB, MockG];
   } else if (attribute === "Temperature") {
-    return [MockE, MockF, MockD, MockH, MockB, MockG, MockA, MockC];
+    return [MockE, MockF, MockB, MockG, MockA, MockC];
   } else if (attribute === "Windspeed") {
-    return [MockG, MockB, MockA, MockF, MockD, MockH, MockC, MockE];
+    return [MockG, MockB, MockA, MockF, MockC, MockE];
   } else {
     return [new Resort("Resort Not Found", 0, 0, 0, 0, 0, 0, 0, 0)];
   }
@@ -133,19 +152,19 @@ export function getMockRankedResorts(
   var sf = prefs.get("Snowfall Amount")?.value;
   if (sf !== undefined) {
     if (sf > 10) {
-      return [MockD, MockH, MockC, MockF, MockG, MockA, MockB, MockE];
+      return [MockD, MockH, MockC, MockF, MockG, MockE];
     }
   }
   var p = prefs.get("Price")?.weight;
   if (p !== undefined) {
     if (p > 7) {
-      return [MockB, MockG, MockA, MockC, MockH, MockD, MockE, MockF];
+      return [MockB, MockG, MockC, MockH, MockE, MockF];
     }
   }
   var lo = prefs.get("Lifts Open")?.weight;
   if (lo !== undefined) {
     if (lo > 9) {
-      return [MockA, MockB, MockC, MockF, MockH, MockD, MockG, MockE];
+      return [MockA, MockC, MockF, MockG, MockE];
     }
   }
   return mockResortsPref;
