@@ -23,6 +23,10 @@ public class ResortHandler implements Route {
     @Override
     public Object handle(Request request, Response response) throws Exception {
 
+        for (String param : request.queryParams()) {
+            System.out.println(param + ": " + request.queryParams(param));
+        }
+
         Set<String> params = request.queryParams();
         if (params.size() < 1 || params.size() > 2) {
             return new ResortFailure(
@@ -39,14 +43,14 @@ public class ResortHandler implements Route {
                     .serialize();
         }
         if(request.queryParams("type").equals("list")){
-            return new ListSuccess("Success!", this.cache.getCache().values().stream().toList());
+            return new ListSuccess("Success!", this.cache.getCache().values().stream().toList()).serialize();
         }
         if(request.queryParams("type").equals("search") && params.contains("term")){
             try {
                 Resort resort = this.cache.searchResort(request.queryParams("term"));
-                return new ResortSuccess(resort);
+                return new ResortSuccess(resort).serialize();
             } catch (RuntimeException e){
-                return new ResortFailure(request.queryParams("term"), "Term not found");
+                return new ResortFailure(request.queryParams("term"), "Term not found").serialize();
             }
         }
         return new ResortFailure(

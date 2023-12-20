@@ -9,8 +9,18 @@ import Profile from "./auth/Profile";
 import "../styles/App.css";
 import "../styles/main.css";
 import { UserPreferences } from "./prefs/Preferences";
-import { savePreferencesToLocalStorage, loadPreferencesFromLocalStorage } from "./utils/PreferenceUtils";
-import { getMockStartResorts, getStartResorts, mockResorts, Resort } from "./resorts/ResortClass";
+import {
+  savePreferencesToLocalStorage,
+  loadPreferencesFromLocalStorage,
+} from "./utils/PreferenceUtils";
+import {
+  getMockStartResorts,
+  getStartResorts,
+  MockA,
+  MockD,
+  mockResorts,
+  Resort,
+} from "./resorts/ResortClass";
 
 /**
  * The `App` component serves as the main container for the Alpine Advisor application.
@@ -19,113 +29,135 @@ import { getMockStartResorts, getStartResorts, mockResorts, Resort } from "./res
  * `LoginButton`, and `Profile`.
  */
 function App() {
-	// Manages state for the resort list
-	const [resortList, setResortList] = useState<Resort[]>(getStartResorts);
+  // Manages state for the resort list
+  const [resortList, setResortList] = useState<Resort[]>([]);
 
-	// Gets authentication status and user info from Auth0
-	const { isAuthenticated, user } = useAuth0();
+  var output = getStartResorts();
+  output.then((res) => {
+    setResortList(res);
+  });
 
-	// Manages state for user preferences
-	const [preferences, setPreferences] = useState<UserPreferences | null>(null);
+  // Gets authentication status and user info from Auth0
+  const { isAuthenticated, user } = useAuth0();
 
-	/**
-	 * useEffect hook to load user preferences from local storage when the user logs in.
-	 * It checks if the user is authenticated and if so, it loads preferences associated
-	 * with that user and sets them in state.
-	 */
-	useEffect(() => {
-		if (isAuthenticated && user?.sub) {
-			const loadedPreferences = loadPreferencesFromLocalStorage(user.sub);
-			setPreferences(loadedPreferences);
-		}
-	}, [isAuthenticated, user?.sub]);
+  // Manages state for user preferences
+  const [preferences, setPreferences] = useState<UserPreferences | null>(null);
 
-	/**
-	 * Saves new user preferences. First checks if the user is authenticated and
-	 * if so, saves the new preferences to local storage and updates the state.
-	 */
-	const handleSavePreferences = (newPreferences: UserPreferences) => {
-		if (user?.sub) {
-			savePreferencesToLocalStorage(user.sub, newPreferences);
-			setPreferences(newPreferences);
-		}
-	};
+  /**
+   * useEffect hook to load user preferences from local storage when the user logs in.
+   * It checks if the user is authenticated and if so, it loads preferences associated
+   * with that user and sets them in state.
+   */
+  useEffect(() => {
+    if (isAuthenticated && user?.sub) {
+      const loadedPreferences = loadPreferencesFromLocalStorage(user.sub);
+      setPreferences(loadedPreferences);
+    }
+  }, [isAuthenticated, user?.sub]);
 
-	// Manages state for mock mode
-	const [mockMode, setMockMode] = useState<boolean>(false);
-	// Manages state for the mock indicator
-	const [mockString, setMockString] = useState<string>("Mock Mode: Off");
-	// Manages state for the mock ID
-	const [mockID, setMockID] = useState<string>("mockOffButton");
+  /**
+   * Saves new user preferences. First checks if the user is authenticated and
+   * if so, saves the new preferences to local storage and updates the state.
+   */
+  const handleSavePreferences = (newPreferences: UserPreferences) => {
+    if (user?.sub) {
+      savePreferencesToLocalStorage(user.sub, newPreferences);
+      setPreferences(newPreferences);
+    }
+  };
 
-	/**
-	 * Toggles the mock mode state and updates the resort list accordingly.
-	 * Switches between real and mock data for resorts.
-	 */
-	function handleMockButton() {
-		if (mockMode) {
-			setMockMode(false);
-			setMockString("Mock Mode: Off");
-			setMockID("mockOffButton");
-			setResortList(getStartResorts);
-		} else {
-			setMockMode(true);
-			setMockString("Mock Mode: On");
-			setMockID("mockOnButton");
-			setResortList(getMockStartResorts);
-		}
-	}
+  // Manages state for mock mode
+  const [mockMode, setMockMode] = useState<boolean>(false);
+  // Manages state for the mock indicator
+  const [mockString, setMockString] = useState<string>("Mock Mode: Off");
+  // Manages state for the mock ID
+  const [mockID, setMockID] = useState<string>("mockOffButton");
 
-	return (
-		<div className="App">
-			<header className="App-header">
-				<h1>Alpine Advisor</h1>
-			</header>
-			<button
-				className="search-button"
-				id={mockID}
-				onClick={() => handleMockButton()}
-				aria-label={mockMode ? "Disable mock mode" : "Enable mock mode"}
-			>
-				{mockString}
-			</button>
-			<main>
-				<section className="user-panel">
-					{isAuthenticated ? (
-						<>
-							<Profile className="profile-container" aria-label="User profile" />
-						</>
-					) : (
-						<LoginButton className="login-button" aria-label="Login button" />
-					)}
-				</section>
-				<section className="content-panel">
-					<div>
-						<Preferences
-							preferences={preferences}
-							onSavePreferences={handleSavePreferences}
-							resortList={resortList}
-							setResortList={setResortList}
-							mockMode={mockMode}
-						/>
-						<div className="search-sort-resorts">
-							<div className="search-sort">
-								<div className="sort">
-									<Sort resortList={resortList} setResortList={setResortList} mockMode={mockMode} />
-								</div>
-								<div className="search">
-									<Search resortList={resortList} setResortList={setResortList} mockMode={mockMode} />
-								</div>
-							</div>
-							<div className="resorts">
-								<ResortsList resortList={resortList} aria-label="List of resorts" />
-							</div>
-						</div>
-					</div>
-				</section>
-			</main>
-		</div>
-	);
+  /**
+   * Toggles the mock mode state and updates the resort list accordingly.
+   * Switches between real and mock data for resorts.
+   */
+  function handleMockButton() {
+    if (mockMode) {
+      setMockMode(false);
+      setMockString("Mock Mode: Off");
+      setMockID("mockOffButton");
+      var output = getStartResorts();
+      output.then((res) => {
+        setResortList(res);
+      });
+    } else {
+      setMockMode(true);
+      setMockString("Mock Mode: On");
+      setMockID("mockOnButton");
+      setResortList(getMockStartResorts);
+    }
+  }
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Alpine Advisor</h1>
+      </header>
+      <button
+        className="search-button"
+        id={mockID}
+        onClick={() => handleMockButton()}
+        aria-label={mockMode ? "Disable mock mode" : "Enable mock mode"}
+      >
+        {mockString}
+      </button>
+      <main>
+        <section className="user-panel">
+          {isAuthenticated ? (
+            <>
+              <Profile
+                className="profile-container"
+                aria-label="User profile"
+              />
+            </>
+          ) : (
+            <LoginButton className="login-button" aria-label="Login button" />
+          )}
+        </section>
+        <section className="content-panel">
+          <div>
+            <Preferences
+              preferences={preferences}
+              onSavePreferences={handleSavePreferences}
+              resortList={resortList}
+              setResortList={setResortList}
+              mockMode={mockMode}
+            />
+            <div className="search-sort-resorts">
+              <div className="search-sort">
+                <div className="sort">
+                  <Sort
+                    resortList={resortList}
+                    setResortList={setResortList}
+                    mockMode={mockMode}
+                  />
+                </div>
+                <div className="search">
+                  <Search
+                    resortList={resortList}
+                    setResortList={setResortList}
+                    mockMode={mockMode}
+                  />
+                </div>
+              </div>
+              <div className="resorts">
+                <ResortsList
+                  resortList={resortList}
+                  aria-label="List of resorts"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }
 
 export default App;

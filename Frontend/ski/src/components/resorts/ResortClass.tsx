@@ -5,25 +5,25 @@ import { PreferenceAndValue } from "../prefs/Preferences";
  */
 export class Resort {
   name: string;
-  snowfallAmount: number;
-  lastSnowfall: number;
-  baseDepth: number;
-  price: number;
-  liftsOpen: number;
-  summitElevation: number;
-  temperature: number;
-  windspeed: number;
+  snowfallAmount: number | null;
+  lastSnowfall: number | null;
+  baseDepth: number | null;
+  price: number | null;
+  liftsOpen: number | null;
+  summitElevation: number | null;
+  temperature: number | null;
+  windspeed: number | null;
 
   constructor(
     name: string,
-    snowfallAmount: number,
-    lastSnowfall: number,
-    baseDepth: number,
-    price: number,
-    liftsOpen: number,
-    summitElevation: number,
-    temperature: number,
-    windspeed: number
+    snowfallAmount: number | null,
+    lastSnowfall: number | null,
+    baseDepth: number | null,
+    price: number | null,
+    liftsOpen: number | null,
+    summitElevation: number | null,
+    temperature: number | null,
+    windspeed: number | null
   ) {
     this.name = name;
     this.snowfallAmount = snowfallAmount;
@@ -74,21 +74,79 @@ export const mockResortsSearch = [MockC];
 
 export const mockResortsPref = [MockH, MockA, MockB, MockD, MockC];
 
-export function getStartResorts(): Resort[] {
-  return [];
+interface ServerResponse {
+  result: string;
+  resort: BackendResort;
+  resorts: BackendResort[];
 }
 
-export function getSearchResort(name: string): Resort[] {
-  return [];
+interface BackendResort {}
+
+function backendToResort(backend: BackendResort): Resort {
+  return MockA;
+}
+
+function backendToResortList(backend: BackendResort[]): Resort[] {
+  return [MockA, MockB];
+}
+
+export function isServerResponseJson(rjson: any): rjson is ServerResponse {
+  if (!("result" in rjson)) return false;
+  return true;
+}
+
+export function getStartResorts(): Promise<Resort[]> {
+  var output: Promise<Resort[]>;
+  output = fetch("http://localhost:3232/resorts?type=list")
+    .then((response: Response) => response.json())
+    .then((json) => {
+      // if (!isServerResponseJson(json)) {
+      //   return [MockA];
+      // } else {
+      //   if (json.result == "success") {
+      //     return backendToResortList(json.resorts);
+      //   } else {
+      //     return [MockB];
+      //   }
+      // }
+      return [MockA];
+    });
+  //convert
+  console.log(output);
+  return output;
+}
+
+export function getSearchResort(name: string): Promise<Resort> {
+  var output: Promise<Resort>;
+  output = fetch("http://localhost:3232/resorts?type=search&term=" + name)
+    .then((response: Response) => response.json())
+    .then((json) => {
+      if (!isServerResponseJson(json)) {
+        return new Resort("Resort Not Found", 0, 0, 0, 0, 0, 0, 0, 0);
+      } else {
+        if (json.result == "success") {
+          return backendToResort(json.resort);
+        } else {
+          return new Resort("Resort Not Found", 0, 0, 0, 0, 0, 0, 0, 0);
+        }
+      }
+    });
+  //convert
+  return output;
 }
 
 export function getSortedResorts(attribute: string): Resort[] {
+  //call sort
+  //convert
   return [];
 }
 
 export function getRankedResorts(
   prefs: Map<string, PreferenceAndValue>
 ): Resort[] {
+  //convert prefs to json
+  //call prefs
+  //convert
   return [];
 }
 
@@ -172,7 +230,19 @@ export function getMockRankedResorts(
 
 // Returns a list of resort options
 export const resortNames = () => {
-  return ["Araphoe Basin"];
+  return [
+    "Valgrande Pajares",
+    "​Courchevel",
+    "​Thyon",
+    "Jackson Hole",
+    "Jay Peak",
+    "Whistler Blackcomb",
+    "Shigakogen Mountain Resort",
+    "​Rivisondoli",
+    "Kolasportland",
+    "Hakuba Iwatake Mountain Resort",
+    "Vail",
+  ];
 };
 
 // Returns a list of resort options
