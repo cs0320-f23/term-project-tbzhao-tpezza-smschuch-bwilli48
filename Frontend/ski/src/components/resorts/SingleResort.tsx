@@ -13,11 +13,6 @@ interface SingleResortProps {
  * information about the resort, such as snowfall, weather, and mountain information.
  */
 export function SingleResort(props: SingleResortProps) {
-  const lastSnowfall =
-    props.resort.lastSnowfall === 0
-      ? "Last Snow: today"
-      : `Last Snow: ${props.resort.lastSnowfall} days ago`;
-
   return (
     <div id="listDiv" className="repl-history" aria-label="Resort information">
       <h2 id="resortName">{props.resort.name}</h2>
@@ -25,9 +20,9 @@ export function SingleResort(props: SingleResortProps) {
         <tr>
           <td className="resortListDatum">
             <h3>Snow Stats</h3>
-            <p>Snowfall: {props.resort.snowfallAmount} in.</p>
-            <p>{lastSnowfall}</p>
-            <p>Base-depth: {props.resort.baseDepth} in.</p>
+            <p>Snowfall: {props.resort.snowfallAmount}</p>
+            <p>Last Snow: {props.resort.lastSnowfall}</p>
+            <p>Base-depth: {props.resort.baseDepth}</p>
           </td>
           <td className="resortListDatum">
             <h3>Weather</h3>
@@ -36,7 +31,7 @@ export function SingleResort(props: SingleResortProps) {
           </td>
           <td className="resortListDatum">
             <h3>Mountain Info</h3>
-            <p>Top Elevation: {props.resort.summitElevation}ft</p>
+            <p>Top Elevation: {props.resort.summitElevation}</p>
             <p>Lifts Open: {props.resort.liftsOpen}</p>
             <p>Price: ${props.resort.price}</p>
           </td>

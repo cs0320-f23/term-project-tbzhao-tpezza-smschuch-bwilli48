@@ -32,11 +32,6 @@ function App() {
   // Manages state for the resort list
   const [resortList, setResortList] = useState<Resort[]>([]);
 
-  var output = getStartResorts();
-  output.then((res) => {
-    setResortList(res);
-  });
-
   // Gets authentication status and user info from Auth0
   const { isAuthenticated, user } = useAuth0();
 
@@ -53,6 +48,10 @@ function App() {
       const loadedPreferences = loadPreferencesFromLocalStorage(user.sub);
       setPreferences(loadedPreferences);
     }
+    var output = getStartResorts();
+    output.then((res) => {
+      setResortList(res);
+    });
   }, [isAuthenticated, user?.sub]);
 
   /**
