@@ -4,7 +4,7 @@
 
 ### Team members and contributions
 
-tpezza - things done - X hours
+tpezza - Briefly sketched mockup for frontend. Coded frontend of application, and developed functions for getting mock data and functions for sending queries to the backend to retrieve resort information. - 30 hours
 
 tbzhao - Cosntructed a script that scrapes data from the web using Puppeteer. Looked into options for hosting servers online through Render but this did not serve to be a viable option. Also worked with APIs to create calls that would retreive the necessary data and store it in data structures to be used in the algorithm. Designed the server endpoints and setting up the server for the data to be available and sent to the frontend. - 30 hours
 
@@ -34,9 +34,9 @@ Our webapp consists of five main panels:
 
 Our webapp contains two separate components:
 
-1) Server: The server is the main link between the frontend and the backend. It has components that fetch API calls for weather and snow data. Additionally, it parses a list of resorts that contains information on location and price. There is also a component that fetches the information that is scraped from the web. This is all stored in a list of resort items that the algorithm uses in the recommendation.
+1. Server: The server is the main link between the frontend and the backend. It has components that fetch API calls for weather and snow data. Additionally, it parses a list of resorts that contains information on location and price. There is also a component that fetches the information that is scraped from the web. This is all stored in a list of resort items that the algorithm uses in the recommendation.
 
-2) Scraper: The scraper uses Puppeteer to pull data on the number of lifts at ski resorts. This returns in a Json format that the server takes and stores. The sorting takes about a minute or so in order to pull all the data, which is a limitation. 
+2. Scraper: The scraper uses Puppeteer to pull data on the number of lifts at ski resorts. This returns in a Json format that the server takes and stores. The sorting takes about a minute or so in order to pull all the data, which is a limitation.
 
 ## Errors/Bugs
 
@@ -74,6 +74,7 @@ To run playwright tests:
 ### Backend
 
 To start the backend:
+
 1. cd backend\scraper
 2. npm install puppeteer
 3. node index.js
