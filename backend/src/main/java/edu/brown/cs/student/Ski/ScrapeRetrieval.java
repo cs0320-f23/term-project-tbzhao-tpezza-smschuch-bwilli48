@@ -27,14 +27,25 @@ import java.util.Map;
 
 import static spark.Spark.connect;
 
+/**
+ * A class responsible for retrieving and organizing ski lift data through web scraping.
+ */
 public class ScrapeRetrieval {
-
     private Map<String, Integer> lifts;
 
+    /**
+     * Default constructor for the ScrapeRetrieval class. Initializes the lifts map.
+     */
     public ScrapeRetrieval(){
         this.lifts = new HashMap<>();
     }
 
+    /**
+     * Retrieves ski lift data by making a request to the specified URL and parsing the JSON response.
+     *
+     * @return A list of SkiLifts objects representing ski lift information.
+     * @throws DatasourceException If an error occurs during data retrieval.
+     */
     public List<SkiLifts> retrieve()
             throws DatasourceException {
         try {
@@ -49,12 +60,19 @@ public class ScrapeRetrieval {
                 clientConnection.disconnect();
             System.out.println("Done!");
                 return body;
-
         } catch (IOException e) {
             throw new DatasourceException(e.getMessage());
         }
     }
 
+    /**
+     * Establishes a connection to the specified URL and returns an HttpURLConnection.
+     *
+     * @param requestURL The URL to connect to.
+     * @return An HttpURLConnection for the specified URL.
+     * @throws IOException          If an I/O error occurs during connection.
+     * @throws DatasourceException If an error occurs during connection.
+     */
     private static HttpURLConnection connect(URL requestURL) throws IOException, DatasourceException {
         URLConnection urlConnection = requestURL.openConnection();
         if (!(urlConnection instanceof HttpURLConnection)) {
@@ -70,6 +88,11 @@ public class ScrapeRetrieval {
         return clientConnection;
     }
 
+    /**
+     * Organizes ski lift data by populating the lifts map with ski lift names and corresponding numbers.
+     *
+     * @param liftList A list of SkiLifts objects.
+     */
     public void organize(List<SkiLifts> liftList){
         for(SkiLifts items: liftList){
             String liftName = items.name().toLowerCase();
@@ -99,6 +122,12 @@ public class ScrapeRetrieval {
 //        return returnString.toLowerCase();
 //    }
 
+    /**
+     * Parses a string input into an Integer, handling cases where the input is null or invalid.
+     *
+     * @param input The input string to be parsed.
+     * @return The parsed Integer value.
+     */
     private Integer parseNumber(String input){
         if(input == null){
             return 0;
@@ -113,6 +142,12 @@ public class ScrapeRetrieval {
         }
     }
 
+    /**
+     * Gets the number of lifts for a specified ski resort.
+     *
+     * @param input The name of the ski resort.
+     * @return The number of lifts for the specified ski resort.
+     */
     public Integer getLift(String input){
         List<String> list = this.lifts.keySet().stream().toList();
         for (int i = 0; i < list.size(); i++) {
@@ -123,6 +158,11 @@ public class ScrapeRetrieval {
         return 0;
     }
 
+    /**
+     * Gets the lifts map containing ski lift names as keys and corresponding numbers as values.
+     *
+     * @return The lifts map.
+     */
     public Map<String, Integer> getLifts(){
         return this.lifts;
     }

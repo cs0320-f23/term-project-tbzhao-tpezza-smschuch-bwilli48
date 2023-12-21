@@ -15,35 +15,50 @@ import spark.Spark;
 import java.io.IOException;
 
 /**
- * Server class for to run the server that can be used to make requests to load, search, and view
- * csvs, and to search the ACS database for the percentage of households with broadband access in a
- * certain US county. Just need to run it, then copy print statement into a browser, and use README
- * instructions to send queries.
+ * The main class for running the server.
  */
 public class Server {
+
+  /**
+   * The main method to start the server.
+   *
+   * @param args Command-line arguments (not used).
+   * @throws IOException           If an I/O error occurs.
+   * @throws InterruptedException  If the thread is interrupted during sleep.
+   * @throws DatasourceException   If there is an issue with the data source.
+   */
   public static void main(String[] args) throws IOException, InterruptedException, DatasourceException {
+    // Set the port for the server
     int port = 3232;
 
-
+    // Create a list of resorts
     ResortList list = new ResortList();
-      ScrapeRetrieval scraper = new ScrapeRetrieval();
-      scraper.organize(scraper.retrieve());
 
+    // Create a scraper for retrieving resort information
+    ScrapeRetrieval scraper = new ScrapeRetrieval();
+    scraper.organize(scraper.retrieve());
+
+    // Create a cache for storing resorts
     CachedResorts cache = new CachedResorts(list, scraper);
-      System.out.println("Server is ready to use!");
+    System.out.println("Server is ready to use!");
 
-
+    // Set the port for Spark
     Spark.port(port);
 
+    // Configure headers for Cross-Origin Resource Sharing (CORS)
     after(
-        (request, response) -> {
-          response.header("Access-Control-Allow-Origin", "*");
-          response.header("Access-Control-Allow-Methods", "*");
-        });
+            (request, response) -> {
+              response.header("Access-Control-Allow-Origin", "*");
+              response.header("Access-Control-Allow-Methods", "*");
+            });
 
+    // Define the "resorts" endpoint with a ResortHandler
     Spark.get("resorts", new ResortHandler(list, cache));
+
+    // Define a wildcard endpoint with a WildCardHandler
     Spark.get("*", new WildCardHandler());
 
+    // Initialize Spark
     Spark.init();
     Spark.awaitInitialization();
 

@@ -9,12 +9,26 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * A class responsible for retrieving and providing snow conditions forecast data for ski resorts.
+ */
 public class SnowConditions {
 
+    /**
+     * Default constructor for the SnowConditions class.
+     */
     public SnowConditions(){
-
     }
 
+    /**
+     * Retrieves snow conditions forecast data for a specific ski resort by making a request to the specified URL
+     * and parsing the JSON response.
+     *
+     * @param resort The name of the ski resort.
+     * @return A SnowForecast object representing snow conditions forecast information.
+     * @throws IOException          If an I/O error occurs during data retrieval.
+     * @throws InterruptedException If the thread is interrupted during data retrieval.
+     */
     public SnowForecast getForecast(String resort) throws IOException, InterruptedException {
         resort = this.regexInput(resort);
         try{
@@ -47,8 +61,13 @@ public class SnowConditions {
         throw new RuntimeException();
     }
 
+    /**
+     * Parses a string input to a format suitable for URL use, handling spaces and special characters.
+     *
+     * @param input The input string to be processed.
+     * @return The processed string suitable for URL use.
+     */
     public String regexInput(String input){
-
         String[] splitArray = input.split(" ");
         //System.out.println(splitArray[0]);
 

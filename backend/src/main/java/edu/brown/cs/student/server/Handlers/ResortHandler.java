@@ -11,15 +11,33 @@ import spark.Route;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The handler for resort-related requests.
+ */
 public class ResortHandler implements Route {
     private ResortList list;
     private CachedResorts cache;
 
+    /**
+     * Constructor for the ResortHandler.
+     *
+     * @param list  The list of resorts.
+     * @param cache The cached resorts.
+     */
     public ResortHandler(ResortList list, CachedResorts cache){
         this.list = list;
         this.cache = cache;
     }
 
+
+    /**
+     * Handles the incoming HTTP request.
+     *
+     * @param request  The HTTP request.
+     * @param response The HTTP response.
+     * @return The result of the request.
+     * @throws Exception If an error occurs during request handling.
+     */
     @Override
     public Object handle(Request request, Response response) throws Exception {
 
@@ -56,20 +74,22 @@ public class ResortHandler implements Route {
                 .serialize();
     }
 
+    /**
+     * Represents a successful response for a single resort.
+     */
     public record ResortSuccess(String result, Resort resort) {
         /**
-         * Constructor
+         * Constructor for ResortSuccess.
          *
-         * @param params params passed into query
-         * @param ERRORMESSAGE informative message for why broadband call failed
+         * @param resort The retrieved resort.
          */
         public ResortSuccess(Resort resort) {
             this("success", resort);
         }
         /**
-         * Method serialize message into json
+         * Serializes the success message into JSON.
          *
-         * @return json of the failure message
+         * @return JSON representation of the success message.
          */
         String serialize() {
             Moshi moshi = new Moshi.Builder().build();
@@ -77,20 +97,22 @@ public class ResortHandler implements Route {
         }
     }
 
+    /**
+     * Represents a successful response for a list of resorts.
+     */
     public record ListSuccess(String result, String SUCCESSMESSAGE, List<Resort> resorts) {
         /**
-         * Constructor
-         *
-         * @param params params passed into query
-         * @param ERRORMESSAGE informative message for why broadband call failed
+         * Constructor for ResortSuccess.
+         * @param SUCCESSMESSAGE Message
+         * @param resorts The retrieved list.
          */
         public ListSuccess(String SUCCESSMESSAGE, List<Resort> resorts) {
             this("success", SUCCESSMESSAGE,resorts);
         }
         /**
-         * Method serialize message into json
+         * Serializes the success message into JSON.
          *
-         * @return json of the failure message
+         * @return JSON representation of the success message.
          */
         String serialize() {
             Moshi moshi = new Moshi.Builder().build();
@@ -98,6 +120,9 @@ public class ResortHandler implements Route {
         }
     }
 
+    /**
+     * Represents a failure response.
+     */
     public record ResortFailure(String result, String params, String ERRORMESSAGE) {
         /**
          * Constructor

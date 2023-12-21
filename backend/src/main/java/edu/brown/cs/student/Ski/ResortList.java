@@ -11,13 +11,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * A class representing a list of ski resorts and their information.
+ */
 public class ResortList {
-
     private String path;
     private CreatorFromRow <List<String>> resortCreator;
    // private List<List<String>> resortList;
     private HashMap<String, ResortInfo> resortMap;
 
+    /**
+     * Default constructor for the ResortList class. Initializes the path and resort creator,
+     * and parses the resorts from the CSV file.
+     *
+     * @throws IOException If an I/O error occurs during file reading.
+     */
     public ResortList() throws IOException {
         String filePath = new File("").getAbsolutePath();
         System.out.println(filePath);
@@ -27,6 +35,9 @@ public class ResortList {
         //System.out.println(this.resortMap);
     }
 
+    /**
+     * Helper method to set up the creator for parsing resort information from CSV rows.
+     */
     private void creatorNameHelper(){
         this.resortCreator =
                 new CreatorFromRow <List<String>>() {
@@ -41,6 +52,9 @@ public class ResortList {
                 };
     }
 
+    /**
+     * Parses the resorts from the CSV file and populates the resort map.
+     */
     private void parseResorts(){
         try{
             Reader reader = new FileReader(this.path);
@@ -58,10 +72,20 @@ public class ResortList {
         }
     }
 
+    /**
+     * Gets the resort map containing resort names as keys and corresponding ResortInfo objects as values.
+     *
+     * @return The resort map.
+     */
     public HashMap<String, ResortInfo> getResortMap(){
         return this.resortMap;
     }
 
+    /**
+     * Gets a list of resort names.
+     *
+     * @return The list of resort names.
+     */
     public List<String> getResortNames(){
         ArrayList<String> names = new ArrayList<>();
 
@@ -70,9 +94,5 @@ public class ResortList {
             names.add(info.get(i).resortName());
         }
         return names;
-    }
-
-    public List<ResortInfo> getResortCountries(){
-        return new ArrayList<>(this.resortMap.values());
     }
 }

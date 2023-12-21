@@ -12,12 +12,25 @@ import okio.Buffer;
 
 import static spark.Spark.connect;
 
-
+/**
+ * A class representing conditions and forecasts for ski resorts.
+ */
 public class ResortConditions {
-    public ResortConditions(){
 
+    /**
+     * Default constructor for the ResortConditions class.
+     */
+    public ResortConditions(){
     }
 
+    /**
+     * Retrieves the weather forecast for a given ski resort.
+     *
+     * @param resort The name of the ski resort.
+     * @return The weather forecast for the specified ski resort.
+     * @throws IOException If an I/O error occurs while fetching the forecast.
+     * @throws InterruptedException If the thread is interrupted during the forecast retrieval.
+     */
     public WeatherForecast getForecast(String resort) throws IOException, InterruptedException {
         resort = this.regexInput(resort);
         try{
@@ -48,6 +61,12 @@ public class ResortConditions {
         }
     }
 
+    /**
+     * Adjusts the input string for use in the API request using regular expressions.
+     *
+     * @param input The input string (resort name).
+     * @return The adjusted string suitable for use in the API request.
+     */
     public String regexInput(String input){
 
         String[] splitArray = input.split(" ");

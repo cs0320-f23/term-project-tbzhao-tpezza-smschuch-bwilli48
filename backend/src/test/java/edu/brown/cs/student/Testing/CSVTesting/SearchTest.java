@@ -1,6 +1,5 @@
 package edu.brown.cs.student.Testing.CSVTesting;
 
-import static org.testng.AssertJUnit.assertEquals;
 
 import edu.brown.cs.student.Ski.Records.Resort;
 import edu.brown.cs.student.Ski.Records.ResortInfo;
@@ -22,6 +21,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import static org.testng.AssertJUnit.assertEquals;
 
 /** Class to test the search method */
 public class SearchTest {
@@ -153,33 +153,40 @@ public class SearchTest {
   @Test
   public void test() throws IOException, InterruptedException, DatasourceException {
     ResortList list = new ResortList();
-    String name = "";
-    for (int i = 0; i < list.getResortNames().size(); i++) {
-      if(list.getResortNames().get(i).contains("Okemo")){
-        name = list.getResortNames().get(i).toLowerCase();
-        break;
-      }
-    }
+//    String name = "";
+//    for (int i = 0; i < list.getResortNames().size(); i++) {
+//      if(list.getResortNames().get(i).contains("Crystal Mountain")){
+//        name = list.getResortNames().get(i).toLowerCase();
+//        break;
+//      }
+//    }
     ScrapeRetrieval scrapeRetrieval = new ScrapeRetrieval();
     scrapeRetrieval.organize(scrapeRetrieval.retrieve());
 
   //  System.out.println(list.getResortMap());
     //System.out.println(list.getResortNames());
-    ResortConditions conditions = new ResortConditions();
-   //WeatherForecast forecast1 = conditions.getForecast("Schladming – Planai/\u200B\u200BHochwurzen/\u200B\u200BHauser Kaibling/\u200B\u200BReiteralm (4-Berge-Skischaukel)");
-    WeatherForecast forecast1 = conditions.getForecast("Okemo");
-    SnowConditions snow = new SnowConditions();
-   //SnowForecast forecast2 = snow.getForecast("Schladming – Planai/\u200B\u200BHochwurzen/\u200B\u200BHauser Kaibling/\u200B\u200BReiteralm (4-Berge-Skischaukel)");
-    SnowForecast forecast2 = snow.getForecast("Okemo");
+//    ResortConditions conditions = new ResortConditions();
+//   WeatherForecast forecast1 = conditions.getForecast("Schladming – Planai/\u200B\u200BHochwurzen/\u200B\u200BHauser Kaibling/\u200B\u200BReiteralm (4-Berge-Skischaukel)");
+//    WeatherForecast forecast1 = conditions.getForecast("Crystal Mountain");
+//    System.out.println(forecast1);
+//    SnowConditions snow = new SnowConditions();
+//   SnowForecast forecast2 = snow.getForecast("Schladming – Planai/\u200B\u200BHochwurzen/\u200B\u200BHauser Kaibling/\u200B\u200BReiteralm (4-Berge-Skischaukel)");
+//    SnowForecast forecast2 = snow.getForecast("Crystal Mountain");
+//    System.out.println(forecast2);
+//    Integer lifts = scrapeRetrieval.getLift("Crystal Mountain");
+//   ResortInfo info = list.getResortMap().get(name);
+ //  Resort resort = new Resort(name,lifts, info, forecast1, forecast2);
+ //   System.out.println(resort);
 
-    Integer lifts = scrapeRetrieval.getLift("Okemo");
-   ResortInfo info = list.getResortMap().get(name);
-   Resort resort = new Resort(name,lifts, info, forecast1, forecast2);
-    System.out.println(resort);
-
-    //  CachedResorts resorts = new CachedResorts(list);
-    //   resorts.populateCache(list);
-   // System.out.println(conditions.regexInput("Two words"));
+      CachedResorts resorts = new CachedResorts(list, scrapeRetrieval);
+      try{
+        resorts.searchResort("unintelligible");
+      } catch (RuntimeException e){
+        System.out.println("Caught!");
+      }
+      // resorts.populateCache(list);
+    //System.out.println(resorts.getCache().keySet());
+//    System.out.println(conditions.regexInput("Two words"));
   }
 }
 
