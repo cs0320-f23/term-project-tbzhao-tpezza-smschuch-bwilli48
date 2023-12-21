@@ -10,7 +10,7 @@ tbzhao - Cosntructed a script that scrapes data from the web using Puppeteer. Lo
 
 bwilli48 - Spent many hours reading Firebase documentation intially, and tried to integrate before eventually deciding that it was far too complex and not what we needed for this app. Switched to Auth0 and integrated logging in and out of our app. Then connected the accounts to user preferences so that when you're logged in your preferences are saved. Mocked this initially and wrote tests for it. Wrote javadocs and README for the entire frontend. Spent a lot of time reading CSS docs and developing the aesthetic of our frontend. Added aria-labels to everything I could in the interest of accessibility. - 30 hours
 
-smschuch - things done - X hours
+smschuch - Helped conduct research on assembling csv file of ski resorts and relevant corresponding data points. Also brainstormed and created the recommendation algorithm that assigns scores for each ski resort in the database that depends on the user's desired preferences. This takes into account the specific preferences themselves, in addition to the weights (relevant importance compared to the others) of these attributes compared to the other attributes. Also created a sorting endpoint that sorts the ski resorts by an inputted attribute in a descending order. Lastly a devised testing suites for both of these functions to ensure quality.  - 30 hours
 
 Link to repo: https://github.com/cs0320-f23/term-project-tbzhao-tpezza-smschuch-bwilli48
 
