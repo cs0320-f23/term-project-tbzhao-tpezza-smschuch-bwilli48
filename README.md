@@ -6,7 +6,7 @@
 
 tpezza - things done - X hours
 
-tbzhao - things done - X hours
+tbzhao - Cosntructed a script that scrapes data from the web using Puppeteer. Looked into options for hosting servers online through Render but this did not serve to be a viable option. Also worked with APIs to create calls that would retreive the necessary data and store it in data structures to be used in the algorithm. Designed the server endpoints and setting up the server for the data to be available and sent to the frontend. - 30 hours
 
 bwilli48 - Spent many hours reading Firebase documentation intially, and tried to integrate before eventually deciding that it was far too complex and not what we needed for this app. Switched to Auth0 and integrated logging in and out of our app. Then connected the accounts to user preferences so that when you're logged in your preferences are saved. Mocked this initially and wrote tests for it. Wrote javadocs and README for the entire frontend. Spent a lot of time reading CSS docs and developing the aesthetic of our frontend. Added aria-labels to everything I could in the interest of accessibility. - 30 hours
 
@@ -32,7 +32,11 @@ Our webapp consists of five main panels:
 
 ### Backend
 
-TODO
+Our webapp contains two separate components:
+
+1) Server: The server is the main link between the frontend and the backend. It has components that fetch API calls for weather and snow data. Additionally, it parses a list of resorts that contains information on location and price. There is also a component that fetches the information that is scraped from the web. This is all stored in a list of resort items that the algorithm uses in the recommendation.
+
+2) Scraper: The scraper uses Puppeteer to pull data on the number of lifts at ski resorts. This returns in a Json format that the server takes and stores. The sorting takes about a minute or so in order to pull all the data, which is a limitation. 
 
 ## Errors/Bugs
 
@@ -43,6 +47,8 @@ TODO: update right before Tim meeting.
 ### Frontend
 
 Auth.spec.ts: This testing class focuses on the connection between account authentication and preferences. It includes Playwright tests that login to the webapp, adjust preferences and reload the page/logout and login again to ensure that preferences are saved to the account. It also covers edge cases like the user not pressing the save to account button.
+
+SkiTesting: This testing class is responsible for testing individual components of the server. There are tests that print out data retrieved as well as checking that values and data are correctly processed.
 
 ### Backend
 
@@ -67,4 +73,11 @@ To run playwright tests:
 
 ### Backend
 
-TODO: Add backend instructions
+To start the backend:
+1. cd backend\scraper
+2. npm install puppeteer
+3. node index.js
+4. This will have run the scraper code
+5. Open the backend folder on Intellij
+6. Open the Main package and go to the Server class
+7. Run the server, once the message "Server is ready to use!" shows, the backend is ready
