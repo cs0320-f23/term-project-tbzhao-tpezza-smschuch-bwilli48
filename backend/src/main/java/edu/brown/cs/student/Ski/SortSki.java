@@ -100,9 +100,9 @@ public class SortSki implements Route {
       return 0;
     }
     else if (attributeType.equals("lifts")) {
-      String liftNum = resort.liftsOpen();
+      Integer liftNum = resort.liftsOpen();
       if (liftNum != null) {
-        int lifts = Integer.parseInt(liftNum);
+        int lifts = liftNum;
         return lifts;
       }
       return 0;

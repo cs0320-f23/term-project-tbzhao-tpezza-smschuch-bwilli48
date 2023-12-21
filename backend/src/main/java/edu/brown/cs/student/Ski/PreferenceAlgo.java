@@ -233,9 +233,9 @@ public class PreferenceAlgo implements Route {
   }
   private int getLiftsAccuracy(Resort resort) {
     int score = 0;
-    String lifts = resort.liftsOpen();
+    Integer lifts = resort.liftsOpen();
     if (lifts != null) {
-      int difference = Math.abs(Integer.parseInt(resort.liftsOpen()) - this.liftsPreference);
+      int difference = Math.abs(resort.liftsOpen()- this.liftsPreference);
       if (difference < 3) {
         score = 100;
       } else if (difference < 5) {
