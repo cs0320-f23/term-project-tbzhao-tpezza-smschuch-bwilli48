@@ -5,48 +5,141 @@ import { PreferenceAndValue } from "../prefs/Preferences";
  */
 export class Resort {
   name: string;
-  snowfallAmount: number | null;
-  lastSnowfall: number | null;
-  baseDepth: number | null;
-  price: number | null;
-  liftsOpen: number | null;
-  summitElevation: number | null;
-  temperature: number | null;
-  windspeed: number | null;
+  snowfallAmount: string;
+  lastSnowfall: string;
+  baseDepth: string;
+  price: number | string;
+  liftsOpen: number | string;
+  summitElevation: string | string;
+  temperature: number | string;
+  windspeed: number | string;
 
   constructor(
     name: string,
-    snowfallAmount: number | null,
-    lastSnowfall: number | null,
-    baseDepth: number | null,
+    snowfallAmount: string | null,
+    lastSnowfall: string | null,
+    baseDepth: string | null,
     price: number | null,
     liftsOpen: number | null,
-    summitElevation: number | null,
+    summitElevation: string | null,
     temperature: number | null,
     windspeed: number | null
   ) {
     this.name = name;
-    this.snowfallAmount = snowfallAmount;
-    this.lastSnowfall = lastSnowfall;
-    this.baseDepth = baseDepth;
-    this.price = price;
-    this.liftsOpen = liftsOpen;
-    this.summitElevation = summitElevation;
-    this.temperature = temperature;
-    this.windspeed = windspeed;
+    this.snowfallAmount =
+      snowfallAmount === null || snowfallAmount === undefined
+        ? "N/A"
+        : snowfallAmount;
+    this.lastSnowfall =
+      lastSnowfall === null || lastSnowfall === undefined
+        ? "N/A"
+        : lastSnowfall;
+    this.baseDepth =
+      baseDepth === null || baseDepth === undefined ? "N/A" : baseDepth;
+    this.price = price === null || price === undefined ? "N/A" : price;
+    this.liftsOpen =
+      liftsOpen === null || liftsOpen === undefined ? "N/A" : liftsOpen;
+    this.summitElevation =
+      summitElevation === null || summitElevation === undefined
+        ? "N/A"
+        : summitElevation;
+    this.temperature =
+      temperature === null || temperature === undefined ? "N/A" : temperature;
+    this.windspeed =
+      windspeed === null || windspeed === undefined ? "N/A" : windspeed;
   }
 }
 
 // Mock data and utility functions:
 
-export const MockA = new Resort("Mock A", 12, 4, 71, 100, 4, 9000, 12, 21);
-export const MockB = new Resort("Mock B", 11, 4, 56, 60, 6, 10000, 15, 30);
-export const MockC = new Resort("Mock C", 20, 1, 90, 100, 7, 4612, 10, 5);
-export const MockD = new Resort("Mock D", 90, 3, 120, 125, 18, 12500, 30, 11);
-export const MockE = new Resort("Mock E", 3, 9, 15, 140, 25, 7129, 40, 2);
-export const MockF = new Resort("Mock F", 17, 3, 40, 190, 7, 6732, 31, 18);
-export const MockG = new Resort("Mock G", 17, 2, 60, 80, 19, 13789, 13, 31);
-export const MockH = new Resort("Mock H", 71, 0, 101, 110, 8, 11771, 16, 11);
+export const MockA = new Resort(
+  "Mock A",
+  "12in",
+  "16 Dec 2023",
+  "71in",
+  100,
+  4,
+  "9000ft",
+  12,
+  21
+);
+export const MockB = new Resort(
+  "Mock B",
+  "11in",
+  "16 Dec 2023",
+  "56in",
+  60,
+  6,
+  "10000ft",
+  15,
+  30
+);
+export const MockC = new Resort(
+  "Mock C",
+  "20in",
+  "19 Dec 2023",
+  "90in",
+  100,
+  7,
+  "4612ft",
+  10,
+  5
+);
+export const MockD = new Resort(
+  "Mock D",
+  "90in",
+  "17 Dec 2023",
+  "120in",
+  125,
+  18,
+  "12500ft",
+  30,
+  11
+);
+export const MockE = new Resort(
+  "Mock E",
+  "3in",
+  "11 Dec 2023",
+  "15in",
+  140,
+  25,
+  "7129ft",
+  40,
+  2
+);
+export const MockF = new Resort(
+  "Mock F",
+  "17in",
+  "17 Dec 2023",
+  "40in",
+  190,
+  7,
+  "6732ft",
+  31,
+  18
+);
+export const MockG = new Resort(
+  "Mock G",
+  "17in",
+  "18 Dec 2023",
+  "60in",
+  80,
+  19,
+  "13789ft",
+  13,
+  31
+);
+export const MockH = new Resort(
+  "Mock H",
+  "71in",
+  "20 Dec 2023",
+  "101in",
+  110,
+  8,
+  "11771ft",
+  16,
+  11
+);
 
 export const mockResorts = [
   MockA,
@@ -80,14 +173,52 @@ interface ServerResponse {
   resorts: BackendResort[];
 }
 
-interface BackendResort {}
-
-function backendToResort(backend: BackendResort): Resort {
-  return MockA;
+interface BackendResort {
+  name: string;
+  liftsOpen: number;
+  info: ResortInfo;
+  weatherForecast: ResortWeatherForecast;
+  snowForecast: ResortSnowForecast;
 }
 
-function backendToResortList(backend: BackendResort[]): Resort[] {
-  return [MockA, MockB];
+interface ResortInfo {
+  resortPrice: number;
+}
+
+interface ResortWeatherForecast {
+  basicInfo: ResortBasicInfo;
+}
+
+interface ResortBasicInfo {
+  topLiftElevation: string;
+}
+
+interface ResortSnowForecast {
+  topSnowDepth: string;
+  freshSnowfall: string;
+  lastSnowfallDate: string;
+}
+
+function backendToResort(backend: BackendResort): Resort {
+  return new Resort(
+    backend.name,
+    backend.snowForecast.freshSnowfall,
+    backend.snowForecast.lastSnowfallDate,
+    backend.snowForecast.topSnowDepth,
+    backend.info.resortPrice,
+    backend.liftsOpen,
+    backend.weatherForecast.basicInfo.topLiftElevation,
+    null,
+    null
+  );
+}
+
+function backendToResortList(backendList: BackendResort[]): Resort[] {
+  var resorts: Resort[] = [];
+  backendList.forEach(function (backend) {
+    resorts = [backendToResort(backend), ...resorts];
+  });
+  return resorts;
 }
 
 export function isServerResponseJson(rjson: any): rjson is ServerResponse {
@@ -100,18 +231,40 @@ export function getStartResorts(): Promise<Resort[]> {
   output = fetch("http://localhost:3232/resorts?type=list")
     .then((response: Response) => response.json())
     .then((json) => {
-      // if (!isServerResponseJson(json)) {
-      //   return [MockA];
-      // } else {
-      //   if (json.result == "success") {
-      //     return backendToResortList(json.resorts);
-      //   } else {
-      //     return [MockB];
-      //   }
-      // }
-      return [MockA];
+      if (!isServerResponseJson(json)) {
+        return [
+          new Resort(
+            "Resort Not Found",
+            "0in",
+            "20 Dec 2023",
+            "0in",
+            0,
+            0,
+            "0ft",
+            0,
+            0
+          ),
+        ];
+      } else {
+        if (json.result == "success") {
+          return backendToResortList(json.resorts);
+        } else {
+          return [
+            new Resort(
+              "Resort Not Found",
+              "0in",
+              "20 Dec 2023",
+              "0in",
+              0,
+              0,
+              "0ft",
+              0,
+              0
+            ),
+          ];
+        }
+      }
     });
-  //convert
   console.log(output);
   return output;
 }
@@ -122,32 +275,129 @@ export function getSearchResort(name: string): Promise<Resort> {
     .then((response: Response) => response.json())
     .then((json) => {
       if (!isServerResponseJson(json)) {
-        return new Resort("Resort Not Found", 0, 0, 0, 0, 0, 0, 0, 0);
+        return new Resort(
+          "Resort Not Found",
+          "0in",
+          "20 Dec 2023",
+          "0in",
+          0,
+          0,
+          "0ft",
+          0,
+          0
+        );
       } else {
         if (json.result == "success") {
           return backendToResort(json.resort);
         } else {
-          return new Resort("Resort Not Found", 0, 0, 0, 0, 0, 0, 0, 0);
+          return new Resort(
+            "Resort Not Found",
+            "0in",
+            "20 Dec 2023",
+            "0in",
+            0,
+            0,
+            "0ft",
+            0,
+            0
+          );
         }
       }
     });
-  //convert
   return output;
 }
 
-export function getSortedResorts(attribute: string): Resort[] {
-  //call sort
-  //convert
-  return [];
+export function getSortedResorts(attribute: string): Promise<Resort[]> {
+  var output: Promise<Resort[]>;
+  output = fetch(
+    "http://localhost:3232/resorts?type=sort?attribute=" + attribute
+  )
+    .then((response: Response) => response.json())
+    .then((json) => {
+      if (!isServerResponseJson(json)) {
+        return [
+          new Resort(
+            "Resort Not Found",
+            "0in",
+            "20 Dec 2023",
+            "0in",
+            0,
+            0,
+            "0ft",
+            0,
+            0
+          ),
+        ];
+      } else {
+        if (json.result == "success") {
+          return backendToResortList(json.resorts);
+        } else {
+          return [
+            new Resort(
+              "Resort Not Found",
+              "0in",
+              "20 Dec 2023",
+              "0in",
+              0,
+              0,
+              "0ft",
+              0,
+              0
+            ),
+          ];
+        }
+      }
+    });
+  console.log(output);
+  return output;
 }
 
 export function getRankedResorts(
   prefs: Map<string, PreferenceAndValue>
-): Resort[] {
-  //convert prefs to json
-  //call prefs
-  //convert
-  return [];
+): Promise<Resort[]> {
+  var prefsJson = "";
+  var output: Promise<Resort[]>;
+  output = fetch(
+    "http://localhost:3232/resorts?type=preference&prefs=" + prefsJson
+  )
+    .then((response: Response) => response.json())
+    .then((json) => {
+      if (!isServerResponseJson(json)) {
+        return [
+          new Resort(
+            "Resort Not Found",
+            "0in",
+            "20 Dec 2023",
+            "0in",
+            0,
+            0,
+            "0ft",
+            0,
+            0
+          ),
+        ];
+      } else {
+        if (json.result == "success") {
+          return backendToResortList(json.resorts);
+        } else {
+          return [
+            new Resort(
+              "Resort Not Found",
+              "0in",
+              "20 Dec 2023",
+              "0in",
+              0,
+              0,
+              "0ft",
+              0,
+              0
+            ),
+          ];
+        }
+      }
+    });
+  console.log(output);
+  return output;
 }
 
 export function getMockStartResorts(): Resort[] {
@@ -179,7 +429,19 @@ export function getMockSearchResort(name: string): Resort[] {
   if (name === "Mock H") {
     return [MockH];
   }
-  return [new Resort("Resort Not Found", 0, 0, 0, 0, 0, 0, 0, 0)];
+  return [
+    new Resort(
+      "Resort Not Found",
+      "0in",
+      "20 Dec 2023",
+      "0in",
+      0,
+      0,
+      "0ft",
+      0,
+      0
+    ),
+  ];
 }
 
 export function getMockSortedResorts(attribute: string): Resort[] {
@@ -200,7 +462,19 @@ export function getMockSortedResorts(attribute: string): Resort[] {
   } else if (attribute === "Windspeed") {
     return [MockG, MockB, MockA, MockF, MockC, MockE];
   } else {
-    return [new Resort("Resort Not Found", 0, 0, 0, 0, 0, 0, 0, 0)];
+    return [
+      new Resort(
+        "Resort Not Found",
+        "0in",
+        "20 Dec 2023",
+        "0in",
+        0,
+        0,
+        "0ft",
+        0,
+        0
+      ),
+    ];
   }
 }
 
