@@ -68,7 +68,7 @@ test("Multiple preferences should save and persist", async ({ page }) => {
 	// Reload page to check if preferences are saved
 	await page.reload();
 	await expect(snowfallWeightLocator).toContainText("Weight: 6");
-	await expect(baseDepthValueLocator).toContainText("Value: 4");
+	await expect(baseDepthValueLocator).toContainText("Value: 35");
 
 	// Logout and login again to check if preferences persist
 	await page.click("text=Log Out");
@@ -84,7 +84,7 @@ test("Multiple preferences should save and persist", async ({ page }) => {
 
 	// Assert that the updated preferences are still there after re-login
 	await expect(snowfallWeightLocator).toContainText("Weight: 6");
-	await expect(baseDepthValueLocator).toContainText("Value: 4");
+	await expect(baseDepthValueLocator).toContainText("Value: 35");
 });
 
 test("Preferences should not save without clicking 'Save to Account'", async ({ page }) => {

@@ -48,9 +48,13 @@ TODO: update right before Tim meeting.
 
 Auth.spec.ts: This testing class focuses on the connection between account authentication and preferences. It includes Playwright tests that login to the webapp, adjust preferences and reload the page/logout and login again to ensure that preferences are saved to the account. It also covers edge cases like the user not pressing the save to account button.
 
-SkiTesting: This testing class is responsible for testing individual components of the server. There are tests that print out data retrieved as well as checking that values and data are correctly processed.
+MockPrefs.spec.ts: This testing class focuses on the barebones functionality of search by preferences. It tests on mocked data, ensuring that the correct mocked resort is shown at the top of the list when a certain preference is maxed out. It also tests a combination of preferences being changed, to ensure the correct resort is returned.
+
+MockSortSearch.spec.ts: This testing class focuses on the sort and search functionalities of our webapp. It also works on mocked data and ensures that the correct resort is returned when it is searched for, testing for edge cases like searching for two different resorts back to back. It also tests sort and search back to back and the interaction between preferences search, sort, and search.
 
 ### Backend
+
+SkiTesting: This testing class is responsible for testing individual components of the server. There are tests that print out data retrieved as well as checking that values and data are correctly processed.
 
 ## Running
 
