@@ -5,7 +5,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc57b4cd-7aef-4ffe-bbeb-a369314bb184" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/skiTesting/APITests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/skiTesting/CacheTests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/skiTesting/ListTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/ski/src/components/resorts/ResortClass.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/ski/src/components/resorts/ResortClass.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/ski/test-results/Auth-Multiple-preferences-should-save-and-persist-chromium/trace.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/ski/test-results/Auth-One-preference-should-save-and-persist-chromium/trace.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/ski/test-results/Auth-Preferences-should-not-save-without-clicking-Save-to-Account--chromium/trace.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/PreferenceAlgo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/PreferenceAlgo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/ResortList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SortSki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/Ski/SortSki.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/brown/cs/student/server/Main/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/skiTesting/SortTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/brown/cs/student/Testing/skiTesting/SortTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/CreatorFromRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/CreatorFromRow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/FactoryFailureException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/FactoryFailureException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/Parse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/Parsing/Parse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/main/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/main/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/CSVCode/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/BasicInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/BasicInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/DayForecast.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/DayForecast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/ForecastDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/ForecastDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Resort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Resort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/ResortInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/ResortInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/SkiLifts.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/SkiLifts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/SnowForecast.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/SnowForecast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Stats.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/Stats.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/WeatherForecast.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/Records/WeatherForecast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortConditions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortConditions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortLifts.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortLifts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ResortList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ScrapeRetrieval.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/ScrapeRetrieval.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/SnowConditions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/Ski/SnowConditions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/ACSAPISource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/ACSAPISource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/BroadbandData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/BroadbandData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/DatasourceException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/DatasourceException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/StateIds.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/ACS/StateIds.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/CachedItems.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/CachedItems.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/OurRemoveCache.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Caching/OurRemoveCache.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ListSuccess.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ListSuccess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ResortFailure.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ResortFailure.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ResortSuccess.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ResortSuccess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler$EndpointNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler$EndpointNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Main/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Main/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier$Identifier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier$Identifier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/Search$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/Search$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/Search.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/brown/cs/student/server/Search/Search.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/CSV-README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/PracTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/PracTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DemoParse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DemoParse$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DemoParse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DemoParse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DimensionsCreatorFromRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DimensionsCreatorFromRow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DimensionsTestClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/Dimensions/DimensionsTestClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/ParseTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/ParseTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/ParseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/CSVTesting/ParseTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/serverTesting/ACSAPISourceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/brown/cs/student/Testing/serverTesting/ACSAPISourceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,43 +91,36 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
-  </component>
   <component name="ProjectId" id="2YBilQR60WIOQFwQBG7ZALIN2AE" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tonyb/cs320/term-project-tbzhao-tpezza-smschuch-bwilli48/backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/tonyb/cs320/term-project-tbzhao-tpezza-smschuch-bwilli48/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="edu.brown.cs.student.Ski.Records" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Server">
-  <component name="RunManager" selected="JUnit.SortTests.testBasicSort">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.server.Main.Server" />
       <module name="s0" />
       <extension name="coverage">
@@ -82,7 +133,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AlgoTests.testBasicAlgo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AlgoTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="s0" />
       <extension name="coverage">
         <pattern>
@@ -92,72 +143,43 @@
       </extension>
       <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.skiTesting" />
       <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.skiTesting.AlgoTests" />
-      <option name="METHOD_NAME" value="testBasicAlgo" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BroadMapTest.testInteraction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.brown.cs.student.Testing.MapTesting.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.MapTesting" />
-      <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.MapTesting.BroadMapTest" />
-      <option name="METHOD_NAME" value="testInteraction" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FuzzTest.testRandomBounds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.brown.cs.student.Testing.MapTesting.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.MapTesting" />
-      <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.MapTesting.FuzzTest" />
-      <option name="METHOD_NAME" value="testRandomBounds" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SearchTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CacheTests.testCache" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="s0" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.brown.cs.student.Testing.CSVTesting.*" />
+          <option name="PATTERN" value="edu.brown.cs.student.Testing.skiTesting.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.CSVTesting" />
-      <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.CSVTesting.SearchTest" />
-      <option name="METHOD_NAME" value="test" />
+      <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.skiTesting" />
+      <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.skiTesting.CacheTests" />
+      <option name="METHOD_NAME" value="testCache" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SearchTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ListTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="s0" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.brown.cs.student.Testing.CSVTesting.*" />
+          <option name="PATTERN" value="edu.brown.cs.student.Testing.skiTesting.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.CSVTesting" />
-      <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.CSVTesting.SearchTest" />
-      <option name="METHOD_NAME" value="test2" />
-    <configuration name="SortTests.testBasicSort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.skiTesting" />
+      <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.skiTesting.ListTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SortTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="s0" />
       <extension name="coverage">
         <pattern>
@@ -167,22 +189,18 @@
       </extension>
       <option name="PACKAGE_NAME" value="edu.brown.cs.student.Testing.skiTesting" />
       <option name="MAIN_CLASS_NAME" value="edu.brown.cs.student.Testing.skiTesting.SortTests" />
-      <option name="METHOD_NAME" value="testBasicSort" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SortTests.testBasicSort" />
-        <item itemvalue="JUnit.AlgoTests.testBasicAlgo" />
-        <item itemvalue="JUnit.SearchTest.test" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.SearchTest.test" />
-        <item itemvalue="JUnit.SearchTest.test2" />
-        <item itemvalue="JUnit.BroadMapTest.testInteraction" />
-        <item itemvalue="JUnit.FuzzTest.testRandomBounds" />
+        <item itemvalue="JUnit.AlgoTests" />
+        <item itemvalue="JUnit.SortTests" />
+        <item itemvalue="JUnit.CacheTests.testCache" />
+        <item itemvalue="JUnit.ListTests" />
       </list>
     </recent_temporary>
   </component>

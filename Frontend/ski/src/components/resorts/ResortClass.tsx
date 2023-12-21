@@ -309,9 +309,7 @@ export function getSearchResort(name: string): Promise<Resort> {
 
 export function getSortedResorts(attribute: string): Promise<Resort[]> {
   var output: Promise<Resort[]>;
-  output = fetch(
-    "http://localhost:3232/resorts?type=sort?attribute=" + attribute
-  )
+  output = fetch("http://localhost:3232/sort?attribute=" + attribute)
     .then((response: Response) => response.json())
     .then((json) => {
       if (!isServerResponseJson(json)) {
@@ -355,11 +353,42 @@ export function getSortedResorts(attribute: string): Promise<Resort[]> {
 export function getRankedResorts(
   prefs: Map<string, PreferenceAndValue>
 ): Promise<Resort[]> {
-  var prefsJson = "";
+  var prefsJson =
+    "{snowfallamount: {weight: " +
+    prefs.get("Snowfall Amount")?.weight +
+    ", value: " +
+    prefs.get("Snowfall Amount")?.value +
+    "}, lastsnowfall: {weight: " +
+    prefs.get("Last Snowfall")?.weight +
+    ", value: " +
+    prefs.get("Last Snowfall")?.value +
+    "}, basedepth: {weight: " +
+    prefs.get("Base-depth")?.weight +
+    ", value: " +
+    prefs.get("Base-depth")?.value +
+    "}, price: {weight: " +
+    prefs.get("Price")?.weight +
+    ", value: " +
+    prefs.get("Price")?.value +
+    "}, lifts: {weight: " +
+    prefs.get("Lifts Open")?.weight +
+    ", value: " +
+    prefs.get("Lifts Open")?.value +
+    "}, elevation: {weight: " +
+    prefs.get("Summit Elevation")?.weight +
+    ", value: " +
+    prefs.get("Summit Elevation")?.value +
+    "}, temperature: {weight: " +
+    prefs.get("Temperature")?.weight +
+    ", value: " +
+    prefs.get("Temperature")?.value +
+    "}, windspeed: {weight: " +
+    prefs.get("Windspeed")?.weight +
+    ", value: " +
+    prefs.get("Windspeed")?.value +
+    "}}";
   var output: Promise<Resort[]>;
-  output = fetch(
-    "http://localhost:3232/resorts?type=preference&prefs=" + prefsJson
-  )
+  output = fetch("http://localhost:3232/algo?preferences=" + prefsJson)
     .then((response: Response) => response.json())
     .then((json) => {
       if (!isServerResponseJson(json)) {

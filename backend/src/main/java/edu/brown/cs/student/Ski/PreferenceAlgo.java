@@ -47,6 +47,7 @@ public class PreferenceAlgo implements Route {
   public Object handle(Request request, Response response) throws Exception {
     Set<String> params = request.queryParams();
     String preferences = request.queryParams("preferences");
+    System.out.println(preferences);
     if (params.size() != 1) {
       return "Must input preferences in the JSON format";
     }

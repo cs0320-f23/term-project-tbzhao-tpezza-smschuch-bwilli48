@@ -65,7 +65,7 @@ public class SortTests {
     BasicInfo basicInfo1 = new BasicInfo("Europe","resort1","www.x.com","2000","400","200","15","16");
     WeatherForecast weather1 = new WeatherForecast(forecastList1,"sunny","sunny",basicInfo1);
     SnowForecast snow1 = new SnowForecast("15","8","7","22 Jan 2022",basicInfo1);
-    Resort resort1 = new Resort("resort1","2", info1, weather1,snow1);
+    Resort resort1 = new Resort("resort1",2, info1, weather1,snow1);
 
     //Resort2 setup
     ResortInfo info2 = new ResortInfo("resort2","Denmark","10");
@@ -113,7 +113,7 @@ public class SortTests {
     BasicInfo basicInfo2 = new BasicInfo("Europe","resort2","www.x.com","5000","1200","900","15","16");
     WeatherForecast weather2 = new WeatherForecast(forecastList2,"sunny","sunny",basicInfo2);
     SnowForecast snow2 = new SnowForecast("15","8","7","5 Feb 2022",basicInfo2);
-    Resort resort2 = new Resort("resort2","1", info2, weather2,snow2);
+    Resort resort2 = new Resort("resort2",1, info2, weather2,snow2);
 
     //Setup Resort3
     ResortInfo info3 = new ResortInfo("resort3","Switzerland","19");
@@ -161,7 +161,7 @@ public class SortTests {
     BasicInfo basicInfo3 = new BasicInfo("Europe","resort3","www.x.com","400","300","100","15","16");
     WeatherForecast weather3 = new WeatherForecast(forecastList3,"sunny","sunny",basicInfo3);
     SnowForecast snow3 = new SnowForecast("15","8","7","4 Jan 2023",basicInfo3);
-    Resort resort3 = new Resort("resort3","9", info3, weather3,snow3);
+    Resort resort3 = new Resort("resort3",9, info3, weather3,snow3);
 
     this.basicResortList.add(resort1);
     this.basicResortList.add(resort2);
@@ -171,7 +171,7 @@ public class SortTests {
 
   @Test
   public void testBasicSort() {
-    SortSki sortSki = new SortSki(this.basicResortList);
+    SortSki sortSki = new SortSki(null, null);
     System.out.println(sortSki.sortResorts("price"));
   }
 

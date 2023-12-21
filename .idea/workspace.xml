@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e66fef3-66f1-46b2-81d2-79995e2df4dc" name="Changes" comment="" />
+    <list default="true" id="6e66fef3-66f1-46b2-81d2-79995e2df4dc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/edu/brown/cs/student/Testing/skiTesting/APITests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/edu/brown/cs/student/Testing/skiTesting/CacheTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/edu/brown/cs/student/Testing/skiTesting/ListTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/test-classes/edu/brown/cs/student/Testing/skiTesting/APITests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/test-classes/edu/brown/cs/student/Testing/skiTesting/CacheTests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/test-classes/edu/brown/cs/student/Testing/skiTesting/ListTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/ski/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/ski/src/components/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/CSVCode/Parsing/CreatorFromRow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/CSVCode/Parsing/FactoryFailureException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/CSVCode/Parsing/Parse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/CSVCode/main/Main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/CSVCode/main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/Records/BasicInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/Records/DayForecast.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/Records/ForecastDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/Records/Resort.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/Records/ResortInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/Records/SkiLifts.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/Records/SnowForecast.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/Records/Stats.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/Records/WeatherForecast.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/ResortConditions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/ResortLifts.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/ResortList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/ScrapeRetrieval.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/Ski/SnowConditions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/ACS/ACSAPISource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/ACS/BroadbandData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/ACS/BroadbandDataSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/ACS/DatasourceException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/ACS/Location.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/ACS/StateIds.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Caching/CachedItems.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Caching/CachedResorts.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Caching/OurRemoveCache.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Caching/RemoveCacheItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ListSuccess.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ResortFailure.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler$ResortSuccess.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Handlers/ResortHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler$EndpointNotFound.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Handlers/WildCardHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Main/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier$Identifier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Search/ColumnIdentifier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Search/Search$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/brown/cs/student/server/Search/Search.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,17 +67,26 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2ZahSoMuvJNU1QcSWOCfNqnDlSx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/samschuchman/Desktop/cs32/term-project-tbzhao-tpezza-smschuch-bwilli48",
-    "nodejs_package_manager_path": "npm"
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -36,6 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702666100474</updated>
       <workItem from="1702666103343" duration="29000" />
+      <workItem from="1703173238350" duration="894000" />
     </task>
     <servers />
   </component>
@@ -57,5 +120,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

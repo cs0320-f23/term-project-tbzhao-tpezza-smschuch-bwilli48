@@ -19,7 +19,7 @@ test("mock search", async ({ page }) => {
 
   await page.click("text=Search");
 
-  await expect(page.getByText("Snowfall: 12 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 12in")).toBeVisible();
 });
 
 /**
@@ -37,13 +37,13 @@ test("mock search after search", async ({ page }) => {
 
   await page.click("text=Search");
 
-  await expect(page.getByText("Snowfall: 12 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 12in")).toBeVisible();
 
   await page.fill("#searchInput", "Mock B");
 
   await page.click("text=Search");
 
-  await expect(page.getByText("Snowfall: 11 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 11in")).toBeVisible();
 });
 
 // /**
@@ -79,7 +79,7 @@ test("mock sort snowfall", async ({ page }) => {
   await page.click("text=Snowfall Amount");
   await page.click("text=Sort");
 
-  await expect(page.getByText("Snowfall: 90 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 90in")).toBeVisible();
 });
 
 /**
@@ -97,7 +97,7 @@ test("mock sort last", async ({ page }) => {
   await page.click("text=Last Snowfall");
   await page.click("text=Sort");
 
-  await expect(page.getByText("Snowfall: 71 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 71in")).toBeVisible();
 });
 
 /**
@@ -115,13 +115,13 @@ test("mock sort last after search", async ({ page }) => {
 
   await page.click("text=Search");
 
-  await expect(page.getByText("Snowfall: 12 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 12in")).toBeVisible();
 
   await page.click("text=See methods...");
   await page.click("text=Last Snowfall");
   await page.click("text=Sort");
 
-  await expect(page.getByText("Snowfall: 71 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 71in")).toBeVisible();
 });
 
 /**
@@ -142,11 +142,11 @@ test("mock sort last after pref", async ({ page }) => {
 
   await page.click("text=Search By Preference");
 
-  await expect(page.getByText("Snowfall: 11 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 11in")).toBeVisible();
 
   await page.click("text=See methods...");
   await page.click("text=Last Snowfall");
   await page.click("text=Sort");
 
-  await expect(page.getByText("Snowfall: 71 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 71in")).toBeVisible();
 });
