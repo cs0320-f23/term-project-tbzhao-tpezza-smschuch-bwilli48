@@ -6,6 +6,7 @@ import edu.brown.cs.student.Ski.PreferenceAlgo;
 import edu.brown.cs.student.Ski.Records.Resort;
 import edu.brown.cs.student.Ski.ResortList;
 import edu.brown.cs.student.Ski.ScrapeRetrieval;
+import edu.brown.cs.student.Ski.SortSki;
 import edu.brown.cs.student.server.ACS.DatasourceException;
 import edu.brown.cs.student.server.ACS.StateIds;
 
@@ -46,10 +47,11 @@ public class Server {
         });
 
     Spark.get("resorts", new ResortHandler(list, cache));
-    Spark.get("*", new WildCardHandler());
 
     List<Resort> fillerResortList = new ArrayList<>(); //need to get query from tony's stuff and can do it all in the algo class
     Spark.get("algo", new PreferenceAlgo(fillerResortList));
+    Spark.get("sort", new SortSki(list, cache));
+    Spark.get("*", new WildCardHandler());
 
     Spark.init();
     Spark.awaitInitialization();

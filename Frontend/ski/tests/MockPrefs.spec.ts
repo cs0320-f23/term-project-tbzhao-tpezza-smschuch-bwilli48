@@ -17,7 +17,7 @@ test("mock prefs starter", async ({ page }) => {
 
   await page.click("text=Search By Preference");
 
-  await expect(page.getByText("Snowfall: 71 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 71in")).toBeVisible();
 });
 
 /**
@@ -40,7 +40,7 @@ test("mock prefs snowfall amount", async ({ page }) => {
 
   await page.click("text=Search By Preference");
 
-  await expect(page.getByText("Snowfall: 90 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 90in")).toBeVisible();
 });
 
 /**
@@ -61,7 +61,7 @@ test("mock prefs price", async ({ page }) => {
 
   await page.click("text=Search By Preference");
 
-  await expect(page.getByText("Snowfall: 11 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 11in")).toBeVisible();
 });
 
 /**
@@ -84,7 +84,7 @@ test("mock prefs lifts", async ({ page }) => {
 
   await page.click("text=Search By Preference");
 
-  await expect(page.getByText("Snowfall: 12 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 12in")).toBeVisible();
 });
 
 /**
@@ -100,7 +100,7 @@ test("mock prefs lifts after start", async ({ page }) => {
 
   await page.click("text=Search By Preference");
 
-  await expect(page.getByText("Snowfall: 71 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 71in")).toBeVisible();
 
   await page.click('button[aria-label="Increase weight for Lifts Open"]');
   await page.click('button[aria-label="Increase weight for Lifts Open"]');
@@ -111,7 +111,7 @@ test("mock prefs lifts after start", async ({ page }) => {
 
   await page.click("text=Search By Preference");
 
-  await expect(page.getByText("Snowfall: 12 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 12in")).toBeVisible();
 });
 
 /**
@@ -132,7 +132,7 @@ test("mock prefs lifts after price mock", async ({ page }) => {
 
   await page.click("text=Search By Preference");
 
-  await expect(page.getByText("Snowfall: 11 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 11in")).toBeVisible();
 
   await page.click('button[aria-label="Decrease weight for Price"]');
   await page.click('button[aria-label="Decrease weight for Price"]');
@@ -148,5 +148,5 @@ test("mock prefs lifts after price mock", async ({ page }) => {
 
   await page.click("text=Search By Preference");
 
-  await expect(page.getByText("Snowfall: 12 in.")).toBeVisible();
+  await expect(page.getByText("Snowfall: 12in")).toBeVisible();
 });

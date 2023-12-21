@@ -1,35 +1,44 @@
 package edu.brown.cs.student.Ski;
 
+import com.squareup.moshi.Moshi;
 import edu.brown.cs.student.Ski.Records.DayForecast;
 import edu.brown.cs.student.Ski.Records.Resort;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import edu.brown.cs.student.server.Caching.CachedResorts;
+import edu.brown.cs.student.server.Handlers.ResortHandler;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
 public class SortSki implements Route {
 
-  private List<Resort> skiResortList;
+  private ResortList skiResortList;
+  private CachedResorts cache;
 
-  public SortSki(List<Resort> skiResortList) {
+  public SortSki(ResortList skiResortList, CachedResorts cache) {
     this.skiResortList = skiResortList;
+    this.cache = cache;
   }
 
   @Override
   public Object handle(Request request, Response response) throws Exception {
    String attribute = request.queryParams("attribute");
+    System.out.println(1);
    return this.sortResorts(attribute);
   }
 
   //will have two endpoints that return a serialized list of skiResorts with all their info back
   // to the frontend
 
-  public List<Resort> sortResorts(String attributeType) {
-    List<Resort> snowfallList = this.skiResortList;
+  public String sortResorts(String attributeType) {
+    List<Resort> snowfallList = this.cache.getCache().values().stream().toList();
+    System.out.println(2);
     int n = snowfallList.size();
+    System.out.println(attributeType);
     for (int i = 0; i < n - 1; i++) {
       for (int j = 0; j < n - i - 1; j++) {
         if (this.getResortAttribute(snowfallList.get(j),attributeType) > this.getResortAttribute(snowfallList.get(j + 1),attributeType)) {
@@ -40,11 +49,13 @@ public class SortSki implements Route {
         }
       }
     }
-    return snowfallList;
+    System.out.println(3);
+    return new ListSuccess("Success!", snowfallList).serialize();
   }
 
   private int getResortAttribute(Resort resort, String attributeType) {
-    if (attributeType.equals("snowfallamount")) {
+    if (attributeType.equals("Snowfall Amount")) {
+      System.out.println("sorting by: " + attributeType);
       String snowfall = resort.snowForecast().freshSnowfall();
       if (snowfall != null) {
         int snowfallAmount = Integer.parseInt(snowfall);
@@ -52,7 +63,8 @@ public class SortSki implements Route {
       }
       return 0;
     }
-    else if (attributeType.equals("lastsnowfall")) {
+    else if (attributeType.equals("Last Snowfall")) {
+      System.out.println("sorting by: " + attributeType);
       String date = resort.snowForecast().lastSnowfallDate();
       if (date != null) {
         String[] splitDate = date.split("\\s+");
@@ -60,7 +72,8 @@ public class SortSki implements Route {
       }
       return 0;
     }
-    else if (attributeType.equals("basedepth")) {
+    else if (attributeType.equals("Base-depth")) {
+      System.out.println("sorting by: " + attributeType);
       String topDepth = resort.snowForecast().topSnowDepth();
       String bottomDepth = resort.snowForecast().botSnowDepth();
       int topCounter = 0;
@@ -91,7 +104,8 @@ public class SortSki implements Route {
       }
       return 0;
     }
-    else if (attributeType.equals("price")) {
+    else if (attributeType.equals("Price")) {
+      System.out.println("sorting by: " + attributeType);
       String resortPrice = resort.info().resortPrice();
       if (resortPrice != null) {
         int price = Integer.parseInt(resortPrice);
@@ -99,7 +113,8 @@ public class SortSki implements Route {
       }
       return 0;
     }
-    else if (attributeType.equals("lifts")) {
+    else if (attributeType.equals("Lifts Open")) {
+      System.out.println("sorting by: " + attributeType);
       Integer liftNum = resort.liftsOpen();
       if (liftNum != null) {
         int lifts = liftNum;
@@ -107,15 +122,20 @@ public class SortSki implements Route {
       }
       return 0;
     }
-    else if (attributeType.equals("elevation")) {
+    else if (attributeType.equals("Summit Elevation")) {
+      System.out.println("sorting by: " + attributeType);
       String resortElevation = resort.weatherForecast().basicInfo().topLiftElevation();
+      System.out.println("BBB");
       if (resortElevation != null) {
+        System.out.println(resortElevation);
         int elevation = Integer.parseInt(resortElevation);
         return elevation;
       }
+      System.out.println("AAA");
       return 0;
     }
-    else if (attributeType.equals("temp")) {
+    else if (attributeType.equals("Temperature")) {
+      System.out.println("sorting by: " + attributeType);
       List<DayForecast> forecastList = resort.weatherForecast().forecast5Day();
       if (forecastList != null) {
         int temp = this.parseTemp(forecastList);
@@ -124,6 +144,7 @@ public class SortSki implements Route {
       return 0;
     }
     else {
+      System.out.println("sorting by: " + attributeType);
       List<DayForecast> forecastList = resort.weatherForecast().forecast5Day();
       if (forecastList != null) {
         int wind = this.parseWind(forecastList);
@@ -196,6 +217,27 @@ public class SortSki implements Route {
     }
     int windScore = totalWind/sizeCounter;
     return windScore;
+  }
+
+  public record ListSuccess(String result, String SUCCESSMESSAGE, List<Resort> resorts) {
+    /**
+     * Constructor
+     *
+     * @param params params passed into query
+     * @param ERRORMESSAGE informative message for why broadband call failed
+     */
+    public ListSuccess(String SUCCESSMESSAGE, List<Resort> resorts) {
+      this("success", SUCCESSMESSAGE,resorts);
+    }
+    /**
+     * Method serialize message into json
+     *
+     * @return json of the failure message
+     */
+    String serialize() {
+      Moshi moshi = new Moshi.Builder().build();
+      return moshi.adapter(SortSki.ListSuccess.class).toJson(this);
+    }
   }
 
 
